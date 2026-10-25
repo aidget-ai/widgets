@@ -3,6 +3,7 @@ import { resolve, relative, join, sep } from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import Ajv from 'ajv/dist/2020.js';
+import { validateResources } from './resources.mjs';
 
 export const root = resolve(import.meta.dirname, '..');
 export const sha256 = bytes => createHash('sha256').update(bytes).digest('hex');
@@ -59,6 +60,7 @@ export function inspect(directory) {
     const valid = bytes.subarray(0, 8).equals(Buffer.from([137,80,78,71,13,10,26,10])) || bytes.subarray(0,3).equals(Buffer.from([255,216,255])) || (bytes.toString('ascii',0,4)==='RIFF' && bytes.toString('ascii',8,12)==='WEBP');
     if (!valid || bytes.length > 5 * 1024 * 1024) throw new Error(`invalid raster media: ${path}`);
   }
+  validateResources(directory, config, files);
   // Retain only fields consumed by the shared package type; hash the full original file.
   const packageInfo = { name: pkg.name, version: pkg.version, description: pkg.description, author: normalizePerson(pkg.author), repository: normalizeRepository(pkg.repository), license: pkg.license ?? null, files: pkg.files ?? [] };
   return { package: packageInfo, config, files };
