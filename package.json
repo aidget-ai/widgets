@@ -1,0 +1,11 @@
+{
+  "name": "aidget-community-widgets",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "registry": "node scripts/registry.mjs",
+    "check": "node scripts/check.mjs",
+    "test": "node --test tests/scripts/*.test.mjs"
+  },
+  "devDependencies": { "ajv": "^8.17.1" }
+}

@@ -1,0 +1,81 @@
+{
+  "widgets": [
+    {
+      "package": {
+        "name": "@aidget-community/welcome",
+        "version": "0.1.0",
+        "description": "AIDGET 欢迎卡片：将桌面交给 Agent。",
+        "author": {
+          "name": "aidget community",
+          "email": null,
+          "url": null
+        },
+        "repository": {
+          "type": "git",
+          "url": "git+https://github.com/aidget-ai/widgets.git",
+          "directory": "packages/welcome"
+        },
+        "license": "MIT",
+        "files": [
+          "config.json",
+          "index.html",
+          "style.css",
+          "agents.md",
+          "assets"
+        ]
+      },
+      "config": {
+        "id": "welcome",
+        "title": "欢迎使用 AIDGET",
+        "logo": null,
+        "screenshots": [
+          "assets/screenshot.png"
+        ],
+        "platforms": [
+          "macos",
+          "windows",
+          "linux"
+        ],
+        "size": {
+          "width": 360,
+          "height": 220
+        },
+        "dragMode": "all",
+        "permissions": [],
+        "network": []
+      },
+      "files": [
+        {
+          "path": "agents.md",
+          "size": 1181,
+          "sha256": "bf10a1cdff818f8d439e55a63d4d798aeb5b8b25b309b580cbd4f644d949bdc8"
+        },
+        {
+          "path": "assets/screenshot.png",
+          "size": 395129,
+          "sha256": "29677b635aebe20ba54ed635c24d62d1eb7adbd38e2a92d8c0cbe6c5e9b80540"
+        },
+        {
+          "path": "config.json",
+          "size": 264,
+          "sha256": "5c2de928a6c7f7a277fad6191df72d6d8ee92b422216641cb5c4951639e29785"
+        },
+        {
+          "path": "index.html",
+          "size": 1151,
+          "sha256": "009b26d3f5ebf03ad32dcfc12a98c40520ddd522dc035d9fcbe20a1540e63735"
+        },
+        {
+          "path": "package.json",
+          "size": 439,
+          "sha256": "d9cf093222f332ba5389c9b0b3cc98c44077bdad795adcf755886f86d8203a44"
+        },
+        {
+          "path": "style.css",
+          "size": 6066,
+          "sha256": "3b46e68be98a621e3ff0a66d3bad3b7978fae013f453d67f81c108a98431a0fc"
+        }
+      ]
+    }
+  ]
+}

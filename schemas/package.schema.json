@@ -1,0 +1,117 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PackageManifest",
+  "description": "npm metadata used by aidget. Additional npm fields are retained on disk.",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string",
+      "default": ""
+    },
+    "author": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/PackageAuthor"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "repository": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/PackageRepository"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "license": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "files": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "default": []
+    }
+  },
+  "required": [
+    "name",
+    "version"
+  ],
+  "$defs": {
+    "PackageAuthor": {
+      "description": "npm's author value, retaining its standard string and object forms.",
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "email": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "url": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "required": [
+            "name"
+          ]
+        }
+      ]
+    },
+    "PackageRepository": {
+      "description": "npm's repository field supports both standard forms.",
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string"
+            },
+            "url": {
+              "type": "string"
+            },
+            "directory": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "required": [
+            "type",
+            "url"
+          ]
+        }
+      ]
+    }
+  }
+}

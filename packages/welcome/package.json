@@ -1,0 +1,10 @@
+{
+  "name": "@aidget-community/welcome",
+  "version": "0.1.0",
+  "description": "AIDGET 欢迎卡片：将桌面交给 Agent。",
+  "author": { "name": "aidget community" },
+  "repository": { "type": "git", "url": "git+https://github.com/aidget-ai/widgets.git", "directory": "packages/welcome" },
+  "license": "MIT",
+  "files": ["config.json", "index.html", "style.css", "agents.md", "assets"],
+  "publishConfig": { "access": "public" }
+}
