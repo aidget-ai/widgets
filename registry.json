@@ -3,7 +3,7 @@
     {
       "package": {
         "name": "@aidget-community/welcome",
-        "version": "0.1.0",
+        "version": "0.1.1",
         "description": "AIDGET 欢迎卡片：将桌面交给 Agent。",
         "author": {
           "name": "aidget community",
@@ -47,13 +47,13 @@
       "files": [
         {
           "path": "agents.md",
-          "size": 1181,
-          "sha256": "bf10a1cdff818f8d439e55a63d4d798aeb5b8b25b309b580cbd4f644d949bdc8"
+          "size": 1185,
+          "sha256": "76e9ab2677fc34bdb6dc55494d040ca957d5f641f2335918d733a675ad751fbb"
         },
         {
           "path": "assets/screenshot.png",
-          "size": 395129,
-          "sha256": "29677b635aebe20ba54ed635c24d62d1eb7adbd38e2a92d8c0cbe6c5e9b80540"
+          "size": 444343,
+          "sha256": "cb15486ced1e94fd10ff8c3eaa2750a0216ba69bd06a37622eed433723057719"
         },
         {
           "path": "config.json",
@@ -62,18 +62,18 @@
         },
         {
           "path": "index.html",
-          "size": 1151,
-          "sha256": "009b26d3f5ebf03ad32dcfc12a98c40520ddd522dc035d9fcbe20a1540e63735"
+          "size": 1269,
+          "sha256": "1dce0b6529966cde9a529088af9f4b7e1c8a85a35f0a4b509c8cb5633f825603"
         },
         {
           "path": "package.json",
-          "size": 439,
-          "sha256": "d9cf093222f332ba5389c9b0b3cc98c44077bdad795adcf755886f86d8203a44"
+          "size": 489,
+          "sha256": "e74d02ed9f05ea938c6f6fa899fc545337161832f403b379079dde37756fd4a5"
         },
         {
           "path": "style.css",
           "size": 6066,
-          "sha256": "3b46e68be98a621e3ff0a66d3bad3b7978fae013f453d67f81c108a98431a0fc"
+          "sha256": "84943b8efc76c8ae016dbacd810a80fd658b6a5ca8a958abf6f6b45e8c6a5af0"
         }
       ]
     }

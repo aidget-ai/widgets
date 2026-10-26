@@ -12,12 +12,18 @@ jobs:
       - uses: actions/checkout@v7.0.1
         with:
           fetch-depth: 0
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7.1.0
         with:
           node-version: 24
           registry-url: https://registry.npmjs.org
-      - run: npm ci --ignore-scripts
-      - run: npm test
+      - uses: pnpm/setup@v3.1.1
+        with:
+          version: 12.15.0
+          cache: true
+          install: false
+      - run: pnpm install --frozen-lockfile --ignore-scripts
+      - run: pnpm exec vp check
+      - run: pnpm test
       - name: Validate registry and package versions
         env:
           BASE_SHA: ${{ github.event.pull_request.base.sha }}

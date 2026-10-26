@@ -1,9 +1,32 @@
-Describe the widget and include its actual rendering screenshot.
+## Change
 
-- [ ] Declared platforms were checked (list exact platforms/commands below).
-- [ ] Permissions and network origins are necessary and documented.
-- [ ] No credentials or user data are included.
-- [ ] Distributed content changes have a new version.
-- [ ] `npm run registry`, `npm run check` and `npm test` pass.
+<!-- Summarize the widget or tooling change and explain why it is needed. -->
 
-Validation and untested platforms:
+- Widget ID / npm package:
+- Version:
+
+## Screenshots
+
+<!-- Include screenshots of the actual rendered widget. For updates, show before and after when useful. -->
+
+## Permissions and network access
+
+<!-- Explain each requested permission and HTTPS origin. Write "None" if no access is needed. -->
+
+- Permissions:
+- Network origins:
+
+## Platform verification
+
+<!-- List the operating systems and exact commands or manual checks performed. State what was not tested. -->
+
+- Tested:
+- Not tested:
+
+## Checklist
+
+- [ ] Metadata, screenshots and all runtime resources are included.
+- [ ] Requested permissions and network access are necessary and documented.
+- [ ] No credentials, user data, lifecycle scripts or runtime dependencies are included.
+- [ ] Distributed content changes use a new version.
+- [ ] `pnpm ready` passes (check, test, registry generation and validation).

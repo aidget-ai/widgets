@@ -4,13 +4,17 @@
   "type": "module",
   "scripts": {
     "registry": "node scripts/registry.mjs",
-    "check": "node scripts/check.mjs",
-    "test": "node --test tests/scripts/*.test.mjs"
+    "check": "vp check --fix",
+    "test": "vp test run",
+    "validate": "node scripts/check.mjs",
+    "ready": "pnpm check && pnpm test && pnpm registry && pnpm validate"
   },
   "devDependencies": {
+    "@types/node": "^26.6.5",
     "ajv": "^8.17.1",
     "css-tree": "^3.2.1",
     "parse-srcset": "^1.0.2",
-    "parse5": "^8.0.1"
+    "parse5": "^8.0.1",
+    "vite-plus": "catalog:"
   }
 }

@@ -2,7 +2,19 @@ name: Publish
 on:
   push:
     branches: [main]
-    paths: ['packages/**', 'schemas/**', 'registry.json', 'scripts/**', 'package*.json', '.github/workflows/publish.yml']
+    paths:
+      [
+        'packages/**',
+        'schemas/**',
+        'registry.json',
+        'scripts/**',
+        'package.json',
+        'pnpm-lock.yaml',
+        'pnpm-workspace.yaml',
+        'vite.config.ts',
+        'tsconfig.json',
+        '.github/workflows/publish.yml',
+      ]
   workflow_dispatch:
 permissions:
   contents: read
@@ -10,71 +22,29 @@ concurrency:
   group: publish-widgets
   cancel-in-progress: false
 jobs:
-  pack:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v7.0.1
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 24
-      - run: npm ci --ignore-scripts
-      - run: npm test
-      - run: npm run check
-      - run: node scripts/pack.mjs "$RUNNER_TEMP/packed"
-      - uses: actions/upload-artifact@v4
-        with:
-          name: packed-widgets
-          path: ${{ runner.temp }}/packed
-          retention-days: 7
-  dist:
-    needs: pack
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    steps:
-      - uses: actions/checkout@v7.0.1
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 24
-      - run: npm ci --ignore-scripts
-      - uses: actions/download-artifact@v4
-        with:
-          name: packed-widgets
-          path: ${{ runner.temp }}/packed
-      - name: Publish immutable dist versions
-        run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          if git ls-remote --exit-code --heads origin dist; then
-            git fetch origin dist
-            git worktree add "$RUNNER_TEMP/dist" FETCH_HEAD
-          else
-            git worktree add --orphan -b dist "$RUNNER_TEMP/dist"
-          fi
-          node scripts/dist.mjs "$RUNNER_TEMP/packed" "$RUNNER_TEMP/dist"
-          cd "$RUNNER_TEMP/dist"
-          git add .
-          if ! git diff --cached --quiet; then
-            git commit -m "dist: publish ${GITHUB_SHA}"
-            git push origin HEAD:dist
-          fi
   npm:
-    needs: pack
     runs-on: ubuntu-latest
     permissions:
       contents: read
       id-token: write
     steps:
       - uses: actions/checkout@v7.0.1
-      - uses: actions/setup-node@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v7.1.0
         with:
           node-version: 24
           registry-url: https://registry.npmjs.org
-      - run: npm ci --ignore-scripts
-      - uses: actions/download-artifact@v4
+      - uses: pnpm/setup@v3.1.1
         with:
-          name: packed-widgets
-          path: ${{ runner.temp }}/packed
+          version: 12.15.0
+          cache: true
+          install: false
+      - run: pnpm install --frozen-lockfile --ignore-scripts
+      - run: pnpm exec vp check
+      - run: pnpm test
+      - run: pnpm validate
+      - run: node scripts/pack.mjs "$RUNNER_TEMP/packed"
       - name: Publish missing npm versions
         run: node scripts/publish.mjs "$RUNNER_TEMP/packed"
         env:
