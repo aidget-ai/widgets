@@ -2,6 +2,91 @@
   "widgets": [
     {
       "package": {
+        "name": "@aidget-community/sticky-todos",
+        "version": "0.1.0",
+        "description": "水彩纸张风格的桌面待办便签，勾选状态自动保存。",
+        "author": {
+          "name": "micooz",
+          "email": "micooz@hotmail.com",
+          "url": "https://github.com/micooz"
+        },
+        "repository": {
+          "type": "git",
+          "url": "git+https://github.com/aidget-ai/widgets.git",
+          "directory": "packages/sticky-todos"
+        },
+        "license": "MIT",
+        "files": [
+          "config.json",
+          "index.html",
+          "style.css",
+          "agents.md",
+          "assets"
+        ]
+      },
+      "config": {
+        "id": "sticky-todos",
+        "title": "待办事项",
+        "logo": null,
+        "screenshots": [
+          "assets/screenshot.png"
+        ],
+        "platforms": [
+          "macos",
+          "windows",
+          "linux"
+        ],
+        "size": {
+          "width": 360,
+          "height": 260
+        },
+        "dragMode": "all",
+        "permissions": [
+          "script",
+          "storage"
+        ],
+        "network": []
+      },
+      "files": [
+        {
+          "path": "agents.md",
+          "size": 1605,
+          "sha256": "c0b70b2950d78573a2fd3336455a042602af0e7e486fcba0eb28fb77adc3adfd"
+        },
+        {
+          "path": "assets/screenshot.png",
+          "size": 648563,
+          "sha256": "668557f088bd736b0678c8346ae8f572a77919eef2e00a7651a6185bca40f466"
+        },
+        {
+          "path": "assets/watercolor-paper-texture.png",
+          "size": 2854598,
+          "sha256": "8d97cf6406e77789349adcf00baa98965a49a47a4f2aeefe2f445d71281f1d81"
+        },
+        {
+          "path": "config.json",
+          "size": 281,
+          "sha256": "6681a22a2d6a7200f357e0e441aa94bc28778a8b29c5e4026729a0983dc25fab"
+        },
+        {
+          "path": "index.html",
+          "size": 4139,
+          "sha256": "ee15f945301c3637852c100bdcdeb228cafe9174f4f65711ee0d8ba7b14a2c91"
+        },
+        {
+          "path": "package.json",
+          "size": 587,
+          "sha256": "87a04eb3edae7616607fdf0255fd91a0ea9ffc2e3578a67ce6f6f85f18981288"
+        },
+        {
+          "path": "style.css",
+          "size": 5685,
+          "sha256": "6b0960c380cb80784a711b816bb330a6def9f73f56c9d448ac8f1f36cf2a978a"
+        }
+      ]
+    },
+    {
+      "package": {
         "name": "@aidget-community/welcome",
         "version": "0.1.1",
         "description": "AIDGET 欢迎卡片：将桌面交给 Agent。",

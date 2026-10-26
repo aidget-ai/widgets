@@ -1,0 +1,26 @@
+{
+  "name": "@aidget-community/sticky-todos",
+  "version": "0.1.0",
+  "description": "水彩纸张风格的桌面待办便签，勾选状态自动保存。",
+  "license": "MIT",
+  "author": {
+    "name": "micooz",
+    "email": "micooz@hotmail.com",
+    "url": "https://github.com/micooz"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aidget-ai/widgets.git",
+    "directory": "packages/sticky-todos"
+  },
+  "files": [
+    "config.json",
+    "index.html",
+    "style.css",
+    "agents.md",
+    "assets"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

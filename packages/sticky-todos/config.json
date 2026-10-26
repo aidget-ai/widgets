@@ -1,0 +1,11 @@
+{
+  "id": "sticky-todos",
+  "title": "待办事项",
+  "logo": null,
+  "screenshots": ["assets/screenshot.png"],
+  "platforms": ["macos", "windows", "linux"],
+  "size": { "width": 360, "height": 260 },
+  "dragMode": "all",
+  "permissions": ["script", "storage"],
+  "network": []
+}

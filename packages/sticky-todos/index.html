@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="aidget-surface" content="none" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <main class="note" aria-labelledby="note-title">
+      <div class="paper" aria-hidden="true"></div>
+      <header class="note-head">
+        <h1 id="note-title">待办事项</h1>
+        <p class="count" aria-label="已完成事项"><span data-done-count>0</span><span>/2</span></p>
+      </header>
+
+      <ul class="todos" data-aidget-region="todos">
+        <li data-todo-id="try-checkbox">
+          <label class="todo-option">
+            <input type="checkbox" />
+            <span class="todo-text">点击复选框标记完成，状态会自动保存。</span>
+          </label>
+        </li>
+        <li data-todo-id="ask-agent">
+          <label class="todo-option">
+            <input type="checkbox" />
+            <span class="todo-text">让 Agent 添加、删除或整理待办事项。</span>
+          </label>
+        </li>
+      </ul>
+
+      <span class="visually-hidden" data-storage-status role="status" aria-live="polite"></span>
+    </main>
+
+    <script>
+      const STORAGE_KEY = 'todo-checked-v1';
+      const inputs = Array.from(document.querySelectorAll('[data-todo-id] input'));
+      const status = document.querySelector('[data-storage-status]');
+      const doneCount = document.querySelector('[data-done-count]');
+      const storage = window.aidget && window.aidget.storage;
+      let statusTimer;
+
+      function setStatus(message, isError = false) {
+        window.clearTimeout(statusTimer);
+        status.textContent = message;
+        status.classList.toggle('is-error', isError);
+        if (!isError && message === '已自动保存') {
+          statusTimer = window.setTimeout(() => {
+            status.textContent = '勾选后自动保存';
+          }, 1600);
+        }
+      }
+
+      function setDisabled(disabled) {
+        for (const input of inputs) input.disabled = disabled;
+      }
+
+      function syncItem(input) {
+        input.closest('[data-todo-id]').classList.toggle('is-done', input.checked);
+      }
+
+      function syncAll() {
+        for (const input of inputs) syncItem(input);
+        doneCount.textContent = String(inputs.filter((input) => input.checked).length);
+      }
+
+      function snapshot() {
+        const values = {};
+        for (const input of inputs) {
+          values[input.closest('[data-todo-id]').dataset.todoId] = input.checked;
+        }
+        return JSON.stringify(values);
+      }
+
+      async function save(input, previous) {
+        setDisabled(true);
+        setStatus('正在保存…');
+        try {
+          await storage.setItem(STORAGE_KEY, snapshot());
+          setStatus('已自动保存');
+        } catch {
+          input.checked = previous;
+          syncAll();
+          setStatus('保存失败', true);
+        } finally {
+          setDisabled(false);
+        }
+      }
+
+      async function boot() {
+        if (!storage) {
+          setDisabled(true);
+          setStatus('预览模式');
+          window.aidget?.ready?.();
+          return;
+        }
+
+        setDisabled(true);
+        try {
+          const saved = await storage.getItem(STORAGE_KEY);
+          if (saved !== null) {
+            const values = JSON.parse(saved);
+            for (const input of inputs) {
+              const id = input.closest('[data-todo-id]').dataset.todoId;
+              if (typeof values[id] === 'boolean') input.checked = values[id];
+            }
+          }
+          syncAll();
+          setDisabled(false);
+          setStatus('勾选后自动保存');
+          for (const input of inputs) {
+            input.addEventListener('change', () => {
+              syncAll();
+              void save(input, !input.checked);
+            });
+          }
+        } catch {
+          setDisabled(true);
+          setStatus('存储不可用', true);
+        }
+        window.aidget?.ready?.();
+      }
+
+      syncAll();
+      void boot();
+    </script>
+  </body>
+</html>
