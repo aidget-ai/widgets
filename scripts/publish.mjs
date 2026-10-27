@@ -36,15 +36,17 @@ export async function publish(
       summary.push(`${name}@${version}: already published`);
       continue;
     }
-    if (!(await lookup(name)) && !env.NPM_TOKEN) {
+    const firstRelease = !(await lookup(name));
+    if (firstRelease && !env.NPM_TOKEN) {
       summary.push(
-        `${name}@${version}: first publication requires an npm scope owner or NPM_TOKEN; available from the reviewed Git commit`,
+        `${name}@${version}: first release requires an npm scope owner or stage-only NPM_TOKEN; available from the reviewed Git commit`,
       );
       continue;
     }
     run(
       'npm',
       [
+        ...(firstRelease ? ['stage'] : []),
         'publish',
         file,
         '--access',
@@ -55,10 +57,17 @@ export async function publish(
       ],
       {
         stdio: 'inherit',
-        env: { ...env, ...(env.NPM_TOKEN ? { NODE_AUTH_TOKEN: env.NPM_TOKEN } : {}) },
+        env: {
+          ...env,
+          ...(firstRelease && env.NPM_TOKEN ? { NODE_AUTH_TOKEN: env.NPM_TOKEN } : {}),
+        },
       },
     );
-    summary.push(`${name}@${version}: published`);
+    summary.push(
+      firstRelease
+        ? `${name}@${version}: staged for first-release approval`
+        : `${name}@${version}: published`,
+    );
   }
   return summary;
 }

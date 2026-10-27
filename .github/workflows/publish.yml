@@ -40,12 +40,13 @@ jobs:
           version: 12.15.0
           cache: true
           install: false
+      - run: npm install --global npm@12.2.1
       - run: pnpm install --frozen-lockfile --ignore-scripts
       - run: pnpm exec vp check
       - run: pnpm test
       - run: pnpm validate
       - run: node scripts/pack.mjs "$RUNNER_TEMP/packed"
-      - name: Publish missing npm versions
+      - name: Publish or stage missing npm versions
         run: node scripts/publish.mjs "$RUNNER_TEMP/packed"
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

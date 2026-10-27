@@ -66,9 +66,16 @@ pnpm ready
 
 ### Distribution
 
-Each widget is published as a scoped npm package named `@aidget-community/<id>`. Aidget uses the platforms, permissions, and network origins declared in `config.json` to decide whether installation is allowed.
+After widget code is merged into `main`, it appears immediately in Aidget's community widget catalog.
 
-A widget appears in Aidget's community catalog after it is merged into `main`. When distributed content changes, bump the semver version and submit the new version; a name and version pair is immutable after review and cannot be reused for different bytes.
+> Aidget uses the platforms, permissions, and network origins declared in `config.json` to decide whether installation is allowed.
+
+Widgets are also published to npm (`@aidget-community/<id>`):
+
+- For new widgets, a staged package is published first and becomes public only after an administrator manually approves it once (a new npm platform rule).
+- For widgets that already exist, the package is published directly through Trusted Publisher.
+
+> npm packages are the preferred installation source (falling back to the GitHub repository when unavailable) and are also used to display installation counts.
 
 ## Widget contract
 

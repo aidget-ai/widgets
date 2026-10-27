@@ -42,6 +42,28 @@ test('first publication without credentials remains available from the reviewed 
   assert.equal(vi.mocked(run).mock.calls.length, 0);
   assert.match(summary[0], /available from the reviewed Git commit/);
 });
+test('a bootstrap token stages a new package without bypassing approval', async (t) => {
+  const { root } = fixture(t);
+  const run = execFileSync;
+  const summary = await publish(root, {
+    lookup: async () => null,
+    run,
+    env: { NPM_TOKEN: 'stage-only-token' },
+  });
+  assert.equal(vi.mocked(run).mock.calls.length, 1);
+  assert.deepEqual(vi.mocked(run).mock.calls[0][1], [
+    'stage',
+    'publish',
+    join(root, 'tgz/widget.tgz'),
+    '--access',
+    'public',
+    '--ignore-scripts',
+    '--registry',
+    'https://registry.npmjs.org',
+  ]);
+  assert.equal(vi.mocked(run).mock.calls[0][2]?.env?.NODE_AUTH_TOKEN, 'stage-only-token');
+  assert.match(summary[0], /staged for first-release approval/);
+});
 test('an identical npm version is skipped', async (t) => {
   const { root, sri } = fixture(t);
   const run = execFileSync;
@@ -59,13 +81,13 @@ test('a conflicting existing npm version is an error', async (t) => {
     /differs/,
   );
 });
-test('publication uses the packed artifact and suppresses lifecycle scripts', async (t) => {
+test('existing packages publish with OIDC and never use the bootstrap token', async (t) => {
   const { root } = fixture(t);
   const run = execFileSync;
-  await publish(root, {
+  const summary = await publish(root, {
     lookup: async (_name, version) => (version ? null : { name: 'exists' }),
     run,
-    env: {},
+    env: { NPM_TOKEN: 'stage-only-token' },
   });
   assert.equal(vi.mocked(run).mock.calls.length, 1);
   assert.equal(vi.mocked(run).mock.calls[0][0], 'npm');
@@ -78,6 +100,8 @@ test('publication uses the packed artifact and suppresses lifecycle scripts', as
     '--registry',
     'https://registry.npmjs.org',
   ]);
+  assert.equal(vi.mocked(run).mock.calls[0][2]?.env?.NODE_AUTH_TOKEN, undefined);
+  assert.match(summary[0], /published/);
 });
 test('existing-package publish errors fail the task', async (t) => {
   const { root } = fixture(t);
