@@ -236,6 +236,83 @@
           "sha256": "84943b8efc76c8ae016dbacd810a80fd658b6a5ca8a958abf6f6b45e8c6a5af0"
         }
       ]
+    },
+    {
+      "package": {
+        "name": "@aidget-community/whalechan-acrylic",
+        "version": "0.1.0",
+        "description": "透明桌面上的鲸鱼娘亚克力钥匙扣，带细金属挂链与完整刀模留白。",
+        "author": {
+          "name": "micooz",
+          "email": null,
+          "url": "https://github.com/micooz"
+        },
+        "repository": {
+          "type": "git",
+          "url": "git+https://github.com/aidget-ai/widgets.git",
+          "directory": "packages/whalechan-acrylic"
+        },
+        "license": "MIT",
+        "files": [
+          "config.json",
+          "index.html",
+          "style.css",
+          "agents.md",
+          "assets"
+        ]
+      },
+      "config": {
+        "id": "whalechan-acrylic",
+        "title": "鲸鱼娘 · 亚克力钥匙扣",
+        "logo": null,
+        "screenshots": [
+          "assets/screenshot.png"
+        ],
+        "platforms": [
+          "macos",
+          "windows",
+          "linux"
+        ],
+        "size": {
+          "width": 360,
+          "height": 220
+        },
+        "dragMode": "all",
+        "permissions": [],
+        "network": []
+      },
+      "files": [
+        {
+          "path": "agents.md",
+          "size": 1769,
+          "sha256": "72e952f84d6d6c65cdbf28b829335ec3bd3c346c0910373ee4e8089fcb2d2437"
+        },
+        {
+          "path": "assets/screenshot.png",
+          "size": 157300,
+          "sha256": "75eee8c0a23b28e986e933cd7824869be3e7f0e46c0737aae7d83c026670bd61"
+        },
+        {
+          "path": "config.json",
+          "size": 286,
+          "sha256": "9ae0ba27d29d8ea9376260c350f6dd517124007c90fa160472c9a73c15251664"
+        },
+        {
+          "path": "index.html",
+          "size": 1615586,
+          "sha256": "124a6c721ef0a90333cf6cad7e988e723d4e26b3b4e7739bbbadaf71c26c171d"
+        },
+        {
+          "path": "package.json",
+          "size": 583,
+          "sha256": "1866c378555e90d26b3192920371719b472b246d9a5a701301307da5c1fc3e9c"
+        },
+        {
+          "path": "style.css",
+          "size": 1213,
+          "sha256": "fd87ec0c54e7d2c55e0ef123833c27c92f8edb4d2626d63ad33c6cd59ab36aa9"
+        }
+      ]
     }
   ]
 }

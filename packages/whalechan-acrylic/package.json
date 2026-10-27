@@ -1,0 +1,25 @@
+{
+  "name": "@aidget-community/whalechan-acrylic",
+  "version": "0.1.0",
+  "description": "透明桌面上的鲸鱼娘亚克力钥匙扣，带细金属挂链与完整刀模留白。",
+  "license": "MIT",
+  "author": {
+    "name": "micooz",
+    "url": "https://github.com/micooz"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aidget-ai/widgets.git",
+    "directory": "packages/whalechan-acrylic"
+  },
+  "files": [
+    "config.json",
+    "index.html",
+    "style.css",
+    "agents.md",
+    "assets"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}
