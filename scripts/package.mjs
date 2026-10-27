@@ -13,6 +13,14 @@ export const integrity = (bytes) => `sha512-${createHash('sha512').update(bytes)
 export function json(path) {
   return JSON.parse(readFileSync(path, 'utf8'));
 }
+export function packedEntry(output) {
+  const value = JSON.parse(output);
+  const entries = Array.isArray(value) ? value : Object.values(value ?? {});
+  if (entries.length !== 1 || !entries[0] || !Array.isArray(entries[0].files)) {
+    throw new Error('invalid npm pack manifest');
+  }
+  return entries[0];
+}
 export function safePath(path) {
   if (!path || /[\\:\0]/.test(path) || path.split('/').some((p) => !p || p.startsWith('.'))) {
     throw new Error(`unsafe package path: ${path}`);
@@ -91,13 +99,13 @@ export function inspect(directory) {
       throw new Error('runtime dependencies must be bundled');
     }
   }
-  const packed = JSON.parse(
+  const packed = packedEntry(
     execFileSync('npm', ['pack', '--dry-run', '--json', '--ignore-scripts'], {
       cwd: directory,
       encoding: 'utf8',
       stdio: ['ignore', 'pipe', 'pipe'],
     }),
-  )[0];
+  );
   if (packed.files.length > 1000 || packed.unpackedSize > 100 * 1024 * 1024) {
     throw new Error('package exceeds install limits');
   }

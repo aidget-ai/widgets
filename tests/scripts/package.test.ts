@@ -13,13 +13,19 @@ import { join } from 'node:path';
 
 import { expect, test, type TestContext } from 'vite-plus/test';
 
-import { root, inspect } from '../../scripts/package.mjs';
+import { root, inspect, packedEntry } from '../../scripts/package.mjs';
 function fixture(t: TestContext) {
   const dir = mkdtempSync(join(tmpdir(), 'aidget-package-'));
   cpSync(join(root, 'packages/welcome'), dir, { recursive: true });
   t.onTestFinished(() => rmSync(dir, { recursive: true, force: true }));
   return dir;
 }
+test('npm pack JSON supports array and keyed object outputs', () => {
+  const entry = { files: [{ path: 'index.html' }], unpackedSize: 1 };
+  assert.deepEqual(packedEntry(JSON.stringify([entry])), entry);
+  assert.deepEqual(packedEntry(JSON.stringify({ '@aidget-community/widget': entry })), entry);
+  assert.throws(() => packedEntry('{}'), /invalid npm pack manifest/);
+});
 test('real screenshots and runtime files appear in the packed manifest', (t) => {
   const dir = fixture(t);
   const entry = inspect(dir);
