@@ -2,6 +2,81 @@
   "widgets": [
     {
       "package": {
+        "name": "@aidget-community/cyberpunk-2077",
+        "version": "0.1.0",
+        "description": "透明桌面上的赛博朋克 2077 霓虹标识，带 CSS 故障与扫描动效。",
+        "author": {
+          "name": "micooz",
+          "email": null,
+          "url": "https://github.com/micooz"
+        },
+        "repository": {
+          "type": "git",
+          "url": "git+https://github.com/aidget-ai/widgets.git",
+          "directory": "packages/cyberpunk-2077"
+        },
+        "license": "MIT",
+        "files": [
+          "config.json",
+          "index.html",
+          "style.css",
+          "agents.md",
+          "assets"
+        ]
+      },
+      "config": {
+        "id": "cyberpunk-2077",
+        "title": "赛博朋克 2077",
+        "logo": null,
+        "screenshots": [
+          "assets/screenshot.png"
+        ],
+        "platforms": [
+          "macos"
+        ],
+        "size": {
+          "width": 360,
+          "height": 220
+        },
+        "dragMode": "all",
+        "permissions": [],
+        "network": []
+      },
+      "files": [
+        {
+          "path": "agents.md",
+          "size": 1117,
+          "sha256": "f8b830b43016f988fb33886e0e42004eb45a7469a84894ff5028d1a06ff74ea9"
+        },
+        {
+          "path": "assets/screenshot.png",
+          "size": 62366,
+          "sha256": "a6e2f841289b576881b14bd3c9fba9603d525c3236a54f72357b567890c00eae"
+        },
+        {
+          "path": "config.json",
+          "size": 249,
+          "sha256": "aeafe3f00c3e3b1455e6704f744261151b69e660b1bf35094e6df25934146b8a"
+        },
+        {
+          "path": "index.html",
+          "size": 197791,
+          "sha256": "19d6a3c9fab3375c65bf5f9237482c1092b2cf7926286880795949b6e77d04af"
+        },
+        {
+          "path": "package.json",
+          "size": 570,
+          "sha256": "950daa8d30b00e4f92a342db97e09ff5a6ca6bb88fbffee4d07b8c85fa5a828c"
+        },
+        {
+          "path": "style.css",
+          "size": 1782,
+          "sha256": "99f923389e4651fa280f3d2781662f3a5661513dbf6b37526991f4dd6b463847"
+        }
+      ]
+    },
+    {
+      "package": {
         "name": "@aidget-community/sticky-todos",
         "version": "0.1.0",
         "description": "水彩纸张风格的桌面待办便签，勾选状态自动保存。",

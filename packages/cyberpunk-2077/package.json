@@ -1,0 +1,25 @@
+{
+  "name": "@aidget-community/cyberpunk-2077",
+  "version": "0.1.0",
+  "description": "透明桌面上的赛博朋克 2077 霓虹标识，带 CSS 故障与扫描动效。",
+  "license": "MIT",
+  "author": {
+    "name": "micooz",
+    "url": "https://github.com/micooz"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aidget-ai/widgets.git",
+    "directory": "packages/cyberpunk-2077"
+  },
+  "files": [
+    "config.json",
+    "index.html",
+    "style.css",
+    "agents.md",
+    "assets"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "id": "cyberpunk-2077",
+  "title": "赛博朋克 2077",
+  "logo": null,
+  "screenshots": ["assets/screenshot.png"],
+  "platforms": ["macos"],
+  "size": { "width": 360, "height": 220 },
+  "dragMode": "all",
+  "permissions": [],
+  "network": []
+}
