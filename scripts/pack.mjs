@@ -2,7 +2,7 @@ import { execFileSync } from 'node:child_process';
 import { mkdirSync, writeFileSync, readFileSync } from 'node:fs';
 import { resolve, join } from 'node:path';
 
-import { root, registry, integrity } from './package.mjs';
+import { root, registry, integrity, packedEntry } from './package.mjs';
 const out = resolve(process.argv[2] ?? '');
 if (!process.argv[2]) {
   throw new Error('usage: node scripts/pack.mjs <out>');
@@ -10,7 +10,7 @@ if (!process.argv[2]) {
 mkdirSync(join(out, 'tgz'), { recursive: true });
 const packages = {};
 for (const entry of registry().widgets) {
-  const [packed] = JSON.parse(
+  const packed = packedEntry(
     execFileSync(
       'npm',
       ['pack', '--json', '--ignore-scripts', '--pack-destination', join(out, 'tgz')],
