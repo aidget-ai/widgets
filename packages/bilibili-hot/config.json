@@ -1,0 +1,11 @@
+{
+  "id": "bilibili-hot",
+  "title": "Bilibili 热搜",
+  "logo": null,
+  "screenshots": ["assets/screenshot.png"],
+  "platforms": ["macos", "windows", "linux"],
+  "size": { "width": 360, "height": 340 },
+  "dragMode": "all",
+  "permissions": ["script"],
+  "network": ["https://s.search.bilibili.com", "https://search.bilibili.com"]
+}

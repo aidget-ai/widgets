@@ -1,0 +1,25 @@
+{
+  "name": "@aidget-community/weibo-hot",
+  "version": "0.1.0",
+  "description": "微博实时热搜前十，过滤广告，每 20 分钟刷新。",
+  "license": "MIT",
+  "author": {
+    "name": "micooz",
+    "url": "https://github.com/micooz"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aidget-ai/widgets.git",
+    "directory": "packages/weibo-hot"
+  },
+  "files": [
+    "config.json",
+    "index.html",
+    "style.css",
+    "agents.md",
+    "assets"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

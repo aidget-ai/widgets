@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="aidget-surface" content="none" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body class="theme-bilibili">
+    <main class="card">
+      <header class="top">
+        <div class="brand">
+          <span class="seal" aria-hidden="true">哔</span>
+          <div class="heading">
+            <h1>Bilibili 热搜</h1>
+            <p>年轻人的搜索现场</p>
+          </div>
+        </div>
+        <span class="pulse"><i aria-hidden="true"></i>LIVE</span>
+      </header>
+
+      <ol
+        class="rank-list is-loading"
+        id="rank-list"
+        data-aidget-region="hot-list"
+        aria-label="Bilibili 热搜"
+      >
+        <li class="skeleton-row"></li>
+        <li class="skeleton-row"></li>
+        <li class="skeleton-row"></li>
+        <li class="skeleton-row"></li>
+        <li class="skeleton-row"></li>
+        <li class="skeleton-row"></li>
+        <li class="skeleton-row"></li>
+        <li class="skeleton-row"></li>
+        <li class="skeleton-row"></li>
+        <li class="skeleton-row"></li>
+      </ol>
+
+      <footer class="foot">
+        <span id="status" role="status" aria-live="polite">正在刷新</span>
+      </footer>
+    </main>
+
+    <script>
+      (function () {
+        'use strict';
+
+        const API_URL = 'https://s.search.bilibili.com/main/hotword';
+        const REFRESH_MS = 20 * 60 * 1000;
+        const list = document.getElementById('rank-list');
+        const status = document.getElementById('status');
+        const clock = new Intl.DateTimeFormat('zh-CN', {
+          hour: '2-digit',
+          minute: '2-digit',
+          hour12: false,
+        });
+        let lastSuccessAt = null;
+        let loading = false;
+
+        function setStatus(message, state) {
+          status.textContent = message;
+          status.dataset.state = state;
+        }
+
+        function normalize(payload) {
+          if (!payload || !Array.isArray(payload.list)) {
+            throw new Error('数据源返回格式异常');
+          }
+          return payload.list
+            .map(function (item) {
+              const keyword = item && typeof item.keyword === 'string' ? item.keyword.trim() : '';
+              const title =
+                item && typeof item.show_name === 'string' ? item.show_name.trim() : keyword;
+              if (!keyword || !title) {
+                return null;
+              }
+              return {
+                title: title,
+                metric: typeof item.heat_layer === 'string' ? item.heat_layer.trim() : '',
+                metricStyle: 'tag',
+                url: 'https://search.bilibili.com/all?keyword=' + encodeURIComponent(keyword),
+              };
+            })
+            .filter(Boolean)
+            .slice(0, 10);
+        }
+
+        function row(item, index) {
+          const element = document.createElement('li');
+          element.className = 'rank-row';
+          element.style.setProperty('--i', String(index));
+
+          const link = document.createElement('button');
+          link.className = 'rank-link';
+          link.type = 'button';
+          link.setAttribute('aria-label', '第 ' + String(index + 1) + ' 名，' + item.title);
+
+          const rank = document.createElement('span');
+          rank.className = 'rank-number';
+          rank.textContent = String(index + 1).padStart(2, '0');
+
+          const title = document.createElement('span');
+          title.className = 'rank-title';
+          title.textContent = item.title;
+
+          const metric = document.createElement('span');
+          metric.className = 'rank-metric';
+          if (item.metricStyle === 'tag') {
+            metric.classList.add('is-tag');
+          }
+          metric.textContent = item.metric;
+
+          link.append(rank, title, metric);
+          link.addEventListener('click', function () {
+            window.aidget.openUrl(item.url).catch(function (error) {
+              setStatus('打开失败 · ' + error.message, 'error');
+            });
+          });
+          element.append(link);
+          return element;
+        }
+
+        function render(items) {
+          list.classList.remove('is-loading');
+          list.replaceChildren.apply(
+            list,
+            items.map(function (item, index) {
+              return row(item, index);
+            }),
+          );
+        }
+
+        function renderError(message) {
+          list.classList.remove('is-loading');
+          const element = document.createElement('li');
+          element.className = 'error-state';
+          const mark = document.createElement('span');
+          mark.className = 'error-mark';
+          mark.textContent = '!';
+          const copy = document.createElement('span');
+          const heading = document.createElement('strong');
+          heading.textContent = '暂时无法获取热榜';
+          const detail = document.createElement('small');
+          detail.textContent = message;
+          copy.append(heading, detail);
+          element.append(mark, copy);
+          list.replaceChildren(element);
+        }
+
+        async function load() {
+          if (loading) {
+            return;
+          }
+          loading = true;
+          if (!lastSuccessAt) {
+            list.classList.add('is-loading');
+            setStatus('正在刷新', 'loading');
+          }
+          try {
+            if (!window.aidget || typeof window.aidget.fetch !== 'function') {
+              throw new Error('宿主网络能力不可用');
+            }
+            const items = normalize(await window.aidget.fetch(API_URL));
+            if (items.length === 0) {
+              throw new Error('热搜当前为空');
+            }
+            render(items);
+            lastSuccessAt = new Date();
+            setStatus('更新于 ' + clock.format(lastSuccessAt), 'ok');
+          } catch (error) {
+            const message = error && typeof error.message === 'string' ? error.message : '未知错误';
+            if (lastSuccessAt) {
+              setStatus('更新失败 · ' + message, 'error');
+            } else {
+              setStatus('更新失败', 'error');
+              renderError(message);
+            }
+          } finally {
+            loading = false;
+            window.aidget?.ready?.();
+          }
+        }
+
+        void load();
+        window.setInterval(load, REFRESH_MS);
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,11 @@
+{
+  "id": "zhihu-hot",
+  "title": "知乎热榜",
+  "logo": null,
+  "screenshots": ["assets/screenshot.png"],
+  "platforms": ["macos", "windows", "linux"],
+  "size": { "width": 360, "height": 340 },
+  "dragMode": "all",
+  "permissions": ["script"],
+  "network": ["https://api.zhihu.com", "https://www.zhihu.com"]
+}

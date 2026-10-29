@@ -1,0 +1,25 @@
+{
+  "name": "@aidget-community/bilibili-hot",
+  "version": "0.1.0",
+  "description": "Bilibili 热搜前十，每 20 分钟刷新，可点击打开搜索结果。",
+  "license": "MIT",
+  "author": {
+    "name": "micooz",
+    "url": "https://github.com/micooz"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aidget-ai/widgets.git",
+    "directory": "packages/bilibili-hot"
+  },
+  "files": [
+    "config.json",
+    "index.html",
+    "style.css",
+    "agents.md",
+    "assets"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

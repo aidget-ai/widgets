@@ -2,6 +2,89 @@
   "widgets": [
     {
       "package": {
+        "name": "@aidget-community/bilibili-hot",
+        "version": "0.1.0",
+        "description": "Bilibili 热搜前十，每 20 分钟刷新，可点击打开搜索结果。",
+        "author": {
+          "name": "micooz",
+          "email": null,
+          "url": "https://github.com/micooz"
+        },
+        "repository": {
+          "type": "git",
+          "url": "git+https://github.com/aidget-ai/widgets.git",
+          "directory": "packages/bilibili-hot"
+        },
+        "license": "MIT",
+        "files": [
+          "config.json",
+          "index.html",
+          "style.css",
+          "agents.md",
+          "assets"
+        ]
+      },
+      "config": {
+        "id": "bilibili-hot",
+        "title": "Bilibili 热搜",
+        "logo": null,
+        "screenshots": [
+          "assets/screenshot.png"
+        ],
+        "platforms": [
+          "macos",
+          "windows",
+          "linux"
+        ],
+        "size": {
+          "width": 360,
+          "height": 340
+        },
+        "dragMode": "all",
+        "permissions": [
+          "script"
+        ],
+        "network": [
+          "https://s.search.bilibili.com",
+          "https://search.bilibili.com"
+        ]
+      },
+      "files": [
+        {
+          "path": "agents.md",
+          "size": 1374,
+          "sha256": "951fba1c49f062969697306d70246afa45ac6d82134f78720061950ebb9d5f9f"
+        },
+        {
+          "path": "assets/screenshot.png",
+          "size": 628856,
+          "sha256": "3d5bafe567d08d9350ae4bfa3e9250c2daa52aa7406a4dd216329d0d9e22ce49"
+        },
+        {
+          "path": "config.json",
+          "size": 335,
+          "sha256": "c4de8196aae39fdf89ef0642d568b875e29bef1850b188d709e74e596b5fc76e"
+        },
+        {
+          "path": "index.html",
+          "size": 6508,
+          "sha256": "2ad178b1e3b7bfe606f9c48f3ffb3a51655aa0411847261165deee9c803f3df6"
+        },
+        {
+          "path": "package.json",
+          "size": 559,
+          "sha256": "eb81876886ca27dff9530f74bef500e94c7b476e75cfe71b01a082adee0c2ea4"
+        },
+        {
+          "path": "style.css",
+          "size": 6513,
+          "sha256": "6859fded3a3573f1428a1fb365484727b91a54cfa8d40afb3eb23eb2985c6336"
+        }
+      ],
+      "publishedAt": "2026-10-29T06:35:14Z"
+    },
+    {
+      "package": {
         "name": "@aidget-community/claude-ultrathink",
         "version": "0.1.0",
         "description": "Claude Ultra Think 透明像素动画",
@@ -411,6 +494,89 @@
     },
     {
       "package": {
+        "name": "@aidget-community/weibo-hot",
+        "version": "0.1.0",
+        "description": "微博实时热搜前十，过滤广告，每 20 分钟刷新。",
+        "author": {
+          "name": "micooz",
+          "email": null,
+          "url": "https://github.com/micooz"
+        },
+        "repository": {
+          "type": "git",
+          "url": "git+https://github.com/aidget-ai/widgets.git",
+          "directory": "packages/weibo-hot"
+        },
+        "license": "MIT",
+        "files": [
+          "config.json",
+          "index.html",
+          "style.css",
+          "agents.md",
+          "assets"
+        ]
+      },
+      "config": {
+        "id": "weibo-hot",
+        "title": "微博热搜",
+        "logo": null,
+        "screenshots": [
+          "assets/screenshot.png"
+        ],
+        "platforms": [
+          "macos",
+          "windows",
+          "linux"
+        ],
+        "size": {
+          "width": 360,
+          "height": 340
+        },
+        "dragMode": "all",
+        "permissions": [
+          "script"
+        ],
+        "network": [
+          "https://weibo.com",
+          "https://s.weibo.com"
+        ]
+      },
+      "files": [
+        {
+          "path": "agents.md",
+          "size": 1520,
+          "sha256": "6f519286ad7abce384c36cad9af6168baaee215ef0c13dc794efc56e76360503"
+        },
+        {
+          "path": "assets/screenshot.png",
+          "size": 644693,
+          "sha256": "abc3ee72eb34eb5646f7d30384e0a860c13b4da98dbfc7d39c2c2b27cb026d43"
+        },
+        {
+          "path": "config.json",
+          "size": 309,
+          "sha256": "36e40d99696c6eb15243524b3b96d332618c728c0cf470a7a0fb46d189621c59"
+        },
+        {
+          "path": "index.html",
+          "size": 7228,
+          "sha256": "dc5f1735831c20ef7206adef10a1545471b6881b5467b8052b7b1d7e3daee436"
+        },
+        {
+          "path": "package.json",
+          "size": 541,
+          "sha256": "e857192ded17d250ad7ee0dd723eead251247da90818931b92239643666cffe2"
+        },
+        {
+          "path": "style.css",
+          "size": 6501,
+          "sha256": "6073deca649995bd82cfc3cec12ccbe6245ec184f0f22d62a629dc5df76d0655"
+        }
+      ],
+      "publishedAt": "2026-10-29T06:35:14Z"
+    },
+    {
+      "package": {
         "name": "@aidget-community/welcome",
         "version": "0.1.1",
         "description": "AIDGET 欢迎卡片：将桌面交给 Agent。",
@@ -564,6 +730,89 @@
         }
       ],
       "publishedAt": "2026-10-27T09:20:56Z"
+    },
+    {
+      "package": {
+        "name": "@aidget-community/zhihu-hot",
+        "version": "0.1.0",
+        "description": "知乎热榜前十，每 20 分钟刷新，可点击打开问题。",
+        "author": {
+          "name": "micooz",
+          "email": null,
+          "url": "https://github.com/micooz"
+        },
+        "repository": {
+          "type": "git",
+          "url": "git+https://github.com/aidget-ai/widgets.git",
+          "directory": "packages/zhihu-hot"
+        },
+        "license": "MIT",
+        "files": [
+          "config.json",
+          "index.html",
+          "style.css",
+          "agents.md",
+          "assets"
+        ]
+      },
+      "config": {
+        "id": "zhihu-hot",
+        "title": "知乎热榜",
+        "logo": null,
+        "screenshots": [
+          "assets/screenshot.png"
+        ],
+        "platforms": [
+          "macos",
+          "windows",
+          "linux"
+        ],
+        "size": {
+          "width": 360,
+          "height": 340
+        },
+        "dragMode": "all",
+        "permissions": [
+          "script"
+        ],
+        "network": [
+          "https://api.zhihu.com",
+          "https://www.zhihu.com"
+        ]
+      },
+      "files": [
+        {
+          "path": "agents.md",
+          "size": 1501,
+          "sha256": "f2560f82ad50962496f122464b1ac0acea237177bd1eda0a62cbb52e51daf3ea"
+        },
+        {
+          "path": "assets/screenshot.png",
+          "size": 674642,
+          "sha256": "4ee4db7e9c4fafa0c123887b226132e1ffac124ba455433b11bc84c0a4e352ff"
+        },
+        {
+          "path": "config.json",
+          "size": 315,
+          "sha256": "bf488de750259bc147534c2a553b5fd52cdc2dcd20278f7a1943d0e5d35ad80a"
+        },
+        {
+          "path": "index.html",
+          "size": 6520,
+          "sha256": "8db95bc623e11e249960d8a6af0012e8394863b14f529818f783c561074eaecc"
+        },
+        {
+          "path": "package.json",
+          "size": 544,
+          "sha256": "449eb4322ab4f71cdec8bb4bf3d9a212bcbf130825766169a5b4f82ee8d7798b"
+        },
+        {
+          "path": "style.css",
+          "size": 6334,
+          "sha256": "7d0ca124a46580a5f956498e2e19fb8cdc48cb6a8d8306896da445312f2c4c24"
+        }
+      ],
+      "publishedAt": "2026-10-29T06:35:14Z"
     }
   ]
 }
