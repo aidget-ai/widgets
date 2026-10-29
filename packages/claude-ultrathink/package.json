@@ -1,0 +1,25 @@
+{
+  "name": "@aidget-community/claude-ultrathink",
+  "version": "0.1.0",
+  "description": "Claude Ultra Think 透明像素动画",
+  "license": "MIT",
+  "author": {
+    "name": "micooz",
+    "url": "https://github.com/micooz"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aidget-ai/widgets.git",
+    "directory": "packages/claude-ultrathink"
+  },
+  "files": [
+    "config.json",
+    "index.html",
+    "style.css",
+    "agents.md",
+    "assets"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

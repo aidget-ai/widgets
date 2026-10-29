@@ -2,6 +2,89 @@
   "widgets": [
     {
       "package": {
+        "name": "@aidget-community/claude-ultrathink",
+        "version": "0.1.0",
+        "description": "Claude Ultra Think 透明像素动画",
+        "author": {
+          "name": "micooz",
+          "email": null,
+          "url": "https://github.com/micooz"
+        },
+        "repository": {
+          "type": "git",
+          "url": "git+https://github.com/aidget-ai/widgets.git",
+          "directory": "packages/claude-ultrathink"
+        },
+        "license": "MIT",
+        "files": [
+          "config.json",
+          "index.html",
+          "style.css",
+          "agents.md",
+          "assets"
+        ]
+      },
+      "config": {
+        "id": "claude-ultrathink",
+        "title": "Claude Ultra Think",
+        "logo": null,
+        "screenshots": [
+          "assets/screenshot.png"
+        ],
+        "platforms": [
+          "macos",
+          "windows",
+          "linux"
+        ],
+        "size": {
+          "width": 360,
+          "height": 220
+        },
+        "dragMode": "all",
+        "permissions": [],
+        "network": []
+      },
+      "files": [
+        {
+          "path": "agents.md",
+          "size": 501,
+          "sha256": "07300a5bdc79f1858b1440f11b47e8d011b8475a7f068497b8d1838837a19799"
+        },
+        {
+          "path": "assets/claude-ultrathink.gif",
+          "size": 39996,
+          "sha256": "7a845371b6c6b98064e8c6c90abe9ad2f7d17147542b79ba00cd4141c2069d87"
+        },
+        {
+          "path": "assets/screenshot.png",
+          "size": 8180,
+          "sha256": "a3482ab25b10a0dfbabe14a440a1b1cffbd378e32e9f40f3fa4f4c1dc78a5778"
+        },
+        {
+          "path": "config.json",
+          "size": 273,
+          "sha256": "6810fcb12b7e91dd33a9b1d76b04c5cdc354e2b7d9adbb39fc71d558d1bc2bbb"
+        },
+        {
+          "path": "index.html",
+          "size": 441,
+          "sha256": "da8fea8ca43fd251c45024cd2c9c959504bb91e00055ba55b18fd254345beecf"
+        },
+        {
+          "path": "package.json",
+          "size": 530,
+          "sha256": "af2128d6d30d2bb2d1575021dc1b91c9fa0fb221cf15f93a46a41fe8539296d1"
+        },
+        {
+          "path": "style.css",
+          "size": 536,
+          "sha256": "82a67badef11ad66f6a1ebb4a36319d186a02917070e798ebc79242c803d3b8f"
+        }
+      ],
+      "publishedAt": "2026-10-29T05:12:36Z"
+    },
+    {
+      "package": {
         "name": "@aidget-community/cyberpunk-2077",
         "version": "0.1.0",
         "description": "透明桌面上的赛博朋克 2077 霓虹标识，带 CSS 故障与扫描动效。",
