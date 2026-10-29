@@ -13,7 +13,13 @@ import { join } from 'node:path';
 
 import { expect, test, type TestContext } from 'vite-plus/test';
 
-import { root, inspect, packedEntry } from '../../scripts/package.mjs';
+import {
+  root,
+  inspect,
+  packedEntry,
+  withPublicationTimes,
+  validateSchema,
+} from '../../scripts/package.mjs';
 function fixture(t: TestContext) {
   const dir = mkdtempSync(join(tmpdir(), 'aidget-package-'));
   cpSync(join(root, 'packages/welcome'), dir, { recursive: true });
@@ -88,4 +94,65 @@ test('nested frames and scripts without the script grant fail validation', (t) =
   assert.throws(() => inspect(dir), /unsupported widget element/);
   writeFileSync(path, original + '<script>window.ran=true</script>');
   assert.throws(() => inspect(dir), /script permission/);
+});
+
+test('registry publication times survive version updates and new entries require an explicit time', () => {
+  const previous = [
+    {
+      package: { name: '@aidget-community/note', version: '1.0.0' },
+      publishedAt: '2026-10-25T06:49:57Z',
+    },
+  ];
+  const entries = [{ package: { name: '@aidget-community/note', version: '1.0.1' } }];
+  expect(withPublicationTimes(entries, previous, new Map())[0].publishedAt).toBe(
+    previous[0].publishedAt,
+  );
+  expect(entries[0]).not.toHaveProperty('publishedAt');
+  const fresh = [{ package: { name: '@aidget-community/new', version: '0.1.0' } }];
+  expect(() => withPublicationTimes(fresh, [], new Map())).toThrow(/publishedAt/);
+  expect(
+    withPublicationTimes(fresh, [], new Map([['@aidget-community/new', '2026-10-28T00:00:00Z']]))[0]
+      .publishedAt,
+  ).toBe('2026-10-28T00:00:00Z');
+  expect(() =>
+    withPublicationTimes(
+      entries,
+      previous,
+      new Map([['@aidget-community/note', '2026-10-28T00:00:00Z']]),
+    ),
+  ).toThrow(/cannot change/);
+  expect(() =>
+    withPublicationTimes(
+      entries,
+      previous,
+      new Map([['@aidget-community/typo', '2026-10-28T00:00:00Z']]),
+    ),
+  ).toThrow(/unknown package/);
+});
+
+test('registry timestamps reject absent, malformed, non-UTC and impossible dates', () => {
+  const entries = [{ package: { name: '@aidget-community/new' } }];
+  for (const value of [
+    undefined,
+    'yesterday',
+    '2026-02-30T00:00:00Z',
+    '2026-10-28T08:00:00+08:00',
+  ]) {
+    expect(() =>
+      withPublicationTimes(entries, [], new Map([['@aidget-community/new', value]])),
+    ).toThrow(/publishedAt/);
+  }
+});
+
+test('registry schema allows discovery extensions but still checks known fields and config', () => {
+  const value = JSON.parse(readFileSync(join(root, 'registry.json'), 'utf8'));
+  value.future = true;
+  value.widgets[0].future = true;
+  value.widgets[0].files[0].future = true;
+  expect(() => validateSchema('registry', value)).not.toThrow();
+  value.widgets[0].files[0].size = 'large';
+  expect(() => validateSchema('registry', value)).toThrow();
+  value.widgets[0].files[0].size = 1;
+  value.widgets[0].config.future = true;
+  expect(() => validateSchema('registry', value)).toThrow();
 });

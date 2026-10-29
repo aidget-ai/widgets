@@ -5,10 +5,16 @@ import { pathToFileURL } from 'node:url';
 
 import { root, registry } from './package.mjs';
 
-/** A reviewed name/version keeps the same bytes, including after delisting. */
+/** Reviewed version bytes and first inclusion dates stay immutable, including after delisting. */
 export function assertImmutableVersions(current, history) {
   for (const previous of history) {
     for (const entry of current.widgets) {
+      const first = previous.widgets.find(
+        (candidate) => candidate.package.name === entry.package.name,
+      );
+      if (first?.publishedAt !== undefined && first.publishedAt !== entry.publishedAt) {
+        throw new Error(`${entry.package.name}: publishedAt cannot change`);
+      }
       const old = previous.widgets.find(
         (candidate) =>
           candidate.package.name === entry.package.name &&

@@ -9,6 +9,7 @@ const registry = (version: string, digest = 'first') => ({
     {
       package: { name: '@aidget-community/note', version },
       files: [{ path: 'index.html', sha256: digest }],
+      publishedAt: '2026-10-25T00:00:00Z',
     },
   ],
 });
@@ -37,4 +38,12 @@ test('delisted historical versions cannot be reused with different bytes', () =>
       ]),
     /immutable/,
   );
+});
+
+test('first inclusion time is immutable even across package versions', () => {
+  const previous = registry('1.0.0');
+  const current = registry('1.0.1');
+  previous.widgets[0].publishedAt = '2026-10-25T00:00:00Z';
+  current.widgets[0].publishedAt = '2026-10-28T00:00:00Z';
+  assert.throws(() => assertImmutableVersions(current, [previous]), /publishedAt cannot change/);
 });

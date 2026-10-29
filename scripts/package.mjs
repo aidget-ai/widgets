@@ -39,6 +39,7 @@ function checkTree(directory, base = directory) {
   }
 }
 const ajv = new Ajv({ allErrors: true, strict: false });
+ajv.addFormat('date-time', isPublicationTime);
 ajv.addFormat('double', { type: 'number', validate: Number.isFinite });
 ajv.addFormat('uint64', { type: 'number', validate: (n) => Number.isSafeInteger(n) && n >= 0 });
 const validators = new Map();
@@ -168,7 +169,40 @@ function normalizeRepository(value) {
     ? { type: value.type, url: value.url, directory: value.directory ?? null }
     : (value ?? null);
 }
-export function registry() {
+/** Accept real calendar dates written as UTC RFC3339 timestamps. */
+export function isPublicationTime(value) {
+  return (
+    typeof value === 'string' &&
+    /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?Z$/.test(value) &&
+    Number.isFinite(Date.parse(value)) &&
+    new Date(value).toISOString().slice(0, 19) === value.slice(0, 19)
+  );
+}
+
+/** Preserve first inclusion dates across package releases; new names require an explicit date. */
+export function withPublicationTimes(entries, previous, supplied) {
+  const names = new Set(entries.map((entry) => entry.package.name));
+  for (const name of supplied.keys()) {
+    if (!names.has(name)) {
+      throw new Error(`publishedAt: unknown package ${name}`);
+    }
+  }
+  return entries.map((entry) => {
+    const name = entry.package.name;
+    const existing = previous.find((item) => item.package.name === name)?.publishedAt;
+    if (existing !== undefined && supplied.has(name) && supplied.get(name) !== existing) {
+      throw new Error(`${name}: publishedAt cannot change`);
+    }
+    const publishedAt = existing === undefined ? supplied.get(name) : existing;
+    if (!isPublicationTime(publishedAt)) {
+      throw new Error(`${name}: publishedAt requires an explicit UTC RFC3339 timestamp`);
+    }
+    return { ...entry, publishedAt };
+  });
+}
+
+/** Build and validate the catalogue, retaining dates from the checked-in registry. */
+export function registry(publishedAt = new Map()) {
   const widgets = readdirSync(join(root, 'packages'), { withFileTypes: true })
     .filter((e) => e.isDirectory())
     .sort((a, b) => a.name.localeCompare(b.name, 'en'))
@@ -182,7 +216,8 @@ export function registry() {
     ids.add(e.config.id);
     names.add(e.package.name);
   }
-  const value = { widgets };
+  const previous = json(join(root, 'registry.json'));
+  const value = { widgets: withPublicationTimes(widgets, previous.widgets, publishedAt) };
   validateSchema('registry', value);
   return value;
 }

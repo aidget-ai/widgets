@@ -75,7 +75,7 @@ Widgets are also published to npm (`@aidget-community/<id>`):
 - For new widgets, a staged package is published first and becomes public only after an administrator manually approves it once (a new npm platform rule).
 - For widgets that already exist, the package is published directly through Trusted Publisher.
 
-> npm packages are the preferred installation source (falling back to the GitHub repository when unavailable) and are also used to display installation counts.
+> npm packages are the preferred installation source (falling back to the GitHub repository when unavailable) and are also used to display download counts.
 
 ## Widget contract
 

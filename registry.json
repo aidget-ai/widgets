@@ -73,7 +73,8 @@
           "size": 1782,
           "sha256": "99f923389e4651fa280f3d2781662f3a5661513dbf6b37526991f4dd6b463847"
         }
-      ]
+      ],
+      "publishedAt": "2026-10-27T08:59:28Z"
     },
     {
       "package": {
@@ -158,7 +159,8 @@
           "size": 5685,
           "sha256": "6b0960c380cb80784a711b816bb330a6def9f73f56c9d448ac8f1f36cf2a978a"
         }
-      ]
+      ],
+      "publishedAt": "2026-10-26T09:05:40Z"
     },
     {
       "package": {
@@ -235,7 +237,8 @@
           "size": 6066,
           "sha256": "84943b8efc76c8ae016dbacd810a80fd658b6a5ca8a958abf6f6b45e8c6a5af0"
         }
-      ]
+      ],
+      "publishedAt": "2026-10-25T06:49:57Z"
     },
     {
       "package": {
@@ -312,7 +315,8 @@
           "size": 1213,
           "sha256": "fd87ec0c54e7d2c55e0ef123833c27c92f8edb4d2626d63ad33c6cd59ab36aa9"
         }
-      ]
+      ],
+      "publishedAt": "2026-10-27T09:20:56Z"
     }
   ]
 }
