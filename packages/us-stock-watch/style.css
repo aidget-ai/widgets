@@ -1,0 +1,517 @@
+:root {
+  color-scheme: dark;
+  --surface-top: #071a2a;
+  --surface-bottom: #04111e;
+  --text: #f6fbff;
+  --muted: #7794a8;
+  --faint: #4d6c81;
+  --line: rgba(134, 184, 207, 0.11);
+  --up: #ff4f6f;
+  --down: #62df8d;
+  --flat: #8ea6b5;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: transparent;
+}
+
+body {
+  container-type: inline-size;
+  font-family:
+    'Avenir Next', 'SF Pro Display', 'PingFang SC', 'Hiragino Sans GB', 'Segoe UI Variable',
+    'Microsoft YaHei UI', 'Noto Sans CJK SC', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: geometricPrecision;
+  user-select: none;
+}
+
+.market-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding: 14px 22px 8px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 105% -5%, rgba(25, 81, 112, 0.26), transparent 37%),
+    linear-gradient(155deg, var(--surface-top) 0%, #061624 57%, var(--surface-bottom) 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(207, 239, 251, 0.08),
+    inset 0 -18px 52px rgba(2, 9, 16, 0.36),
+    0 18px 48px rgba(0, 0, 0, 0.38);
+}
+
+.market-card::after {
+  position: absolute;
+  pointer-events: none;
+  content: '';
+}
+
+.market-card::after {
+  top: 0;
+  left: 19%;
+  width: 62%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(164, 223, 244, 0.24), transparent);
+}
+
+.market-header,
+.stock-list {
+  position: relative;
+  z-index: 1;
+}
+
+.market-header {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 16px;
+  margin-bottom: 4px;
+}
+
+.market-kicker,
+.market-status {
+  color: var(--faint);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+}
+
+.market-kicker {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  letter-spacing: 0.08em;
+}
+
+.market-status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  letter-spacing: 0.08em;
+}
+
+.market-pulse {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #7be7ec;
+  box-shadow:
+    0 0 0 4px rgba(82, 211, 221, 0.08),
+    0 0 12px rgba(82, 211, 221, 0.55);
+  animation: pulse 2.8s ease-in-out infinite;
+}
+
+.market-clock {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.05em;
+}
+
+.stock-list {
+  display: grid;
+  flex: 1 1 auto;
+  grid-template-rows: repeat(5, 64px);
+  gap: 6px;
+  align-content: center;
+  min-height: 0;
+}
+
+.stock-row {
+  display: grid;
+  grid-template-columns: minmax(90px, 1fr) 106px 92px 72px;
+  gap: 10px;
+  align-items: center;
+  min-width: 0;
+  min-height: 0;
+}
+
+.stock-row.is-up {
+  --accent: var(--up);
+  --pill-ink: #fff7f8;
+}
+
+.stock-row.is-down {
+  --accent: var(--down);
+  --pill-ink: #04160c;
+}
+
+.stock-row.is-flat {
+  --accent: var(--flat);
+  --pill-ink: #07131b;
+}
+
+.identity {
+  min-width: 0;
+}
+
+.company-name {
+  margin: 0;
+  overflow: hidden;
+  color: var(--text);
+  font-size: 17px;
+  font-weight: 720;
+  letter-spacing: 0.025em;
+  line-height: 1.12;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ticker-line {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 4px;
+}
+
+.market-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 15px;
+  padding: 0 4px;
+  border: 1px solid rgba(255, 133, 150, 0.15);
+  border-radius: 3px;
+  background: #5c1f29;
+  color: #ffe9ed;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  vertical-align: middle;
+}
+
+.ticker {
+  color: #849daf;
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+}
+
+.sparkline-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 106px;
+  height: 42px;
+  color: var(--accent);
+}
+
+.sparkline {
+  display: block;
+  width: 106px;
+  height: 42px;
+  overflow: visible;
+}
+
+.previous-line {
+  stroke: rgba(173, 193, 204, 0.38);
+  stroke-width: 1;
+  stroke-dasharray: 2 2;
+  vector-effect: non-scaling-stroke;
+}
+
+.spark-area {
+  pointer-events: none;
+}
+
+.spark-path {
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.45;
+  vector-effect: non-scaling-stroke;
+}
+
+.spark-dot {
+  fill: currentColor;
+}
+
+.price {
+  color: #f7fbff;
+  font-family: 'DIN Alternate', 'SF Mono', 'Avenir Next', 'Segoe UI Variable', monospace;
+  font-size: 16px;
+  font-variant-numeric: tabular-nums;
+  font-weight: 650;
+  letter-spacing: 0.015em;
+  line-height: 1;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.change-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 74px;
+  height: 28px;
+  padding: 0 8px;
+  border-radius: 8px;
+  background: var(--accent);
+  color: var(--pill-ink);
+  font-family: 'DIN Alternate', 'Avenir Next', 'Segoe UI Variable', sans-serif;
+  font-size: 15px;
+  font-variant-numeric: tabular-nums;
+  font-weight: 760;
+  letter-spacing: 0.01em;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+#status-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+#status-text::before {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #557487;
+  content: '';
+}
+
+#status-text[data-state='ok']::before {
+  background: #6ed9a0;
+  box-shadow: 0 0 8px rgba(110, 217, 160, 0.45);
+}
+
+#status-text[data-state='error']::before {
+  background: var(--up);
+}
+
+.is-entering .stock-row {
+  opacity: 0;
+  transform: translateY(8px);
+  animation: row-in 420ms cubic-bezier(0.2, 0.75, 0.2, 1) forwards;
+}
+
+.is-entering .stock-row:nth-child(2) {
+  animation-delay: 45ms;
+}
+
+.is-entering .stock-row:nth-child(3) {
+  animation-delay: 90ms;
+}
+
+.is-entering .stock-row:nth-child(4) {
+  animation-delay: 135ms;
+}
+
+.is-entering .stock-row:nth-child(5) {
+  animation-delay: 180ms;
+}
+
+.stock-skeleton {
+  grid-template-columns: minmax(90px, 1fr) 106px 92px 72px;
+}
+
+.skeleton-block {
+  display: block;
+  border-radius: 6px;
+  background: linear-gradient(
+    100deg,
+    rgba(104, 142, 164, 0.08) 20%,
+    rgba(125, 177, 199, 0.16) 42%,
+    rgba(104, 142, 164, 0.08) 65%
+  );
+  background-size: 220% 100%;
+  animation: shimmer 1.5s linear infinite;
+}
+
+.skeleton-name {
+  width: 62px;
+  height: 18px;
+}
+
+.skeleton-ticker {
+  width: 74px;
+  height: 11px;
+  margin-top: 7px;
+}
+
+.skeleton-chart {
+  width: 92px;
+  height: 32px;
+}
+
+.skeleton-price {
+  justify-self: end;
+  width: 76px;
+  height: 17px;
+}
+
+.skeleton-change {
+  justify-self: end;
+  width: 72px;
+  height: 28px;
+}
+
+.error-state {
+  display: flex;
+  grid-row: 1 / -1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  text-align: center;
+}
+
+.error-mark {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  margin-bottom: 13px;
+  border: 1px solid rgba(255, 79, 111, 0.38);
+  border-radius: 50%;
+  background: rgba(255, 79, 111, 0.1);
+  color: var(--up);
+  font-family: 'DIN Alternate', sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.error-state h2 {
+  margin: 0;
+  color: var(--text);
+  font-size: 18px;
+  line-height: 1.2;
+}
+
+.error-state p {
+  max-width: 320px;
+  margin: 8px 0 16px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.55;
+  user-select: text;
+}
+
+.retry-button {
+  padding: 7px 14px;
+  border: 1px solid rgba(122, 190, 215, 0.25);
+  border-radius: 8px;
+  background: rgba(87, 151, 176, 0.12);
+  color: #d8edf5;
+  font:
+    700 12px/1 'Avenir Next',
+    'PingFang SC',
+    sans-serif;
+  cursor: pointer;
+}
+
+.retry-button:hover {
+  background: rgba(87, 151, 176, 0.2);
+}
+
+.retry-button:focus-visible {
+  outline: 2px solid #7be7ec;
+  outline-offset: 2px;
+}
+
+@container (max-width: 420px) {
+  .market-card {
+    padding: 12px 17px 7px;
+    border-radius: 15px;
+  }
+
+  .company-name {
+    font-size: 14px;
+  }
+
+  .stock-list {
+    grid-template-rows: repeat(5, 58px);
+    gap: 5px;
+  }
+
+  .stock-row,
+  .stock-skeleton {
+    grid-template-columns: minmax(86px, 1fr) 120px 74px 64px;
+    gap: 5px;
+  }
+
+  .sparkline-wrap,
+  .sparkline {
+    width: 120px;
+    height: 36px;
+  }
+
+  .price {
+    font-size: 13px;
+  }
+
+  .change-pill {
+    min-width: 64px;
+    height: 24px;
+    padding: 0 5px;
+    border-radius: 7px;
+    font-size: 12px;
+  }
+
+  .ticker {
+    font-size: 10px;
+  }
+}
+
+@media (max-height: 330px) {
+  .stock-list {
+    grid-template-rows: repeat(5, 44px);
+    gap: 3px;
+  }
+
+  .sparkline-wrap,
+  .sparkline {
+    height: 30px;
+  }
+}
+
+@keyframes row-in {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shimmer {
+  to {
+    background-position: -220% 0;
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.62;
+    transform: scale(0.9);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

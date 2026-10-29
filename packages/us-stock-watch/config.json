@@ -1,0 +1,11 @@
+{
+  "id": "us-stock-watch",
+  "title": "美股 · 五大科技股",
+  "logo": null,
+  "screenshots": ["assets/screenshot.png"],
+  "platforms": ["macos", "windows", "linux"],
+  "size": { "width": 400, "height": 350 },
+  "dragMode": "all",
+  "permissions": ["script"],
+  "network": ["https://push2.eastmoney.com"]
+}

@@ -1,0 +1,25 @@
+{
+  "name": "@aidget-community/us-stock-watch",
+  "version": "0.1.0",
+  "description": "美股五大科技股日内行情、价格与涨跌幅卡片。",
+  "license": "MIT",
+  "author": {
+    "name": "micooz",
+    "url": "https://github.com/micooz"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aidget-ai/widgets.git",
+    "directory": "packages/us-stock-watch"
+  },
+  "files": [
+    "config.json",
+    "index.html",
+    "style.css",
+    "agents.md",
+    "assets"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

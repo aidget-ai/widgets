@@ -247,6 +247,88 @@
     },
     {
       "package": {
+        "name": "@aidget-community/us-stock-watch",
+        "version": "0.1.0",
+        "description": "美股五大科技股日内行情、价格与涨跌幅卡片。",
+        "author": {
+          "name": "micooz",
+          "email": null,
+          "url": "https://github.com/micooz"
+        },
+        "repository": {
+          "type": "git",
+          "url": "git+https://github.com/aidget-ai/widgets.git",
+          "directory": "packages/us-stock-watch"
+        },
+        "license": "MIT",
+        "files": [
+          "config.json",
+          "index.html",
+          "style.css",
+          "agents.md",
+          "assets"
+        ]
+      },
+      "config": {
+        "id": "us-stock-watch",
+        "title": "美股 · 五大科技股",
+        "logo": null,
+        "screenshots": [
+          "assets/screenshot.png"
+        ],
+        "platforms": [
+          "macos",
+          "windows",
+          "linux"
+        ],
+        "size": {
+          "width": 400,
+          "height": 350
+        },
+        "dragMode": "all",
+        "permissions": [
+          "script"
+        ],
+        "network": [
+          "https://push2.eastmoney.com"
+        ]
+      },
+      "files": [
+        {
+          "path": "agents.md",
+          "size": 2556,
+          "sha256": "3520660a3f2ee7a4f6ae9ed1d1b00fb56cd026b48ce5d7354118292b711ed3b9"
+        },
+        {
+          "path": "assets/screenshot.png",
+          "size": 551144,
+          "sha256": "dd7587e9e5d1e20db48be139f841fe745cb9bac4a72f0ea515a81b41257851b5"
+        },
+        {
+          "path": "config.json",
+          "size": 314,
+          "sha256": "64f1a25a31920f9d684f8ba0881d9111dbd355f8664b4b66d80e978aa5b3a2cf"
+        },
+        {
+          "path": "index.html",
+          "size": 9748,
+          "sha256": "d456ae03a107de4428aa7f44b8db903e1f64cd31ef8ce3e7da8f5ecff14f7fd6"
+        },
+        {
+          "path": "package.json",
+          "size": 550,
+          "sha256": "4fa46b81e76c95164ddd078849c3324da3d9f56460d588b9789f41f71c1269ec"
+        },
+        {
+          "path": "style.css",
+          "size": 8880,
+          "sha256": "3ec781776eca45d6ae148b1b328c13edd15658db170b1424a4edb157d4040b1a"
+        }
+      ],
+      "publishedAt": "2026-10-29T05:58:50Z"
+    },
+    {
+      "package": {
         "name": "@aidget-community/welcome",
         "version": "0.1.1",
         "description": "AIDGET 欢迎卡片：将桌面交给 Agent。",

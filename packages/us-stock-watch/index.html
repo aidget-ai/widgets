@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="aidget-surface" content="none" />
+    <title>美股 · 五大科技股</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="market-card" aria-label="美股五大科技股行情">
+      <header class="market-header">
+        <div class="market-kicker">
+          <span class="market-pulse" aria-hidden="true"></span>
+          <span>美东时间</span>
+          <time id="market-clock" class="market-clock">--:--</time>
+        </div>
+        <div class="market-status">
+          <span id="status-text">正在获取行情…</span>
+        </div>
+      </header>
+
+      <section
+        id="stocks"
+        class="stock-list"
+        data-aidget-region="stocks"
+        aria-live="polite"
+        aria-busy="true"
+      ></section>
+    </main>
+
+    <script>
+      const STOCKS = [
+        { symbol: 'AAPL', company: '苹果', secid: '105.AAPL' },
+        { symbol: 'GOOGL', company: '谷歌-A', secid: '105.GOOGL' },
+        { symbol: 'MSFT', company: '微软', secid: '105.MSFT' },
+        { symbol: 'AMZN', company: '\u4e9a\u9a6c\u900a', secid: '105.AMZN' },
+        { symbol: 'TSLA', company: '特斯拉', secid: '105.TSLA' },
+      ];
+
+      const API_ORIGIN = 'https://push2.eastmoney.com';
+      const REFRESH_MS = 5 * 60 * 1000;
+      const list = document.querySelector('#stocks');
+      const statusText = document.querySelector('#status-text');
+      const marketClock = document.querySelector('#market-clock');
+
+      let refreshTimer = 0;
+      let loading = false;
+      let initialized = false;
+      let hasRendered = false;
+
+      function updateClock() {
+        const time = new Intl.DateTimeFormat('zh-CN', {
+          timeZone: 'America/New_York',
+          hour: '2-digit',
+          minute: '2-digit',
+          hourCycle: 'h23',
+        }).format(new Date());
+        marketClock.textContent = time;
+      }
+
+      function setStatus(state, text) {
+        statusText.dataset.state = state;
+        statusText.textContent = text;
+      }
+
+      function renderSkeleton() {
+        if (hasRendered) return;
+        list.innerHTML = STOCKS.map(
+          () => `
+        <div class="stock-row stock-skeleton" aria-hidden="true">
+          <div class="identity">
+            <span class="skeleton-block skeleton-name"></span>
+            <span class="skeleton-block skeleton-ticker"></span>
+          </div>
+          <span class="skeleton-block skeleton-chart"></span>
+          <span class="skeleton-block skeleton-price"></span>
+          <span class="skeleton-block skeleton-change"></span>
+        </div>
+      `,
+        ).join('');
+      }
+
+      async function fetchStock(stock) {
+        const url = new URL('/api/qt/stock/trends2/get', API_ORIGIN);
+        url.search = new URLSearchParams({
+          secid: stock.secid,
+          fields1: 'f1,f2,f3,f4,f5,f6,f7,f8,f9,f10,f11,f12,f13',
+          fields2: 'f51,f52,f53,f54,f55,f56,f57,f58',
+          ndays: '1',
+          iscr: '0',
+        });
+
+        const response = await fetch(url, { cache: 'no-store' });
+        if (!response.ok) {
+          throw new Error(`${stock.symbol} 请求失败：HTTP ${response.status}`);
+        }
+
+        const payload = await response.json();
+        if (payload.rc !== 0 || !payload.data) {
+          throw new Error(`${stock.symbol} 返回了空行情`);
+        }
+
+        const rows = payload.data.trends;
+        if (!Array.isArray(rows) || rows.length === 0) {
+          throw new Error(`${stock.symbol} 缺少分时数据`);
+        }
+
+        const closes = rows
+          .map((row) => Number(String(row).split(',')[2]))
+          .filter((value) => Number.isFinite(value) && value > 0);
+        const previousClose = Number(payload.data.preClose);
+        const latest = closes[closes.length - 1];
+
+        if (
+          closes.length < 2 ||
+          !Number.isFinite(previousClose) ||
+          previousClose <= 0 ||
+          !Number.isFinite(latest)
+        ) {
+          throw new Error(`${stock.symbol} 行情字段不完整`);
+        }
+
+        let change = ((latest - previousClose) / previousClose) * 100;
+        if (Math.abs(change) < 0.005) change = 0;
+
+        return {
+          ...stock,
+          decimal: Number.isInteger(payload.data.decimal) ? payload.data.decimal : 3,
+          previousClose,
+          latest,
+          change,
+          closes,
+        };
+      }
+
+      function sparkline(stock, index) {
+        const width = 74;
+        const height = 46;
+        const inset = 3;
+        const values = [...stock.closes, stock.previousClose];
+        const min = Math.min(...values);
+        const max = Math.max(...values);
+        const range = max - min || 1;
+        const x = (position) => (position / (stock.closes.length - 1)) * width;
+        const y = (value) => inset + ((max - value) / range) * (height - inset * 2);
+        const points = stock.closes.map(
+          (value, position) => `${x(position).toFixed(2)},${y(value).toFixed(2)}`,
+        );
+        const line = `M${points.join(' L')}`;
+        const area = `M0,${height} L${points.join(' L')} L${width},${height} Z`;
+        const previousY = y(stock.previousClose).toFixed(2);
+        const last = points[points.length - 1].split(',');
+        const gradient = `spark-fill-${index}`;
+        const direction = stock.change > 0 ? '上涨' : stock.change < 0 ? '下跌' : '平盘';
+
+        return `
+        <svg
+          class="sparkline"
+          viewBox="0 0 ${width} ${height}"
+          preserveAspectRatio="none"
+          role="img"
+          aria-label="${stock.symbol} 日内走势，${direction} ${Math.abs(stock.change).toFixed(2)}%"
+        >
+          <defs>
+            <linearGradient id="${gradient}" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="currentColor" stop-opacity="0.28"></stop>
+              <stop offset="100%" stop-color="currentColor" stop-opacity="0"></stop>
+            </linearGradient>
+          </defs>
+          <line
+            class="previous-line"
+            x1="0"
+            y1="${previousY}"
+            x2="${width}"
+            y2="${previousY}"
+          ></line>
+          <path class="spark-area" d="${area}" fill="url(#${gradient})"></path>
+          <path class="spark-path" d="${line}"></path>
+          <circle class="spark-dot" cx="${last[0]}" cy="${last[1]}" r="2.2"></circle>
+        </svg>
+      `;
+      }
+
+      function stockRow(stock, index) {
+        const direction = stock.change > 0 ? 'is-up' : stock.change < 0 ? 'is-down' : 'is-flat';
+        const price = stock.latest.toFixed(stock.decimal);
+        const percentage = `${stock.change > 0 ? '+' : ''}${stock.change.toFixed(2)}%`;
+
+        return `
+        <article class="stock-row ${direction}" data-symbol="${stock.symbol}">
+          <div class="identity">
+            <h2 class="company-name">${stock.company}</h2>
+            <div class="ticker-line">
+              <span class="market-chip">US</span>
+              <span class="ticker">${stock.symbol}</span>
+            </div>
+          </div>
+          <div class="sparkline-wrap">${sparkline(stock, index)}</div>
+          <span class="price">${price}</span>
+          <span class="change-pill">${percentage}</span>
+        </article>
+      `;
+      }
+
+      function renderStocks(stocks) {
+        const animate = !hasRendered;
+        hasRendered = true;
+        list.setAttribute('aria-busy', 'false');
+        if (animate) list.classList.add('is-entering');
+        list.innerHTML = stocks.map(stockRow).join('');
+        if (animate) {
+          window.setTimeout(() => list.classList.remove('is-entering'), 900);
+        }
+        setStatus(
+          'ok',
+          `更新于 ${new Intl.DateTimeFormat('zh-CN', {
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: false,
+          }).format(new Date())}`,
+        );
+      }
+
+      function escapeHtml(value) {
+        return String(value).replace(
+          /[&<>"']/g,
+          (character) =>
+            ({
+              '&': '&amp;',
+              '<': '&lt;',
+              '>': '&gt;',
+              '"': '&quot;',
+              "'": '&#39;',
+            })[character],
+        );
+      }
+
+      function renderError(error) {
+        hasRendered = true;
+        list.setAttribute('aria-busy', 'false');
+        list.innerHTML = `
+        <div class="error-state" role="alert">
+          <span class="error-mark" aria-hidden="true">!</span>
+          <h2>行情加载失败</h2>
+          <p data-aidget-no-drag>${escapeHtml(error instanceof Error ? error.message : String(error))}</p>
+          <button id="retry" class="retry-button" type="button">重新加载</button>
+        </div>
+      `;
+        document.querySelector('#retry').addEventListener('click', refresh);
+        setStatus('error', '数据不可用');
+      }
+
+      async function refresh() {
+        if (loading) return;
+        loading = true;
+        window.clearTimeout(refreshTimer);
+        list.setAttribute('aria-busy', 'true');
+        setStatus('loading', '正在更新…');
+
+        try {
+          const stocks = await Promise.all(STOCKS.map(fetchStock));
+          renderStocks(stocks);
+        } catch (error) {
+          renderError(error);
+        } finally {
+          loading = false;
+          if (!initialized) {
+            initialized = true;
+            window.aidget.ready();
+          }
+          refreshTimer = window.setTimeout(refresh, REFRESH_MS);
+        }
+      }
+
+      updateClock();
+      window.setInterval(updateClock, 30 * 1000);
+      renderSkeleton();
+      refresh();
+    </script>
+  </body>
+</html>
