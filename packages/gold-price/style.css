@@ -1,0 +1,176 @@
+:root {
+  color-scheme: dark;
+  --card: #001529;
+  --gold: #d8a52f;
+  --gold-deep: #4a391d;
+  --text: #f7f8fa;
+  --muted: #9ca4ad;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: transparent;
+}
+
+body {
+  padding: 12px;
+  font-family:
+    'Avenir Next', 'SF Pro Display', 'PingFang SC', 'Hiragino Sans GB', 'Segoe UI Variable',
+    'Microsoft YaHei UI', 'Noto Sans CJK SC', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: geometricPrecision;
+  user-select: none;
+}
+
+.gold-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding: 12px 14px 7px;
+  overflow: hidden;
+  border: 1px solid rgba(70, 91, 111, 0.42);
+  border-radius: 27px;
+  background:
+    radial-gradient(circle at 90% 8%, rgba(20, 51, 74, 0.34), transparent 38%),
+    linear-gradient(155deg, #031c33 0%, var(--card) 58%, #00182b 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(171, 197, 218, 0.08),
+    0 12px 24px rgba(0, 0, 0, 0.24);
+}
+
+.gold-title {
+  flex: 0 0 auto;
+  margin: 0;
+  color: var(--text);
+  font-size: 19px;
+  font-weight: 760;
+  letter-spacing: 0.015em;
+  line-height: 1.05;
+}
+
+.gold-quote {
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  margin-top: 9px;
+  min-height: 0;
+}
+
+.quote-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 18px;
+}
+
+.symbol-pill {
+  display: inline-flex;
+  align-items: center;
+  height: 18px;
+  justify-content: center;
+  min-width: 59px;
+  padding: 0 6px;
+  border-radius: 5px;
+  background: var(--gold-deep);
+  color: var(--gold);
+  font-family: 'SF Mono', 'SFMono-Regular', Menlo, Consolas, 'Avenir Next', monospace;
+  font-size: 10px;
+  font-weight: 760;
+  letter-spacing: 0.01em;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.change {
+  color: var(--text);
+  font-family: 'Avenir Next', 'SF Pro Display', 'PingFang SC', 'Segoe UI Variable', sans-serif;
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  font-weight: 720;
+  letter-spacing: -0.01em;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.gold-quote[data-direction='error'] .change {
+  max-width: 82px;
+  overflow: hidden;
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 650;
+  text-overflow: ellipsis;
+}
+
+.price {
+  height: 45px;
+  margin-top: 2px;
+  overflow: hidden;
+  color: var(--text);
+  font-family:
+    'DIN Alternate', 'Avenir Next', 'SF Pro Display', 'PingFang SC', 'Segoe UI Variable', sans-serif;
+  font-size: 40px;
+  font-variant-numeric: tabular-nums;
+  font-weight: 650;
+  letter-spacing: -0.035em;
+  line-height: 45px;
+  white-space: nowrap;
+}
+
+.gold-quote[data-direction='error'] .price {
+  color: var(--muted);
+  font-size: 28px;
+  letter-spacing: 0.02em;
+}
+
+.chart {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: flex-end;
+  min-height: 0;
+  margin-top: -2px;
+}
+
+.chart-svg {
+  display: block;
+  width: 100%;
+  height: 42px;
+  overflow: visible;
+}
+
+.baseline {
+  stroke: rgba(216, 165, 47, 0.65);
+  stroke-width: 1;
+  stroke-dasharray: 2 3;
+  vector-effect: non-scaling-stroke;
+}
+
+.area {
+  fill: url('#chart-fill');
+  stroke: none;
+}
+
+.line {
+  fill: none;
+  stroke: var(--gold);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.25;
+  vector-effect: non-scaling-stroke;
+}
+
+.dot {
+  fill: var(--gold);
+  stroke: #001529;
+  stroke-width: 0.8;
+  vector-effect: non-scaling-stroke;
+}

@@ -1,0 +1,11 @@
+{
+  "id": "gold-price",
+  "title": "黄金价格",
+  "logo": null,
+  "screenshots": ["assets/screenshot.png"],
+  "platforms": ["macos", "windows", "linux"],
+  "size": { "width": 180, "height": 180 },
+  "dragMode": "all",
+  "permissions": ["script"],
+  "network": ["https://push2.eastmoney.com"]
+}

@@ -161,6 +161,88 @@
     },
     {
       "package": {
+        "name": "@aidget-community/gold-price",
+        "version": "0.1.0",
+        "description": "AU99.99 黄金实时价格、涨跌幅与日内走势卡片。",
+        "author": {
+          "name": "micooz",
+          "email": null,
+          "url": "https://github.com/micooz"
+        },
+        "repository": {
+          "type": "git",
+          "url": "git+https://github.com/aidget-ai/widgets.git",
+          "directory": "packages/gold-price"
+        },
+        "license": "MIT",
+        "files": [
+          "config.json",
+          "index.html",
+          "style.css",
+          "agents.md",
+          "assets"
+        ]
+      },
+      "config": {
+        "id": "gold-price",
+        "title": "黄金价格",
+        "logo": null,
+        "screenshots": [
+          "assets/screenshot.png"
+        ],
+        "platforms": [
+          "macos",
+          "windows",
+          "linux"
+        ],
+        "size": {
+          "width": 180,
+          "height": 180
+        },
+        "dragMode": "all",
+        "permissions": [
+          "script"
+        ],
+        "network": [
+          "https://push2.eastmoney.com"
+        ]
+      },
+      "files": [
+        {
+          "path": "agents.md",
+          "size": 1663,
+          "sha256": "f7c1dcbd6f619935806151aa3231cab642f8652b1c467c9425372749230e5dc1"
+        },
+        {
+          "path": "assets/screenshot.png",
+          "size": 126270,
+          "sha256": "6a810905cb66671976151fd694050d02236cbdc8e387205683f81e3af2601e8c"
+        },
+        {
+          "path": "config.json",
+          "size": 297,
+          "sha256": "b662f205b71d3c1f6d34648a33be3126c45b9f60beb3346156ef7a87bb73cd72"
+        },
+        {
+          "path": "index.html",
+          "size": 6357,
+          "sha256": "196c2020454a176bb1ba6e2bc0373a1a72d9be8c67e10f8a4db3051903399848"
+        },
+        {
+          "path": "package.json",
+          "size": 541,
+          "sha256": "7557fc08024db495578baff96f24f17d6d438c686f12e872a4ad95492d9c35ef"
+        },
+        {
+          "path": "style.css",
+          "size": 3420,
+          "sha256": "8269f4b58458a578c44db58a50026fffe7ac9c3b52a08ebf60dafadcf3f8630c"
+        }
+      ],
+      "publishedAt": "2026-10-29T06:17:59Z"
+    },
+    {
+      "package": {
         "name": "@aidget-community/sticky-todos",
         "version": "0.1.0",
         "description": "水彩纸张风格的桌面待办便签，勾选状态自动保存。",

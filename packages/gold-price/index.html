@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="aidget-surface" content="none" />
+    <title>黄金价格</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="gold-card" aria-label="黄金价格 AU99.99">
+      <h1 class="gold-title">黄金价格</h1>
+
+      <section class="gold-quote" data-aidget-region="quote" aria-live="polite" aria-busy="true">
+        <div class="quote-meta">
+          <span class="symbol-pill">AU99.99</span>
+          <span id="change" class="change">--</span>
+        </div>
+        <div id="price" class="price">--</div>
+      </section>
+
+      <div id="chart" class="chart" data-aidget-region="chart" aria-hidden="true">
+        <svg
+          class="chart-svg"
+          viewBox="0 0 128 42"
+          preserveAspectRatio="none"
+          role="img"
+          aria-label="AU99.99 日内走势"
+        >
+          <defs>
+            <linearGradient id="chart-fill" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#d8a52f" stop-opacity="0.88"></stop>
+              <stop offset="100%" stop-color="#8d6e27" stop-opacity="0.76"></stop>
+            </linearGradient>
+          </defs>
+          <line id="baseline" class="baseline" x1="0" y1="24" x2="128" y2="24"></line>
+          <path id="area" class="area" d=""></path>
+          <path id="line" class="line" d=""></path>
+          <circle id="dot" class="dot" cx="0" cy="0" r="1.8" hidden></circle>
+        </svg>
+      </div>
+    </main>
+
+    <script>
+      const API_URL = new URL('https://push2.eastmoney.com/api/qt/stock/trends2/get');
+      API_URL.search = new URLSearchParams({
+        secid: '118.AU9999',
+        fields1: 'f1,f2,f3,f4,f5,f6,f7,f8,f9,f10,f11,f12,f13',
+        fields2: 'f51,f52,f53,f54,f55,f56,f57,f58',
+        ndays: '1',
+        iscr: '0',
+      });
+
+      const REFRESH_MS = 5 * 60 * 1000;
+      const quote = document.querySelector('.gold-quote');
+      const price = document.querySelector('#price');
+      const change = document.querySelector('#change');
+      const baseline = document.querySelector('#baseline');
+      const area = document.querySelector('#area');
+      const line = document.querySelector('#line');
+      const dot = document.querySelector('#dot');
+      const chart = document.querySelector('#chart');
+
+      let refreshTimer = 0;
+      let loading = false;
+      let initialized = false;
+
+      function drawChart(closes, previousClose, percentage) {
+        const width = 128;
+        const height = 42;
+        const inset = 3;
+        const values = [...closes, previousClose];
+        const min = Math.min(...values);
+        const max = Math.max(...values);
+        const range = max - min || 1;
+        const x = (index) => (index / (closes.length - 1)) * width;
+        const y = (value) => inset + ((max - value) / range) * (height - inset * 2);
+        const points = closes.map(
+          (value, index) => `${x(index).toFixed(2)},${y(value).toFixed(2)}`,
+        );
+        const previousY = y(previousClose).toFixed(2);
+        const last = points[points.length - 1].split(',');
+
+        baseline.setAttribute('y1', previousY);
+        baseline.setAttribute('y2', previousY);
+        area.setAttribute('d', `M0,${height} L${points.join(' L')} L${width},${height} Z`);
+        line.setAttribute('d', `M${points.join(' L')}`);
+        dot.setAttribute('cx', last[0]);
+        dot.setAttribute('cy', last[1]);
+        dot.removeAttribute('hidden');
+        chart.setAttribute(
+          'aria-label',
+          `AU99.99 日内走势，涨跌幅 ${percentage > 0 ? '+' : ''}${percentage.toFixed(2)}%`,
+        );
+      }
+
+      function clearChart() {
+        baseline.removeAttribute('y1');
+        baseline.removeAttribute('y2');
+        area.setAttribute('d', '');
+        line.setAttribute('d', '');
+        dot.setAttribute('hidden', '');
+      }
+
+      function renderQuote(data) {
+        const rows = data?.trends;
+        const previousClose = Number(data?.preClose);
+        const decimals = Number.isInteger(data?.decimal) ? data.decimal : 2;
+
+        if (!Array.isArray(rows) || rows.length === 0) {
+          throw new Error('行情缺少日内数据');
+        }
+
+        const closes = rows
+          .map((row) => Number(String(row).split(',')[2]))
+          .filter((value) => Number.isFinite(value) && value > 0);
+        const latest = closes[closes.length - 1];
+
+        if (
+          closes.length < 2 ||
+          !Number.isFinite(previousClose) ||
+          previousClose <= 0 ||
+          !Number.isFinite(latest)
+        ) {
+          throw new Error('行情字段不完整');
+        }
+
+        let percentage = ((latest - previousClose) / previousClose) * 100;
+        if (Math.abs(percentage) < 0.005) percentage = 0;
+
+        price.textContent = new Intl.NumberFormat('zh-CN', {
+          useGrouping: false,
+          minimumFractionDigits: decimals,
+          maximumFractionDigits: decimals,
+        }).format(latest);
+        change.textContent = `${percentage > 0 ? '+' : ''}${percentage.toFixed(2)}%`;
+        quote.dataset.direction = percentage > 0 ? 'up' : percentage < 0 ? 'down' : 'flat';
+        quote.setAttribute('aria-busy', 'false');
+        drawChart(closes, previousClose, percentage);
+      }
+
+      function renderError() {
+        price.textContent = '--';
+        change.textContent = '行情加载失败';
+        quote.dataset.direction = 'error';
+        quote.setAttribute('aria-busy', 'false');
+        clearChart();
+      }
+
+      async function refresh() {
+        if (loading) return;
+        loading = true;
+        window.clearTimeout(refreshTimer);
+        quote.setAttribute('aria-busy', 'true');
+
+        try {
+          const payload = await window.aidget.fetch(API_URL.toString());
+          if (payload.rc !== 0 || !payload.data) {
+            throw new Error('行情返回为空');
+          }
+          renderQuote(payload.data);
+        } catch {
+          renderError();
+        } finally {
+          loading = false;
+          if (!initialized) {
+            initialized = true;
+            window.aidget.ready();
+          }
+          refreshTimer = window.setTimeout(refresh, REFRESH_MS);
+        }
+      }
+
+      refresh();
+    </script>
+  </body>
+</html>
