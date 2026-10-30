@@ -1,6 +1,6 @@
 {
   "name": "@aidget-community/gold-price",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "AU99.99 黄金实时价格、涨跌幅与日内走势卡片。",
   "license": "MIT",
   "author": {

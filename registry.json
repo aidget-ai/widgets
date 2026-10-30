@@ -245,7 +245,7 @@
     {
       "package": {
         "name": "@aidget-community/daily-quote",
-        "version": "0.1.0",
+        "version": "0.1.1",
         "description": "今日金句卡片",
         "author": {
           "name": "micooz",
@@ -274,7 +274,9 @@
           "assets/screenshot.png"
         ],
         "platforms": [
-          "macos"
+          "macos",
+          "windows",
+          "linux"
         ],
         "size": {
           "width": 300,
@@ -299,8 +301,8 @@
         },
         {
           "path": "config.json",
-          "size": 259,
-          "sha256": "afcaf48d51b3438e306072b5bde8612ec7e0f937568ee626bb0a3e478283b8f8"
+          "size": 279,
+          "sha256": "21bfd60933f25f2026e8e1e02ef9c3244d3e628e1c383f2e0897b6a4cc6cbd0b"
         },
         {
           "path": "index.html",
@@ -310,7 +312,7 @@
         {
           "path": "package.json",
           "size": 499,
-          "sha256": "0a03e937a0b2653355227e6fa91d0e029ed2b32d046f1187dba525e92bb8a297"
+          "sha256": "646ffb927d26b39ef6f4902ddd2dcf43d1ce56a3e1984e9d6bdba4a6ddc6d184"
         },
         {
           "path": "style.css",
@@ -323,7 +325,7 @@
     {
       "package": {
         "name": "@aidget-community/gold-price",
-        "version": "0.1.0",
+        "version": "0.1.1",
         "description": "AU99.99 黄金实时价格、涨跌幅与日内走势卡片。",
         "author": {
           "name": "micooz",
@@ -376,8 +378,8 @@
         },
         {
           "path": "assets/screenshot.png",
-          "size": 126270,
-          "sha256": "6a810905cb66671976151fd694050d02236cbdc8e387205683f81e3af2601e8c"
+          "size": 120697,
+          "sha256": "80ea32484038ad33bcefb5f20c84d889f880f361e6fad7176c4dea0c6bf05133"
         },
         {
           "path": "config.json",
@@ -392,12 +394,12 @@
         {
           "path": "package.json",
           "size": 541,
-          "sha256": "7557fc08024db495578baff96f24f17d6d438c686f12e872a4ad95492d9c35ef"
+          "sha256": "758cccf1f2fe818d4b96a12c66007b3a8f080d3e030c7bcef88488d2c60839fd"
         },
         {
           "path": "style.css",
-          "size": 3420,
-          "sha256": "8269f4b58458a578c44db58a50026fffe7ac9c3b52a08ebf60dafadcf3f8630c"
+          "size": 3379,
+          "sha256": "f6905fe00042396fff855bdf08d85212487f9257b0003d58f9d662ef8b6c4f4f"
         }
       ],
       "publishedAt": "2026-10-29T06:17:59Z"
