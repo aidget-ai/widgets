@@ -1,0 +1,14 @@
+{
+  "id": "daily-quote",
+  "title": "今日金句",
+  "logo": null,
+  "screenshots": ["assets/screenshot.png"],
+  "platforms": ["macos"],
+  "size": {
+    "width": 300,
+    "height": 370
+  },
+  "dragMode": "all",
+  "permissions": ["script"],
+  "network": []
+}

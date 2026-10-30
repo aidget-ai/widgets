@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="aidget-surface" content="none" />
+    <link rel="stylesheet" href="style.css" />
+    <title>今日金句</title>
+  </head>
+  <body>
+    <main class="card" aria-label="今日金句">
+      <header class="calendar">
+        <div class="day" id="day"></div>
+        <div class="month" id="month"></div>
+        <div class="weekday" id="weekday"></div>
+      </header>
+      <div class="divider" aria-hidden="true"></div>
+      <section class="recommendation" aria-label="今日金句">
+        <div class="quote" data-aidget-region="quote">学而时习之，不亦说乎？</div>
+        <div class="attribution">
+          <div class="book" data-aidget-region="book">《论语》</div>
+          <div class="author" data-aidget-region="author">孔子及其弟子</div>
+        </div>
+      </section>
+    </main>
+    <script>
+      function updateDate() {
+        const now = new Date();
+        document.getElementById('day').textContent = now.getDate();
+        document.getElementById('month').textContent = new Intl.DateTimeFormat('en', {
+          month: 'long',
+          year: 'numeric',
+        })
+          .format(now)
+          .toUpperCase();
+        document.getElementById('weekday').textContent = new Intl.DateTimeFormat('zh-CN', {
+          weekday: 'long',
+        }).format(now);
+      }
+      updateDate();
+      setInterval(updateDate, 60000);
+      document.addEventListener('visibilitychange', () => {
+        if (!document.hidden) updateDate();
+      });
+      window.addEventListener('focus', updateDate);
+      window.aidget?.ready();
+    </script>
+  </body>
+</html>

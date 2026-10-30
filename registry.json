@@ -244,6 +244,84 @@
     },
     {
       "package": {
+        "name": "@aidget-community/daily-quote",
+        "version": "0.1.0",
+        "description": "今日金句卡片",
+        "author": {
+          "name": "micooz",
+          "email": null,
+          "url": "https://github.com/micooz"
+        },
+        "repository": {
+          "type": "git",
+          "url": "git+https://github.com/aidget-ai/widgets.git",
+          "directory": "packages/daily-quote"
+        },
+        "license": "MIT",
+        "files": [
+          "config.json",
+          "index.html",
+          "style.css",
+          "agents.md",
+          "assets"
+        ]
+      },
+      "config": {
+        "id": "daily-quote",
+        "title": "今日金句",
+        "logo": null,
+        "screenshots": [
+          "assets/screenshot.png"
+        ],
+        "platforms": [
+          "macos"
+        ],
+        "size": {
+          "width": 300,
+          "height": 370
+        },
+        "dragMode": "all",
+        "permissions": [
+          "script"
+        ],
+        "network": []
+      },
+      "files": [
+        {
+          "path": "agents.md",
+          "size": 1865,
+          "sha256": "4d4e52c143451a769d2081d428a3c61dfcb60572a7dd1e41d87fec873ac97a76"
+        },
+        {
+          "path": "assets/screenshot.png",
+          "size": 43880,
+          "sha256": "6d799e4d21a6529fd7b22c754ba7b4faac0071607be91ad741209ecb68e2df8e"
+        },
+        {
+          "path": "config.json",
+          "size": 259,
+          "sha256": "afcaf48d51b3438e306072b5bde8612ec7e0f937568ee626bb0a3e478283b8f8"
+        },
+        {
+          "path": "index.html",
+          "size": 1755,
+          "sha256": "d9fbeff0d6c0831d318b5f92be0ff88e101a0e7c808ffe1f8912d115ab7aa785"
+        },
+        {
+          "path": "package.json",
+          "size": 499,
+          "sha256": "0a03e937a0b2653355227e6fa91d0e029ed2b32d046f1187dba525e92bb8a297"
+        },
+        {
+          "path": "style.css",
+          "size": 1475,
+          "sha256": "4cc2e2f6d71d273282cea7917b07323dfb95b6a80c68251a8f93772dab345fe3"
+        }
+      ],
+      "publishedAt": "2026-10-30T16:29:19Z"
+    },
+    {
+      "package": {
         "name": "@aidget-community/gold-price",
         "version": "0.1.0",
         "description": "AU99.99 黄金实时价格、涨跌幅与日内走势卡片。",
