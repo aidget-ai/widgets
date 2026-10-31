@@ -59,7 +59,9 @@ function fixture(t: TestContext) {
   for (const [path, value] of Object.entries({
     'styles.css': '/* site */',
     'assets/aidget-icon.png': 'icon',
-    'assets/product-preview-placeholder.svg': '<svg></svg>',
+    'assets/carousel.js': '// carousel',
+    'assets/product-preview.webp': 'preview',
+    'assets/product-window.webp': 'window',
   })) {
     writeFileSync(join(siteRoot, path), value);
   }
@@ -138,6 +140,11 @@ test('builds sorted bilingual pages with validated local media and release links
         heroLead: '把桌面',
         heroAccent: '交给 AI Agent',
         description: '说出你的桌面创意，让 Agent 为你实现。',
+        carouselLabel: 'Aidget 产品截图',
+        slides: [
+          { src: 'assets/site/product-preview.webp', alt: 'Aidget 桌面组件效果' },
+          { src: 'assets/site/product-window.webp', alt: 'Aidget 主界面' },
+        ],
       },
     ],
     [
@@ -147,6 +154,11 @@ test('builds sorted bilingual pages with validated local media and release links
         heroLead: 'Manage desktop widgets,',
         heroAccent: 'the AI Agent way.',
         description: 'Describe your desktop idea and let your Agent make it real.',
+        carouselLabel: 'Aidget product screenshots',
+        slides: [
+          { src: '../assets/site/product-preview.webp', alt: 'Aidget widgets on the desktop' },
+          { src: '../assets/site/product-window.webp', alt: 'Aidget main window' },
+        ],
       },
     ],
   ] as const) {
@@ -181,6 +193,66 @@ test('builds sorted bilingual pages with validated local media and release links
     ).at(0);
     assert.ok(pageDescription);
     assert.equal(attribute(pageDescription, 'content'), expected.description);
+
+    const productPreview = descendants(
+      document,
+      (element) =>
+        element.tagName === 'figure' && attribute(element, 'class') === 'product-preview',
+    ).at(0);
+    assert.ok(productPreview);
+    const carousel = descendants(
+      productPreview,
+      (element) => attribute(element, 'data-carousel') !== undefined,
+    ).at(0);
+    assert.ok(carousel);
+    assert.equal(attribute(carousel, 'role'), 'group');
+    assert.equal(attribute(carousel, 'aria-roledescription'), 'carousel');
+    assert.equal(attribute(carousel, 'aria-label'), expected.carouselLabel);
+    const slides = descendants(
+      carousel,
+      (element) => attribute(element, 'data-carousel-slide') !== undefined,
+    );
+    assert.equal(slides.length, 2);
+    assert.equal(attribute(slides[0], 'class'), 'preview-slide is-active');
+    assert.equal(attribute(slides[0], 'aria-hidden'), 'false');
+    assert.equal(attribute(slides[1], 'aria-hidden'), 'true');
+    assert.ok(
+      slides.every(
+        (slide) =>
+          attribute(slide, 'role') === 'group' &&
+          attribute(slide, 'aria-roledescription') === 'slide',
+      ),
+    );
+    for (const [index, slide] of slides.entries()) {
+      const image = descendants(slide, (element) => element.tagName === 'img').at(0);
+      assert.ok(image);
+      assert.equal(attribute(image, 'src'), expected.slides[index]?.src);
+      assert.equal(attribute(image, 'alt'), expected.slides[index]?.alt);
+      assert.equal(attribute(image, 'width'), '2000');
+      assert.equal(attribute(image, 'height'), '1265');
+    }
+    const dots = descendants(
+      carousel,
+      (element) => attribute(element, 'data-carousel-dot') !== undefined,
+    );
+    assert.equal(dots.length, 2);
+    assert.equal(attribute(dots[0], 'aria-current'), 'true');
+    assert.equal(attribute(dots[1], 'aria-current'), 'false');
+    for (const name of [
+      'data-carousel-count',
+      'data-carousel-next',
+      'data-carousel-previous',
+      'data-carousel-toggle',
+    ]) {
+      assert.equal(
+        descendants(productPreview, (element) => attribute(element, name) !== undefined).length,
+        0,
+      );
+    }
+    assert.equal(
+      descendants(productPreview, (element) => element.tagName === 'figcaption').length,
+      0,
+    );
   }
 
   const cards = descendants(chinese, (element) => element.tagName === 'article');
@@ -197,7 +269,13 @@ test('builds sorted bilingual pages with validated local media and release links
     ),
   );
   assert.ok(links.some((link) => attribute(link, 'aria-label') === '打开 Aidget 主仓库'));
-  assert.equal(descendants(chinese, (element) => element.tagName === 'script').length, 0);
+  const scripts = descendants(chinese, (element) => element.tagName === 'script');
+  assert.equal(scripts.length, 1);
+  assert.equal(attribute(scripts[0], 'src'), 'assets/site/carousel.js');
+  assert.equal(attribute(scripts[0], 'defer'), '');
+  const englishScripts = descendants(english, (element) => element.tagName === 'script');
+  assert.equal(englishScripts.length, 1);
+  assert.equal(attribute(englishScripts[0], 'src'), '../assets/site/carousel.js');
   assert.equal(
     descendants(chinese, (element) => attribute(element, 'class') === 'browse-nav').length,
     0,
@@ -255,6 +333,10 @@ test('builds sorted bilingual pages with validated local media and release links
     ),
   );
   assert.match(readFileSync(join(f.output, 'styles.css'), 'utf8'), /site/);
+  assert.equal(readFileSync(join(f.output, 'assets/site/aidget-icon.png'), 'utf8'), 'icon');
+  assert.equal(readFileSync(join(f.output, 'assets/site/carousel.js'), 'utf8'), '// carousel');
+  assert.equal(readFileSync(join(f.output, 'assets/site/product-preview.webp'), 'utf8'), 'preview');
+  assert.equal(readFileSync(join(f.output, 'assets/site/product-window.webp'), 'utf8'), 'window');
   assert.equal(
     readFileSync(join(f.output, 'media/alpha/assets/screenshot.png'), 'utf8'),
     'alpha-screenshot',

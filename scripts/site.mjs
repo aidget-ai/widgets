@@ -24,9 +24,11 @@ const copy = {
     introduction: '说出你的桌面创意，让 Agent 为你实现。',
     download: '下载 Aidget',
     browse: '浏览社区组件',
-    previewAlt: 'Aidget 产品截图占位',
-    previewCaption: '产品截图位置已预留，之后可直接替换为真实桌面效果。',
-    placeholder: '占位图',
+    carouselLabel: 'Aidget 产品截图',
+    slideNavigation: '截图选择；选择后停止自动轮播',
+    previewDesktopAlt: 'Aidget 桌面组件效果',
+    previewWindowAlt: 'Aidget 主界面',
+    viewScreenshot: (index) => `查看截图 ${index}`,
     catalogTitle: '社区组件',
     catalogIntroduction: '由 Aidget 社区贡献者发布和维护的桌面小组件',
     verified: 'aidget 社区',
@@ -49,10 +51,11 @@ const copy = {
     introduction: 'Describe your desktop idea and let your Agent make it real.',
     download: 'Download Aidget',
     browse: 'Browse widgets',
-    previewAlt: 'Aidget product screenshot placeholder',
-    previewCaption:
-      'The product screenshot area is ready to be replaced with a real desktop capture.',
-    placeholder: 'Placeholder',
+    carouselLabel: 'Aidget product screenshots',
+    slideNavigation: 'Screenshot selection; choosing a slide stops autoplay',
+    previewDesktopAlt: 'Aidget widgets on the desktop',
+    previewWindowAlt: 'Aidget main window',
+    viewScreenshot: (index) => `View screenshot ${index}`,
     catalogTitle: 'Community widgets',
     catalogIntroduction:
       'Desktop widgets published and maintained by Aidget community contributors.',
@@ -131,8 +134,17 @@ function renderPage(locale, widgets) {
   const home = locale === 'en' ? '../' : './';
   const languageHref = locale === 'en' ? '../' : 'en/';
   const canonical = locale === 'en' ? `${PUBLIC_SITE}en/` : PUBLIC_SITE;
-  const preview = `${prefix}assets/site/product-preview-placeholder.svg`;
   const brandIcon = `${prefix}assets/site/aidget-icon.png`;
+  const previews = [
+    {
+      alt: text.previewDesktopAlt,
+      src: `${prefix}assets/site/product-preview.webp`,
+    },
+    {
+      alt: text.previewWindowAlt,
+      src: `${prefix}assets/site/product-window.webp`,
+    },
+  ];
   const pageClass = locale === 'en' ? 'lang-en' : 'lang-zh';
 
   return `<!doctype html>
@@ -148,6 +160,7 @@ function renderPage(locale, widgets) {
   <link rel="alternate" hreflang="${locale === 'en' ? 'zh-CN' : 'en'}" href="${locale === 'en' ? '../' : 'en/'}">
   <link rel="icon" href="${brandIcon}" type="image/png">
   <link rel="stylesheet" href="${prefix}styles.css">
+  <script src="${prefix}assets/site/carousel.js" defer></script>
 </head>
 <body class="${pageClass}">
   <a class="skip-link" href="#main">${text.skipContent}</a>
@@ -176,9 +189,31 @@ function renderPage(locale, widgets) {
       <figure class="product-preview">
         <div class="preview-window">
           <div class="window-bar" aria-hidden="true"><span></span><span></span><span></span></div>
-          <img src="${preview}" alt="${text.previewAlt}" width="1600" height="900" fetchpriority="high" decoding="async">
+          <div class="preview-carousel" data-carousel role="group" aria-roledescription="carousel" aria-label="${text.carouselLabel}">
+            <div class="preview-viewport">
+            ${previews
+              .map(
+                (
+                  preview,
+                  index,
+                ) => `<div class="preview-slide${index === 0 ? ' is-active' : ''}" data-carousel-slide role="group" aria-roledescription="slide" aria-label="${index + 1} / ${previews.length}" aria-hidden="${index !== 0}">
+              <img src="${preview.src}" alt="${preview.alt}" width="2000" height="1265" loading="eager"${index === 0 ? ' fetchpriority="high"' : ''} decoding="async">
+            </div>`,
+              )
+              .join('\n            ')}
+            </div>
+          <div class="preview-controls">
+            <div class="preview-dots" role="group" aria-label="${text.slideNavigation}">
+              ${previews
+                .map(
+                  (_, index) =>
+                    `<button class="preview-dot" type="button" data-carousel-dot="${index}" aria-label="${text.viewScreenshot(index + 1)}" aria-current="${index === 0}"></button>`,
+                )
+                .join('\n              ')}
+            </div>
+          </div>
+          </div>
         </div>
-        <figcaption>${text.previewCaption}<span>${text.placeholder}</span></figcaption>
       </figure>
     </section>
     <section class="catalog" id="widgets" aria-labelledby="catalog-title">
@@ -274,7 +309,9 @@ export function buildSite({
   for (const path of [
     'styles.css',
     'assets/aidget-icon.png',
-    'assets/product-preview-placeholder.svg',
+    'assets/carousel.js',
+    'assets/product-preview.webp',
+    'assets/product-window.webp',
   ]) {
     copyStaticAsset(siteRoot, destination, path);
   }
