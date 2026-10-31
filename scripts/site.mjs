@@ -7,22 +7,21 @@ import { json, root, safePath, sha256, validateSchema } from './package.mjs';
 const MAIN_REPOSITORY = 'https://github.com/aidget-ai/aidget';
 const RELEASES = `${MAIN_REPOSITORY}/releases`;
 const PUBLIC_SITE = 'https://aidget-ai.github.io/widgets/';
+const SITE_NAME = 'Aidget - AI Widget';
 
 const copy = {
   zh: {
     lang: 'zh-CN',
     pageTitle: 'Aidget 社区组件',
-    pageDescription:
-      '浏览由社区创建的 Aidget 桌面组件，查看真实预览并前往 GitHub Releases 下载安装。',
+    pageDescription: '说出你的桌面创意，让 Agent 为你实现。',
     skipContent: '跳到主要内容',
     navigation: '主导航',
     switchLanguage: 'Switch to English',
     switchLanguageLabel: 'EN',
     mainRepository: '打开 Aidget 主仓库',
-    titleLead: '把桌面创意',
+    titleLead: '把桌面',
     titleAccent: '交给 AI Agent',
-    introduction:
-      '用自然语言让 Agent 创建桌面组件，或从社区安装现成的创意卡片。每一款都经过目录校验，并保留真实桌面预览。',
+    introduction: '说出你的桌面创意，让 Agent 为你实现。',
     download: '下载 Aidget',
     browse: '浏览社区组件',
     previewAlt: 'Aidget 产品截图占位',
@@ -39,17 +38,15 @@ const copy = {
   en: {
     lang: 'en',
     pageTitle: 'Aidget Community Widgets',
-    pageDescription:
-      'Browse desktop widgets created by the Aidget community, preview real cards, and download the app from GitHub Releases.',
+    pageDescription: 'Describe your desktop idea and let your Agent make it real.',
     skipContent: 'Skip to content',
     navigation: 'Main navigation',
     switchLanguage: '切换到简体中文',
     switchLanguageLabel: '中文',
     mainRepository: 'Open the Aidget main repository',
-    titleLead: 'Hand desktop creativity',
-    titleAccent: 'to your AI agent',
-    introduction:
-      'Ask your agent to create desktop widgets in natural language, or install a ready-made idea from the community. Every card is reviewed and shown with its real desktop preview.',
+    titleLead: 'Manage desktop widgets,',
+    titleAccent: 'the AI Agent way.',
+    introduction: 'Describe your desktop idea and let your Agent make it real.',
     download: 'Download Aidget',
     browse: 'Browse widgets',
     previewAlt: 'Aidget product screenshot placeholder',
@@ -156,9 +153,9 @@ function renderPage(locale, widgets) {
   <a class="skip-link" href="#main">${text.skipContent}</a>
   <header class="site-header">
     <div class="header-inner">
-      <a class="brand" href="${home}" aria-label="Aidget">
+      <a class="brand" href="${home}" aria-label="${SITE_NAME}">
         <img src="${brandIcon}" alt="" width="34" height="34">
-        <span>AIDGET</span>
+        <span>${SITE_NAME}</span>
       </a>
       <nav aria-label="${text.navigation}">
         <a class="language-link" href="${languageHref}" hreflang="${locale === 'en' ? 'zh-CN' : 'en'}" aria-label="${text.switchLanguage}">${text.switchLanguageLabel}</a>

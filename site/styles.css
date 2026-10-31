@@ -158,6 +158,10 @@ a {
   text-decoration: none;
 }
 
+.brand {
+  white-space: nowrap;
+}
+
 .brand img {
   border-radius: 9px;
 }
@@ -635,6 +639,17 @@ main {
   .header-inner {
     min-block-size: 66px;
     gap: 12px;
+  }
+
+  .brand {
+    gap: 8px;
+    font-size: 14px;
+    letter-spacing: 0.02em;
+  }
+
+  .brand img {
+    inline-size: 30px;
+    block-size: 30px;
   }
 
   .hero {

@@ -130,6 +130,59 @@ test('builds sorted bilingual pages with validated local media and release links
   assert.equal(chineseHtml && attribute(chineseHtml, 'lang'), 'zh-CN');
   assert.equal(englishHtml && attribute(englishHtml, 'lang'), 'en');
 
+  for (const [document, expected] of [
+    [
+      chinese,
+      {
+        brand: 'Aidget - AI Widget',
+        heroLead: '把桌面',
+        heroAccent: '交给 AI Agent',
+        description: '说出你的桌面创意，让 Agent 为你实现。',
+      },
+    ],
+    [
+      english,
+      {
+        brand: 'Aidget - AI Widget',
+        heroLead: 'Manage desktop widgets,',
+        heroAccent: 'the AI Agent way.',
+        description: 'Describe your desktop idea and let your Agent make it real.',
+      },
+    ],
+  ] as const) {
+    const brand = descendants(
+      document,
+      (element) => element.tagName === 'a' && attribute(element, 'class') === 'brand',
+    ).at(0);
+    assert.ok(brand);
+    assert.equal(attribute(brand, 'aria-label'), expected.brand);
+    assert.equal(textContent(brand).trim(), expected.brand);
+
+    const title = descendants(
+      document,
+      (element) => element.tagName === 'h1' && attribute(element, 'id') === 'hero-title',
+    ).at(0);
+    assert.ok(title);
+    const titleLead = 'childNodes' in title ? title.childNodes[0] : undefined;
+    assert.equal(titleLead && textContent(titleLead), expected.heroLead);
+    const titleAccent = descendants(title, (element) => element.tagName === 'span').at(0);
+    assert.ok(titleAccent);
+    assert.equal(textContent(titleAccent), expected.heroAccent);
+
+    const titleContainer = title.parentNode;
+    assert.ok(titleContainer);
+    const heroDescription = descendants(titleContainer, (element) => element.tagName === 'p').at(0);
+    assert.ok(heroDescription);
+    assert.equal(textContent(heroDescription), expected.description);
+
+    const pageDescription = descendants(
+      document,
+      (element) => element.tagName === 'meta' && attribute(element, 'name') === 'description',
+    ).at(0);
+    assert.ok(pageDescription);
+    assert.equal(attribute(pageDescription, 'content'), expected.description);
+  }
+
   const cards = descendants(chinese, (element) => element.tagName === 'article');
   assert.deepEqual(
     cards.map((card) => attribute(card, 'data-package')),
