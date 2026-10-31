@@ -24,6 +24,7 @@ jobs:
       - run: pnpm install --frozen-lockfile --ignore-scripts
       - run: pnpm exec vp check
       - run: pnpm test
+      - run: pnpm build:site
       - name: Validate registry and package versions
         env:
           BASE_SHA: ${{ github.event.pull_request.base.sha }}

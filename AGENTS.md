@@ -31,6 +31,7 @@ pnpm check
 pnpm registry
 pnpm validate
 pnpm test
+pnpm build:site
 pnpm exec vp check
 ```
 

@@ -1,0 +1,144 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-31T08:40:00Z",
+  "title": "Design System: Aidget Community Portal",
+  "extensions": {
+    "colorMeta": {
+      "brand-blue": {
+        "role": "primary",
+        "displayName": "Brand Blue",
+        "canonical": "#4c64ce"
+      },
+      "install-blue": {
+        "role": "secondary",
+        "displayName": "Install Blue",
+        "canonical": "#4056bd"
+      },
+      "community-green": {
+        "role": "tertiary",
+        "displayName": "Community Green",
+        "canonical": "#147b43"
+      },
+      "app-canvas": {
+        "role": "neutral",
+        "displayName": "App Canvas",
+        "canonical": "#f4f4f6"
+      },
+      "charcoal": {
+        "role": "neutral",
+        "displayName": "Charcoal",
+        "canonical": "#25252a"
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Workbench Display",
+        "purpose": "Hero promise and catalogue-scale headings."
+      },
+      "body": {
+        "displayName": "Desktop Body",
+        "purpose": "Product explanation and widget descriptions."
+      }
+    },
+    "shadows": [
+      {
+        "name": "product-stage",
+        "value": "0 1px 2px rgb(46 35 22 / 0.07), 0 22px 70px rgb(46 35 22 / 0.12), 0 4px 18px rgb(46 35 22 / 0.06)",
+        "purpose": "Lift the single hero preview into a spatial desktop object."
+      }
+    ],
+    "motion": [
+      {
+        "name": "hero-enter",
+        "value": "700-900ms cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "A single entrance for the hero copy and product preview."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "two-column",
+        "value": "940px"
+      },
+      {
+        "name": "single-column",
+        "value": "640px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Download Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Primary path to the official Aidget release page.",
+      "html": "<a class=\"ds-primary\" href=\"#\">Download Aidget <span aria-hidden=\"true\">→</span></a>",
+      "css": ".ds-primary{display:inline-flex;min-height:48px;align-items:center;justify-content:center;gap:8px;padding:0 20px;border-radius:999px;background:#4c64ce;color:#fff;font-family:-apple-system,BlinkMacSystemFont,sans-serif;font-size:14px;font-weight:720;text-decoration:none}.ds-primary:hover{background:#3d52b4}.ds-primary:focus-visible{outline:3px solid #2258bf;outline-offset:4px}"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Quiet action leading into page content.",
+      "html": "<a class=\"ds-secondary\" href=\"#\">Browse widgets</a>",
+      "css": ".ds-secondary{display:inline-flex;min-height:48px;align-items:center;justify-content:center;padding:0 20px;border:1px solid rgb(37 37 42 / .18);border-radius:999px;background:#fff;color:#25252a;font-family:-apple-system,BlinkMacSystemFont,sans-serif;font-size:14px;font-weight:720;text-decoration:none}.ds-secondary:hover{background:#f8f8fa}.ds-secondary:focus-visible{outline:3px solid #2258bf;outline-offset:4px}"
+    },
+    {
+      "name": "Install Pill",
+      "kind": "button",
+      "refersTo": "install-link",
+      "description": "Compact trailing action on every community widget.",
+      "html": "<a class=\"ds-install\" href=\"#\">Install</a>",
+      "css": ".ds-install{display:inline-flex;padding:6px 11px;border-radius:999px;background:rgb(76 100 206 / .1);color:#4056bd;font-family:-apple-system,BlinkMacSystemFont,sans-serif;font-size:12px;font-weight:720;text-decoration:none}.ds-install:hover{background:rgb(76 100 206 / .18)}.ds-install:focus-visible{outline:3px solid #2258bf;outline-offset:4px}"
+    },
+    {
+      "name": "Widget Preview",
+      "kind": "card",
+      "refersTo": "widget-preview",
+      "description": "Checkerboard stage that presents a screenshot without cropping it.",
+      "html": "<article class=\"ds-card\"><header><strong>今日金句</strong><span>Install</span></header><div class=\"ds-preview\"><div class=\"ds-widget-sample\">AIDGET</div></div><p>今日金句卡片</p></article>",
+      "css": ".ds-card{display:grid;width:300px;gap:12px;padding:16px;border-radius:20px;background:#fff;box-shadow:0 12px 30px rgb(27 31 52 / .045);font-family:-apple-system,BlinkMacSystemFont,sans-serif}.ds-card header{display:flex;height:48px;align-items:center;justify-content:space-between}.ds-card strong{color:#25252a}.ds-card header span{padding:6px 11px;border-radius:999px;background:rgb(76 100 206 / .1);color:#4056bd;font-size:12px}.ds-card p{margin:0;color:#62626c;font-size:13px}.ds-preview{display:grid;width:100%;aspect-ratio:16/10;place-items:center;border-radius:18px;background-color:#f0f1f4;background-image:radial-gradient(circle at 50% 30%,rgb(255 255 255 / .24),transparent 64%),conic-gradient(rgb(255 255 255 / .28) 25%,transparent 0 50%,rgb(255 255 255 / .28) 0 75%,transparent 0);background-size:auto,16px 16px}.ds-widget-sample{display:grid;width:75%;aspect-ratio:1;place-items:center;border-radius:24px;background:#fff;color:#25252a;font:750 20px ui-rounded,-apple-system,sans-serif}"
+    },
+    {
+      "name": "Catalogue Navigation",
+      "kind": "nav",
+      "refersTo": "navigation-link",
+      "description": "Compact product navigation with language and GitHub access.",
+      "html": "<nav class=\"ds-nav\"><strong>AIDGET</strong><a href=\"#\">EN</a><a href=\"#\" aria-label=\"GitHub\">GH</a></nav>",
+      "css": ".ds-nav{display:flex;align-items:center;gap:12px;padding:16px 24px;border-bottom:1px solid rgb(37 37 42 / .1);font-family:-apple-system,BlinkMacSystemFont,sans-serif}.ds-nav strong{margin-right:auto;letter-spacing:.08em}.ds-nav a{display:inline-flex;min-height:40px;align-items:center;justify-content:center;padding:0 12px;border:0;border-radius:10px;background:transparent;color:#62626c;text-decoration:none}.ds-nav a:hover{background:rgb(37 37 42 / .06);color:#25252a}.ds-nav a:focus-visible{outline:3px solid #2258bf;outline-offset:4px}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Open Workbench",
+    "overview": "The portal treats the community catalogue as Aidget's desktop workbench opened to the public. Cool app neutrals and a clear blue brand signal give the landing page a calm, productive presence, while real widget screenshots provide the evidence and the app's checkerboard stage provides a familiar product cue.",
+    "keyCharacteristics": [
+      "Cool and spacious in the hero, restrained and utilitarian in the catalogue.",
+      "Real screenshots carry the visual proof.",
+      "Blue expresses the product identity and install actions.",
+      "Rounded geometry and raised media surfaces echo the desktop app."
+    ],
+    "rules": [
+      {
+        "name": "The Restrained Signal Rule",
+        "body": "Blue owns brand emphasis and installation, while green owns community attribution; these roles do not swap.",
+        "section": "colors"
+      },
+      {
+        "name": "The One Raised Object Rule",
+        "body": "The hero product stage receives the full display shadow; repeated cards use one shared, quieter card elevation.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do let real widget screenshots lead each catalogue entry.",
+      "Do keep brand, install, and verification colors in their fixed roles.",
+      "Do preserve readable secondary text through at least 4.5:1 contrast.",
+      "Do keep the hero product image placeholder visibly provisional until a real capture is supplied."
+    ],
+    "donts": [
+      "Don't add display letter spacing tighter than -0.04em.",
+      "Don't turn the repeated catalogue into nested raised cards.",
+      "Don't introduce a second decorative visual world inside the catalogue.",
+      "Don't use English-only text inside imagery shared by both language pages."
+    ]
+  }
+}

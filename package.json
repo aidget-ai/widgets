@@ -4,6 +4,7 @@
   "type": "module",
   "scripts": {
     "registry": "node scripts/registry.mjs",
+    "build:site": "node scripts/site.mjs",
     "check": "vp check --fix",
     "test": "vp test run",
     "validate": "node scripts/check.mjs",

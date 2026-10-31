@@ -1,4 +1,7 @@
 node_modules/
 .packed/
+_site/
+.impeccable/review/
+.impeccable/mocks/
 *.tgz
 .DS_Store
