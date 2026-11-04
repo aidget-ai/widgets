@@ -1,0 +1,25 @@
+{
+  "name": "@aidget-community/deepseek-whale-pendant",
+  "version": "0.1.0",
+  "description": "透明桌面上的 DeepSeek 鲸鱼娘亚克力挂件，半透明玻璃刀模与跟随鼠标的扫光。",
+  "license": "MIT",
+  "author": {
+    "name": "micooz",
+    "url": "https://github.com/micooz"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aidget-ai/widgets.git",
+    "directory": "packages/deepseek-whale-pendant"
+  },
+  "files": [
+    "config.json",
+    "index.html",
+    "style.css",
+    "agents.md",
+    "assets"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

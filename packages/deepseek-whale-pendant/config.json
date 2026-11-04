@@ -1,0 +1,11 @@
+{
+  "id": "deepseek-whale-pendant",
+  "title": "DeepSeek 鲸鱼娘 · 亚克力挂件",
+  "logo": null,
+  "screenshots": ["assets/screenshot.png"],
+  "platforms": ["macos", "windows", "linux"],
+  "size": { "width": 249, "height": 247 },
+  "dragMode": "all",
+  "permissions": ["script"],
+  "network": []
+}

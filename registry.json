@@ -324,6 +324,91 @@
     },
     {
       "package": {
+        "name": "@aidget-community/deepseek-whale-pendant",
+        "version": "0.1.0",
+        "description": "透明桌面上的 DeepSeek 鲸鱼娘亚克力挂件，半透明玻璃刀模与跟随鼠标的扫光。",
+        "author": {
+          "name": "micooz",
+          "email": null,
+          "url": "https://github.com/micooz"
+        },
+        "repository": {
+          "type": "git",
+          "url": "git+https://github.com/aidget-ai/widgets.git",
+          "directory": "packages/deepseek-whale-pendant"
+        },
+        "license": "MIT",
+        "files": [
+          "config.json",
+          "index.html",
+          "style.css",
+          "agents.md",
+          "assets"
+        ]
+      },
+      "config": {
+        "id": "deepseek-whale-pendant",
+        "title": "DeepSeek 鲸鱼娘 · 亚克力挂件",
+        "logo": null,
+        "screenshots": [
+          "assets/screenshot.png"
+        ],
+        "platforms": [
+          "macos",
+          "windows",
+          "linux"
+        ],
+        "size": {
+          "width": 249,
+          "height": 247
+        },
+        "dragMode": "all",
+        "permissions": [
+          "script"
+        ],
+        "network": []
+      },
+      "files": [
+        {
+          "path": "agents.md",
+          "size": 5388,
+          "sha256": "8858514ed34d907733404394536a7786054fd76d639da88040eafdc240b24e70"
+        },
+        {
+          "path": "assets/pendant.png",
+          "size": 617126,
+          "sha256": "f9deafa06400879b308192e3ef8dcee7e8a1cba977c295b4739fea877ebb4e1a"
+        },
+        {
+          "path": "assets/screenshot.png",
+          "size": 368627,
+          "sha256": "adfccb0273d1589ff35213b5c1a0c6d8231623808feb15021108d579c4cd45ff"
+        },
+        {
+          "path": "config.json",
+          "size": 305,
+          "sha256": "618601e1af6f80a09e4eee1743c5949f6b07139bc6dc9f382c88743bec9a4862"
+        },
+        {
+          "path": "index.html",
+          "size": 3317,
+          "sha256": "c11a2da28af027da1939912e7d88684f11dd464f1ccda077741c015d0a55ee21"
+        },
+        {
+          "path": "package.json",
+          "size": 606,
+          "sha256": "20e352cc0aca4f797c6e2031b696624cba4b3885e8e18496d8185052e6eb965b"
+        },
+        {
+          "path": "style.css",
+          "size": 1809,
+          "sha256": "762c82b804c3433ed84ccea1c2d2ff4c71fce6581b739c00e69ae56ec378f859"
+        }
+      ],
+      "publishedAt": "2026-11-04T03:53:28Z"
+    },
+    {
+      "package": {
         "name": "@aidget-community/gold-price",
         "version": "0.1.1",
         "description": "AU99.99 黄金实时价格、涨跌幅与日内走势卡片。",
