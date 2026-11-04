@@ -1,0 +1,25 @@
+{
+  "name": "@aidget-community/last-year-today",
+  "version": "0.1.0",
+  "description": "去年今日：从记忆里翻出一张带日期与格言的桌面卡片。",
+  "license": "MIT",
+  "author": {
+    "name": "micooz",
+    "url": "https://github.com/micooz"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aidget-ai/widgets.git",
+    "directory": "packages/last-year-today"
+  },
+  "files": [
+    "config.json",
+    "index.html",
+    "style.css",
+    "agents.md",
+    "assets"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

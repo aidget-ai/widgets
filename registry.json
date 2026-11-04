@@ -491,6 +491,84 @@
     },
     {
       "package": {
+        "name": "@aidget-community/last-year-today",
+        "version": "0.1.0",
+        "description": "去年今日：从记忆里翻出一张带日期与格言的桌面卡片。",
+        "author": {
+          "name": "micooz",
+          "email": null,
+          "url": "https://github.com/micooz"
+        },
+        "repository": {
+          "type": "git",
+          "url": "git+https://github.com/aidget-ai/widgets.git",
+          "directory": "packages/last-year-today"
+        },
+        "license": "MIT",
+        "files": [
+          "config.json",
+          "index.html",
+          "style.css",
+          "agents.md",
+          "assets"
+        ]
+      },
+      "config": {
+        "id": "last-year-today",
+        "title": "去年今日",
+        "logo": null,
+        "screenshots": [
+          "assets/screenshot.png"
+        ],
+        "platforms": [
+          "macos",
+          "windows",
+          "linux"
+        ],
+        "size": {
+          "width": 360,
+          "height": 220
+        },
+        "dragMode": "all",
+        "permissions": [],
+        "network": []
+      },
+      "files": [
+        {
+          "path": "agents.md",
+          "size": 2705,
+          "sha256": "5d48d08fd200d1e7acb7756fa9ddf074e7e81eefbe21b322a130afec82177eb5"
+        },
+        {
+          "path": "assets/screenshot.png",
+          "size": 521986,
+          "sha256": "2b973729517774476ba00fe66508bd3055ada3ec8e4e8285c97045828aa4c39e"
+        },
+        {
+          "path": "config.json",
+          "size": 275,
+          "sha256": "25f329d5136e423ad32842ec3d01ed3fdc060a7c079b7dc644cd7f3dd901b239"
+        },
+        {
+          "path": "index.html",
+          "size": 934,
+          "sha256": "10a7ab5d905ed0a6728e898c7abaf0fcc33e0ebb79d271415d9599f1d1c93f23"
+        },
+        {
+          "path": "package.json",
+          "size": 564,
+          "sha256": "22eaf565a629e8a5decd213f36753cb08b79fad5e2b1d773c53cd0ca8517e7bf"
+        },
+        {
+          "path": "style.css",
+          "size": 127708,
+          "sha256": "571bdeba1c66cd9965a550c0ec544b654e04b3aa5e0f9f77248729422f0eb014"
+        }
+      ],
+      "publishedAt": "2026-11-04T10:23:35Z"
+    },
+    {
+      "package": {
         "name": "@aidget-community/sticky-todos",
         "version": "0.1.0",
         "description": "水彩纸张风格的桌面待办便签，勾选状态自动保存。",
