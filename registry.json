@@ -905,7 +905,7 @@
     {
       "package": {
         "name": "@aidget-community/solar-terms",
-        "version": "0.1.0",
+        "version": "0.1.1",
         "description": "以国画呈现二十四节气的翻面卡片。",
         "author": {
           "name": "aidget community",
@@ -931,8 +931,7 @@
         "title": "二十四节气",
         "logo": null,
         "screenshots": [
-          "assets/screenshot.png",
-          "assets/screenshot-back.png"
+          "assets/screenshot.png"
         ],
         "platforms": [
           "macos",
@@ -1039,14 +1038,9 @@
           "sha256": "27a54ad8a82fbad542d2dc2700d005d3d9124a9cec3ea592fb91b04cfbcef973"
         },
         {
-          "path": "assets/screenshot-back.png",
-          "size": 86766,
-          "sha256": "9f0c5491b52c56cf2feeb39def88fdd686939addd8f5a49750cbbb15c031d40d"
-        },
-        {
           "path": "assets/screenshot.png",
-          "size": 101081,
-          "sha256": "160ab0344022def1021e5ebd302f875803decc589c5dd163d2cfaf316210066e"
+          "size": 111732,
+          "sha256": "7e1d8cb24e5f99cefcd28f142773c3f9f60b4b4d87cfa6049c0d93c4fd82f383"
         },
         {
           "path": "assets/shuangjiang.webp",
@@ -1085,8 +1079,8 @@
         },
         {
           "path": "config.json",
-          "size": 294,
-          "sha256": "711b2acd06f7b44819430de1ab014b94cc662bdcbe30916390ae3d416b7917f5"
+          "size": 264,
+          "sha256": "905a4be00ccb5a40255d48b3705d3bde2afc3977cde8b0bdca08da04c4492133"
         },
         {
           "path": "index.html",
@@ -1096,7 +1090,7 @@
         {
           "path": "package.json",
           "size": 499,
-          "sha256": "0c84a65659a97fd758104a6ac94f0e07d68c82cb44c545eaf91322d56c06da8b"
+          "sha256": "bb0aef5a3276dba8b931abbb421fea66dd7c65ed112291ee0d6cdfc588a586b9"
         },
         {
           "path": "style.css",
