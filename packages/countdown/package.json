@@ -1,0 +1,24 @@
+{
+  "name": "@aidget-community/countdown",
+  "version": "0.1.0",
+  "description": "倒数日卡片，支持多个日子切换。",
+  "license": "MIT",
+  "author": {
+    "name": "aidget community"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aidget-ai/widgets.git",
+    "directory": "packages/countdown"
+  },
+  "files": [
+    "config.json",
+    "index.html",
+    "style.css",
+    "agents.md",
+    "assets"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

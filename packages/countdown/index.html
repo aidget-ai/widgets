@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="aidget-surface" content="none" />
+    <title>倒数日</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <main class="card" id="card" data-state="upcoming" aria-label="纪念日，还有 196 天">
+      <div class="blue-swatch" aria-hidden="true"></div>
+      <div class="orange-swatch" aria-hidden="true"></div>
+
+      <section class="event-source" data-aidget-region="events" aria-label="倒计时事件" hidden>
+        <article class="event-data" data-event data-event-repeat="yearly">
+          <h2 data-event-title>纪念日</h2>
+          <time data-event-date datetime="2027-05-20"></time>
+          <p data-event-note>拍一张新的合照。</p>
+        </article>
+        <article class="event-data" data-event data-event-repeat="yearly">
+          <h2 data-event-title>元旦</h2>
+          <time data-event-date datetime="2027-01-01"></time>
+          <p data-event-note>去海边，等第一束光。</p>
+        </article>
+      </section>
+
+      <section class="stage" data-stage></section>
+
+      <nav class="event-nav" data-event-nav data-aidget-no-drag aria-label="切换事件" hidden>
+        <button class="nav-button" type="button" data-nav="previous" aria-label="上一个倒计时">
+          <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+            <path d="M10.2 3.2 5.4 8l4.8 4.8"></path>
+          </svg>
+        </button>
+        <div class="event-dots" data-event-dots aria-hidden="true"></div>
+        <button class="nav-button" type="button" data-nav="next" aria-label="下一个倒计时">
+          <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+            <path d="M5.8 3.2 10.6 8l-4.8 4.8"></path>
+          </svg>
+        </button>
+      </nav>
+    </main>
+
+    <template id="event-template">
+      <article class="event" data-event-slide>
+        <div class="event-copy">
+          <h1 class="event-title" data-slide-title></h1>
+          <time class="event-date" data-slide-date></time>
+          <p class="event-note" data-slide-note></p>
+        </div>
+        <section class="count-panel" aria-label="倒数">
+          <p class="count-context" data-slide-label></p>
+          <div class="number-lockup">
+            <output
+              class="count-number"
+              data-slide-count
+              aria-live="polite"
+              aria-atomic="true"
+            ></output>
+            <span class="count-unit">天</span>
+          </div>
+        </section>
+      </article>
+    </template>
+
+    <script>
+      (() => {
+        const DAY_MS = 86_400_000;
+        const REPEATS = new Set(['once', 'weekly', 'monthly', 'yearly']);
+
+        function parseDate(value) {
+          const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(value ?? '');
+          if (!match) return null;
+          const parts = {
+            year: Number(match[1]),
+            month: Number(match[2]),
+            day: Number(match[3]),
+          };
+          const date = new Date(0);
+          date.setUTCHours(0, 0, 0, 0);
+          date.setUTCFullYear(parts.year, parts.month - 1, parts.day);
+          if (
+            date.getUTCFullYear() !== parts.year ||
+            date.getUTCMonth() !== parts.month - 1 ||
+            date.getUTCDate() !== parts.day
+          ) {
+            return null;
+          }
+          return parts;
+        }
+
+        function ordinal(parts) {
+          const date = new Date(0);
+          date.setUTCHours(0, 0, 0, 0);
+          date.setUTCFullYear(parts.year, parts.month - 1, parts.day);
+          return date.getTime() / DAY_MS;
+        }
+
+        function dateKey(parts) {
+          return `${String(parts.year).padStart(4, '0')}-${String(parts.month).padStart(2, '0')}-${String(parts.day).padStart(2, '0')}`;
+        }
+
+        function compareDates(left, right) {
+          return Math.sign(ordinal(left) - ordinal(right));
+        }
+
+        function addDays(parts, days) {
+          const date = new Date((ordinal(parts) + days) * DAY_MS);
+          return {
+            year: date.getUTCFullYear(),
+            month: date.getUTCMonth() + 1,
+            day: date.getUTCDate(),
+          };
+        }
+
+        function daysInMonth(year, month) {
+          const date = new Date(0);
+          date.setUTCHours(0, 0, 0, 0);
+          date.setUTCFullYear(year, month, 0);
+          return date.getUTCDate();
+        }
+
+        function dateInMonth(year, month, day) {
+          return {
+            year,
+            month,
+            day: Math.min(day, daysInMonth(year, month)),
+          };
+        }
+
+        function nextWeekly(start, today) {
+          if (compareDates(today, start) <= 0) return start;
+          const elapsed = ordinal(today) - ordinal(start);
+          return addDays(start, Math.ceil(elapsed / 7) * 7);
+        }
+
+        function nextMonthly(start, today) {
+          const threshold = compareDates(today, start) < 0 ? start : today;
+          let candidate = dateInMonth(threshold.year, threshold.month, start.day);
+          if (compareDates(candidate, threshold) < 0) {
+            const nextMonth = threshold.month === 12 ? 1 : threshold.month + 1;
+            const nextYear = threshold.month === 12 ? threshold.year + 1 : threshold.year;
+            candidate = dateInMonth(nextYear, nextMonth, start.day);
+          }
+          return candidate;
+        }
+
+        function nextYearly(start, today) {
+          const threshold = compareDates(today, start) < 0 ? start : today;
+          let candidate = dateInMonth(threshold.year, start.month, start.day);
+          if (compareDates(candidate, threshold) < 0) {
+            candidate = dateInMonth(threshold.year + 1, start.month, start.day);
+          }
+          return candidate;
+        }
+
+        function localDateKey(date = new Date()) {
+          return dateKey({
+            year: date.getFullYear(),
+            month: date.getMonth() + 1,
+            day: date.getDate(),
+          });
+        }
+
+        function calculateCountdown(dateValue, repeat, todayValue = localDateKey()) {
+          const start = parseDate(dateValue);
+          const today = parseDate(todayValue);
+          if (!start) throw new Error('日期必须是有效的 YYYY-MM-DD。');
+          if (!today) throw new Error('当前本地日期无效。');
+          if (!REPEATS.has(repeat))
+            throw new Error('重复周期必须是 once、weekly、monthly 或 yearly。');
+
+          if (repeat === 'once') {
+            const difference = ordinal(start) - ordinal(today);
+            return {
+              days: Math.abs(difference),
+              mode: difference < 0 ? 'elapsed' : difference === 0 ? 'today' : 'upcoming',
+              targetDate: dateKey(start),
+            };
+          }
+
+          const next =
+            repeat === 'weekly'
+              ? nextWeekly(start, today)
+              : repeat === 'monthly'
+                ? nextMonthly(start, today)
+                : nextYearly(start, today);
+          const difference = ordinal(next) - ordinal(today);
+          return {
+            days: difference,
+            mode: difference === 0 ? 'today' : 'upcoming',
+            targetDate: dateKey(next),
+          };
+        }
+
+        function formatDate(value) {
+          const parts = parseDate(value);
+          if (!parts) throw new Error('日期必须是有效的 YYYY-MM-DD。');
+          return `${parts.year}年${parts.month}月${parts.day}日`;
+        }
+
+        window.__countdownTestApi = Object.freeze({
+          calculateCountdown,
+          formatDate,
+          parseDate,
+        });
+
+        const doc = window.document;
+        const card = doc.querySelector('#card');
+        const stage = doc.querySelector('[data-stage]');
+        const nav = doc.querySelector('[data-event-nav]');
+        const dots = doc.querySelector('[data-event-dots]');
+        const template = doc.querySelector('#event-template');
+        let events = [];
+        let slides = [];
+        let activeIndex = 0;
+        let switching = false;
+        let transitionTimer = 0;
+
+        function stateLabel(result) {
+          return result.mode === 'elapsed'
+            ? '已过去'
+            : result.mode === 'today'
+              ? '就是今天'
+              : '还有';
+        }
+
+        function ariaLabel(event) {
+          return `${event.title}，${stateLabel(event.result)} ${event.result.days} 天`;
+        }
+
+        function readEvents() {
+          const source = doc.querySelector('[data-aidget-region="events"]');
+          if (!source) throw new Error('缺少事件区域。');
+          const items = Array.from(source.querySelectorAll('[data-event]'));
+          if (!items.length) throw new Error('至少需要一个倒计时事件。');
+          return items.map((item, index) => {
+            const title = item.querySelector('[data-event-title]')?.textContent.trim() ?? '';
+            const date = item.querySelector('[data-event-date]');
+            const note = item.querySelector('[data-event-note]')?.textContent.trim() ?? '';
+            const repeat = item.dataset.eventRepeat;
+            const rawDate = date?.getAttribute('datetime')?.trim() ?? '';
+            if (!title) throw new Error(`第 ${index + 1} 个事件缺少名称。`);
+            if (!date || !rawDate) throw new Error(`第 ${index + 1} 个事件缺少日期。`);
+            if (!REPEATS.has(repeat)) throw new Error(`第 ${index + 1} 个事件的重复周期无效。`);
+            try {
+              return { title, rawDate, note, result: calculateCountdown(rawDate, repeat) };
+            } catch (error) {
+              throw new Error(`第 ${index + 1} 个事件：${error.message}`);
+            }
+          });
+        }
+
+        function buildSlide(event) {
+          const slide = template.content.firstElementChild.cloneNode(true);
+          const title = slide.querySelector('[data-slide-title]');
+          const date = slide.querySelector('[data-slide-date]');
+          const note = slide.querySelector('[data-slide-note]');
+          const label = slide.querySelector('[data-slide-label]');
+          const count = slide.querySelector('[data-slide-count]');
+          if (!title || !date || !note || !label || !count) {
+            throw new Error('事件模板缺少必要字段。');
+          }
+          const formattedCount = new Intl.NumberFormat('zh-CN').format(event.result.days);
+          title.textContent = event.title;
+          date.dateTime = event.rawDate;
+          date.textContent = formatDate(event.rawDate);
+          note.textContent = event.note;
+          note.hidden = !event.note;
+          label.textContent = stateLabel(event.result);
+          count.textContent = formattedCount;
+          count.style.fontSize = `${Math.max(38, 78 - Math.max(0, formattedCount.length - 2) * 7)}px`;
+          slide.dataset.mode = event.result.mode;
+          slide.setAttribute('aria-hidden', 'true');
+          return slide;
+        }
+
+        function updateDots() {
+          dots.querySelectorAll('.event-dot').forEach((dot, index) => {
+            dot.classList.toggle('is-current', index === activeIndex);
+          });
+        }
+
+        function showError(message) {
+          if (transitionTimer) window.clearTimeout(transitionTimer);
+          transitionTimer = 0;
+          switching = false;
+          card.dataset.state = 'error';
+          card.setAttribute('aria-label', '日期设置有误');
+          nav.removeAttribute('aria-busy');
+          nav.hidden = true;
+          dots.replaceChildren();
+          stage.replaceChildren();
+          if (!template) {
+            stage.textContent = message;
+          } else {
+            const slide = template.content.firstElementChild.cloneNode(true);
+            const title = slide.querySelector('[data-slide-title]');
+            const date = slide.querySelector('[data-slide-date]');
+            const note = slide.querySelector('[data-slide-note]');
+            const label = slide.querySelector('[data-slide-label]');
+            const count = slide.querySelector('[data-slide-count]');
+            if (!title || !date || !note || !label || !count) {
+              throw new Error('事件模板缺少必要字段。');
+            }
+            title.textContent = '日期设置有误';
+            date.hidden = true;
+            note.textContent = message;
+            note.hidden = false;
+            label.textContent = '请检查';
+            count.textContent = '!';
+            slide.classList.add('is-active');
+            slide.setAttribute('aria-hidden', 'false');
+            stage.append(slide);
+          }
+          console.error('倒数日配置错误：', message);
+        }
+
+        function render(keepIndex = activeIndex) {
+          if (transitionTimer) window.clearTimeout(transitionTimer);
+          transitionTimer = 0;
+          try {
+            if (!template) throw new Error('缺少事件模板。');
+            events = readEvents();
+            slides = events.map(buildSlide);
+            stage.replaceChildren(...slides);
+            activeIndex = Math.max(0, Math.min(keepIndex, slides.length - 1));
+            slides.forEach((slide, index) => {
+              slide.classList.toggle('is-active', index === activeIndex);
+              slide.setAttribute('aria-hidden', String(index !== activeIndex));
+            });
+            dots.replaceChildren(
+              ...events.map(() => {
+                const dot = doc.createElement('span');
+                dot.className = 'event-dot';
+                return dot;
+              }),
+            );
+            updateDots();
+            nav.removeAttribute('aria-busy');
+            nav.hidden = events.length < 2;
+            const active = events[activeIndex];
+            card.dataset.state = active.result.mode;
+            card.setAttribute('aria-label', ariaLabel(active));
+            switching = false;
+          } catch (error) {
+            showError(error.message);
+          }
+        }
+
+        function switchEvent(index, direction) {
+          if (switching || !events.length || index === activeIndex) return;
+          const outgoing = slides[activeIndex];
+          const incoming = slides[index];
+          if (!outgoing || !incoming) return;
+          switching = true;
+          activeIndex = index;
+          const active = events[index];
+          card.dataset.state = active.result.mode;
+          card.setAttribute('aria-label', ariaLabel(active));
+          updateDots();
+          nav.setAttribute('aria-busy', 'true');
+          if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            outgoing.classList.remove('is-active');
+            outgoing.setAttribute('aria-hidden', 'true');
+            incoming.classList.add('is-active');
+            incoming.setAttribute('aria-hidden', 'false');
+            nav.removeAttribute('aria-busy');
+            switching = false;
+            return;
+          }
+          incoming.classList.add('is-active');
+          incoming.setAttribute('aria-hidden', 'false');
+          incoming.style.zIndex = '3';
+          outgoing.style.zIndex = '2';
+          incoming.style.pointerEvents = 'none';
+          outgoing.style.pointerEvents = 'none';
+          const inMotion = incoming.animate(
+            [
+              {
+                opacity: 0,
+                transform: `translateX(${direction * 20}px) scale(0.985)`,
+                filter: 'blur(7px)',
+              },
+              { opacity: 1, transform: 'translateX(0) scale(1)', filter: 'blur(0)' },
+            ],
+            {
+              duration: 360,
+              delay: 180,
+              easing: 'cubic-bezier(0.16, 1, 0.3, 1)',
+              fill: 'both',
+            },
+          );
+          const outMotion = outgoing.animate(
+            [
+              { opacity: 1, transform: 'translateX(0) scale(1)', filter: 'blur(0)' },
+              {
+                opacity: 0,
+                transform: `translateX(${-direction * 14}px) scale(0.99)`,
+                filter: 'blur(4px)',
+              },
+            ],
+            { duration: 200, easing: 'cubic-bezier(0.4, 0, 0.7, 0.2)', fill: 'both' },
+          );
+          transitionTimer = window.setTimeout(() => {
+            transitionTimer = 0;
+            inMotion.cancel();
+            outMotion.cancel();
+            outgoing.classList.remove('is-active');
+            outgoing.setAttribute('aria-hidden', 'true');
+            incoming.style.zIndex = '';
+            outgoing.style.zIndex = '';
+            incoming.style.pointerEvents = '';
+            outgoing.style.pointerEvents = '';
+            nav.removeAttribute('aria-busy');
+            switching = false;
+          }, 540);
+        }
+
+        function switchBy(step) {
+          if (switching || events.length < 2) return;
+          switchEvent((activeIndex + step + events.length) % events.length, step);
+        }
+
+        function scheduleNextDay() {
+          const next = new Date();
+          next.setHours(24, 0, 0, 0);
+          window.setTimeout(
+            () => {
+              render();
+              scheduleNextDay();
+            },
+            Math.max(1_000, next.getTime() - Date.now()),
+          );
+        }
+
+        if (window.document) {
+          doc.querySelector('[data-nav="previous"]').addEventListener('click', () => switchBy(-1));
+          doc.querySelector('[data-nav="next"]').addEventListener('click', () => switchBy(1));
+          render();
+          window.aidget.ready();
+          scheduleNextDay();
+        }
+      })();
+    </script>
+  </body>
+</html>

@@ -253,6 +253,86 @@
     },
     {
       "package": {
+        "name": "@aidget-community/countdown",
+        "version": "0.1.0",
+        "description": "倒数日卡片，支持多个日子切换。",
+        "author": {
+          "name": "aidget community",
+          "email": null,
+          "url": null
+        },
+        "repository": {
+          "type": "git",
+          "url": "git+https://github.com/aidget-ai/widgets.git",
+          "directory": "packages/countdown"
+        },
+        "license": "MIT",
+        "files": [
+          "config.json",
+          "index.html",
+          "style.css",
+          "agents.md",
+          "assets"
+        ]
+      },
+      "config": {
+        "id": "countdown",
+        "title": "倒数日",
+        "logo": null,
+        "screenshots": [
+          "assets/screenshot.png"
+        ],
+        "platforms": [
+          "macos",
+          "windows",
+          "linux"
+        ],
+        "size": {
+          "width": 360,
+          "height": 220
+        },
+        "dragMode": "all",
+        "permissions": [
+          "script"
+        ],
+        "network": []
+      },
+      "files": [
+        {
+          "path": "agents.md",
+          "size": 2364,
+          "sha256": "4ee76dc22751879f69d396f7c3bbfd6befcf983c4088c61ddb1428da5c6e1353"
+        },
+        {
+          "path": "assets/screenshot.png",
+          "size": 172128,
+          "sha256": "7cdb5da4c2cd95e09ffdf49fd53b2cc1070b574e72c96c94cd2739214e7671bc"
+        },
+        {
+          "path": "config.json",
+          "size": 264,
+          "sha256": "3160f11889b5ef80e807a2a575afb6c560794f236baa312d5b5fc1ca1a0828e8"
+        },
+        {
+          "path": "index.html",
+          "size": 17664,
+          "sha256": "cd54cd00764d4a943e5493768fe1d772bf1cacfcb3851f25099f951453736260"
+        },
+        {
+          "path": "package.json",
+          "size": 492,
+          "sha256": "784ed97e04dd97f870bc26c697765f70f3f171b4c16b38c564d812867d92995a"
+        },
+        {
+          "path": "style.css",
+          "size": 6247,
+          "sha256": "196f66e4799a37cbea9485dc5f4571cc93a75e31a693cc60a39a1751cfa8668e"
+        }
+      ],
+      "publishedAt": "2026-11-05T03:42:58Z"
+    },
+    {
+      "package": {
         "name": "@aidget-community/cyberpunk-2077",
         "version": "0.1.0",
         "description": "透明桌面上的赛博朋克 2077 霓虹标识，带 CSS 故障与扫描动效。",
