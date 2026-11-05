@@ -1,0 +1,25 @@
+{
+  "name": "@aidget-community/glm-acrylic",
+  "version": "0.1.0",
+  "description": "GLM 黑紫睡衣猫娘主题的透明亚克力挂件桌面卡片，带鼠标跟随扫光。",
+  "license": "MIT",
+  "author": {
+    "name": "micooz",
+    "url": "https://github.com/micooz"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aidget-ai/widgets.git",
+    "directory": "packages/glm-acrylic"
+  },
+  "files": [
+    "config.json",
+    "index.html",
+    "style.css",
+    "agents.md",
+    "assets"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

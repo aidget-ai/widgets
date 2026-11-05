@@ -85,6 +85,91 @@
     },
     {
       "package": {
+        "name": "@aidget-community/claude-acrylic",
+        "version": "0.1.0",
+        "description": "Claude 橙发读书女孩主题的透明亚克力挂件桌面卡片，带鼠标跟随扫光。",
+        "author": {
+          "name": "micooz",
+          "email": null,
+          "url": "https://github.com/micooz"
+        },
+        "repository": {
+          "type": "git",
+          "url": "git+https://github.com/aidget-ai/widgets.git",
+          "directory": "packages/claude-acrylic"
+        },
+        "license": "MIT",
+        "files": [
+          "config.json",
+          "index.html",
+          "style.css",
+          "agents.md",
+          "assets"
+        ]
+      },
+      "config": {
+        "id": "claude-acrylic",
+        "title": "Claude · 亚克力挂件",
+        "logo": null,
+        "screenshots": [
+          "assets/screenshot.png"
+        ],
+        "platforms": [
+          "macos",
+          "windows",
+          "linux"
+        ],
+        "size": {
+          "width": 360,
+          "height": 220
+        },
+        "dragMode": "all",
+        "permissions": [
+          "script"
+        ],
+        "network": []
+      },
+      "files": [
+        {
+          "path": "agents.md",
+          "size": 1798,
+          "sha256": "2f8903061b9efe73243a58d1aa219af7526ba1c9a5d4375f29ae6e2e8790cfe1"
+        },
+        {
+          "path": "assets/pendant.png",
+          "size": 1892350,
+          "sha256": "f70c1aed5df0a175ff7372d2c20d9d64423d621686f11cad2d10270071134724"
+        },
+        {
+          "path": "assets/screenshot.png",
+          "size": 331991,
+          "sha256": "bcd22be93d337c9a2fd77d8e920d5b6bd956dbe5b84ad54eb081114f5d450c8d"
+        },
+        {
+          "path": "config.json",
+          "size": 285,
+          "sha256": "4e0593cac89676589a2ebd1e622154c84b2b5f8f19e8a259b42c00961f14d740"
+        },
+        {
+          "path": "index.html",
+          "size": 3307,
+          "sha256": "5a3a141a7bda507f7c14bc7b91ccb0b074f6ab19a2c3cd42b51f58359ae18fb5"
+        },
+        {
+          "path": "package.json",
+          "size": 581,
+          "sha256": "d8a4a06eb665a3ef3de60ecfb2917d66565543481e2b93be396b9e2c15950732"
+        },
+        {
+          "path": "style.css",
+          "size": 1922,
+          "sha256": "1068b244d7b265dcc07ee99a2a1adfb2fb5478ef3b53804ee61e78c57d9d85db"
+        }
+      ],
+      "publishedAt": "2026-11-05T02:44:43Z"
+    },
+    {
+      "package": {
         "name": "@aidget-community/claude-ultrathink",
         "version": "0.1.0",
         "description": "Claude Ultra Think 透明像素动画",
@@ -409,6 +494,91 @@
     },
     {
       "package": {
+        "name": "@aidget-community/glm-acrylic",
+        "version": "0.1.0",
+        "description": "GLM 黑紫睡衣猫娘主题的透明亚克力挂件桌面卡片，带鼠标跟随扫光。",
+        "author": {
+          "name": "micooz",
+          "email": null,
+          "url": "https://github.com/micooz"
+        },
+        "repository": {
+          "type": "git",
+          "url": "git+https://github.com/aidget-ai/widgets.git",
+          "directory": "packages/glm-acrylic"
+        },
+        "license": "MIT",
+        "files": [
+          "config.json",
+          "index.html",
+          "style.css",
+          "agents.md",
+          "assets"
+        ]
+      },
+      "config": {
+        "id": "glm-acrylic",
+        "title": "GLM · 亚克力挂件",
+        "logo": null,
+        "screenshots": [
+          "assets/screenshot.png"
+        ],
+        "platforms": [
+          "macos",
+          "windows",
+          "linux"
+        ],
+        "size": {
+          "width": 360,
+          "height": 220
+        },
+        "dragMode": "all",
+        "permissions": [
+          "script"
+        ],
+        "network": []
+      },
+      "files": [
+        {
+          "path": "agents.md",
+          "size": 1779,
+          "sha256": "89b290ffddcde1b273f87701c3af74018cac718260bf4b49c903498038717406"
+        },
+        {
+          "path": "assets/pendant.png",
+          "size": 2258908,
+          "sha256": "02f8151b33009f6363f8be1d70d2e2b2ac935660fc34d057f54d4a0137dbf6db"
+        },
+        {
+          "path": "assets/screenshot.png",
+          "size": 379672,
+          "sha256": "e2df44b06aac0c316f322c7b1205ac79ea5759c5df6e8c67e292195cfaff27b0"
+        },
+        {
+          "path": "config.json",
+          "size": 279,
+          "sha256": "7c4989e703ae354fc8e2d21436bdbbcfb159fef3436742524a7544e8e568bcee"
+        },
+        {
+          "path": "index.html",
+          "size": 3295,
+          "sha256": "adf610b7322d76d3a2e5d18962206609dcadf99b1f78a8f324b90a6e950b9902"
+        },
+        {
+          "path": "package.json",
+          "size": 572,
+          "sha256": "1c48bf1fb4245153721ee780866e02c4b18f8de7ddb84ddb812d43d94f031305"
+        },
+        {
+          "path": "style.css",
+          "size": 1922,
+          "sha256": "1068b244d7b265dcc07ee99a2a1adfb2fb5478ef3b53804ee61e78c57d9d85db"
+        }
+      ],
+      "publishedAt": "2026-11-05T02:44:43Z"
+    },
+    {
+      "package": {
         "name": "@aidget-community/gold-price",
         "version": "0.1.1",
         "description": "AU99.99 黄金实时价格、涨跌幅与日内走势卡片。",
@@ -488,6 +658,91 @@
         }
       ],
       "publishedAt": "2026-10-29T06:17:59Z"
+    },
+    {
+      "package": {
+        "name": "@aidget-community/grok-acrylic",
+        "version": "0.1.0",
+        "description": "Grok 猫娘主题的透明亚克力挂件桌面卡片，带鼠标跟随扫光。",
+        "author": {
+          "name": "micooz",
+          "email": null,
+          "url": "https://github.com/micooz"
+        },
+        "repository": {
+          "type": "git",
+          "url": "git+https://github.com/aidget-ai/widgets.git",
+          "directory": "packages/grok-acrylic"
+        },
+        "license": "MIT",
+        "files": [
+          "config.json",
+          "index.html",
+          "style.css",
+          "agents.md",
+          "assets"
+        ]
+      },
+      "config": {
+        "id": "grok-acrylic",
+        "title": "Grok · 亚克力挂件",
+        "logo": null,
+        "screenshots": [
+          "assets/screenshot.png"
+        ],
+        "platforms": [
+          "macos",
+          "windows",
+          "linux"
+        ],
+        "size": {
+          "width": 360,
+          "height": 220
+        },
+        "dragMode": "all",
+        "permissions": [
+          "script"
+        ],
+        "network": []
+      },
+      "files": [
+        {
+          "path": "agents.md",
+          "size": 1772,
+          "sha256": "f86da36a10296f8669b0383e6842e324466caae86945eced25be5b7ee61470d3"
+        },
+        {
+          "path": "assets/pendant.png",
+          "size": 1928254,
+          "sha256": "36554947ec462d1cb0e579b7b825e33b4e8494db6302090f6e3f9acdd307607a"
+        },
+        {
+          "path": "assets/screenshot.png",
+          "size": 343881,
+          "sha256": "87dd44e8fcbab5aefc414026b5d9ad8202ffab76b55adfd105ae62158dc1a08e"
+        },
+        {
+          "path": "config.json",
+          "size": 281,
+          "sha256": "95e892b6942f8f8a071038b4e4839654360629ee46543af69fa9ed8d6ce83c02"
+        },
+        {
+          "path": "index.html",
+          "size": 3291,
+          "sha256": "062c6a1977b10d7ec5d9f8643c60b422c51e5e93229d4ef2d4e3bb03c92f894c"
+        },
+        {
+          "path": "package.json",
+          "size": 563,
+          "sha256": "2adb518aa754450ec8f428d6770e31d1014d8dc54d9e8d921d4a3c6e9200856d"
+        },
+        {
+          "path": "style.css",
+          "size": 1922,
+          "sha256": "1068b244d7b265dcc07ee99a2a1adfb2fb5478ef3b53804ee61e78c57d9d85db"
+        }
+      ],
+      "publishedAt": "2026-11-05T02:44:43Z"
     },
     {
       "package": {

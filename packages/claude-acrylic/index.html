@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="aidget-surface" content="none" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Claude · 亚克力挂件</title>
+  </head>
+  <body>
+    <main class="stage" data-aidget-region="stage">
+      <div class="pendant" role="img" aria-label="Claude 橙发读书女孩亚克力挂件">
+        <div class="pendant-art" aria-hidden="true"></div>
+        <div class="pendant-shine" aria-hidden="true">
+          <span class="shine-spot"></span>
+          <span class="shine-streak"></span>
+        </div>
+      </div>
+    </main>
+    <script>
+      (() => {
+        const pendant = document.querySelector('.pendant');
+        const root = document.documentElement;
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+        const REST = { x: 0.3, y: 0.2 };
+        const IDLE_GLOW = 0.42;
+        const clamp = (value, lo, hi) => Math.min(hi, Math.max(lo, value));
+        let target = { ...REST };
+        let pos = { ...REST };
+        let glow = { value: 0, target: IDLE_GLOW };
+        let running = false;
+
+        function paint() {
+          root.style.setProperty('--mx', `${(pos.x * 100).toFixed(2)}%`);
+          root.style.setProperty('--my', `${(pos.y * 100).toFixed(2)}%`);
+          root.style.setProperty('--shine', glow.value.toFixed(3));
+        }
+
+        function tick() {
+          const ease = reduceMotion.matches ? 1 : 0.18;
+          pos.x += (target.x - pos.x) * ease;
+          pos.y += (target.y - pos.y) * ease;
+          glow.value += (glow.target - glow.value) * (reduceMotion.matches ? 1 : 0.12);
+          paint();
+          const settled =
+            Math.abs(target.x - pos.x) < 0.002 &&
+            Math.abs(target.y - pos.y) < 0.002 &&
+            Math.abs(glow.target - glow.value) < 0.004;
+          if (settled) {
+            pos = { ...target };
+            glow.value = glow.target;
+            paint();
+            running = false;
+            return;
+          }
+          requestAnimationFrame(tick);
+        }
+
+        function wake() {
+          if (!running) {
+            running = true;
+            requestAnimationFrame(tick);
+          }
+        }
+
+        function follow(event) {
+          const rect = pendant.getBoundingClientRect();
+          if (!rect.width || !rect.height) return;
+          target.x = clamp((event.clientX - rect.left) / rect.width, -0.2, 1.2);
+          target.y = clamp((event.clientY - rect.top) / rect.height, -0.2, 1.2);
+          glow.target = 1;
+          wake();
+        }
+
+        function rest() {
+          target = { ...REST };
+          glow.target = IDLE_GLOW;
+          wake();
+        }
+
+        pendant.addEventListener('pointermove', follow);
+        pendant.addEventListener('pointerdown', follow);
+        pendant.addEventListener('pointerleave', rest);
+        window.addEventListener('blur', rest);
+        document.addEventListener('visibilitychange', () => {
+          if (document.hidden) rest();
+        });
+        paint();
+        wake();
+        if (window.aidget && typeof window.aidget.ready === 'function') {
+          window.aidget.ready();
+        }
+      })();
+    </script>
+  </body>
+</html>
