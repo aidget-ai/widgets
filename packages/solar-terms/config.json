@@ -1,0 +1,11 @@
+{
+  "id": "solar-terms",
+  "title": "二十四节气",
+  "logo": null,
+  "screenshots": ["assets/screenshot.png", "assets/screenshot-back.png"],
+  "platforms": ["macos", "windows", "linux"],
+  "size": { "width": 360, "height": 240 },
+  "dragMode": "all",
+  "permissions": [],
+  "network": []
+}

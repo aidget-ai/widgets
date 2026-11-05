@@ -1,0 +1,24 @@
+{
+  "name": "@aidget-community/solar-terms",
+  "version": "0.1.0",
+  "description": "以国画呈现二十四节气的翻面卡片。",
+  "license": "MIT",
+  "author": {
+    "name": "aidget community"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aidget-ai/widgets.git",
+    "directory": "packages/solar-terms"
+  },
+  "files": [
+    "config.json",
+    "index.html",
+    "style.css",
+    "agents.md",
+    "assets"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

@@ -904,6 +904,210 @@
     },
     {
       "package": {
+        "name": "@aidget-community/solar-terms",
+        "version": "0.1.0",
+        "description": "以国画呈现二十四节气的翻面卡片。",
+        "author": {
+          "name": "aidget community",
+          "email": null,
+          "url": null
+        },
+        "repository": {
+          "type": "git",
+          "url": "git+https://github.com/aidget-ai/widgets.git",
+          "directory": "packages/solar-terms"
+        },
+        "license": "MIT",
+        "files": [
+          "config.json",
+          "index.html",
+          "style.css",
+          "agents.md",
+          "assets"
+        ]
+      },
+      "config": {
+        "id": "solar-terms",
+        "title": "二十四节气",
+        "logo": null,
+        "screenshots": [
+          "assets/screenshot.png",
+          "assets/screenshot-back.png"
+        ],
+        "platforms": [
+          "macos",
+          "windows",
+          "linux"
+        ],
+        "size": {
+          "width": 360,
+          "height": 240
+        },
+        "dragMode": "all",
+        "permissions": [],
+        "network": []
+      },
+      "files": [
+        {
+          "path": "agents.md",
+          "size": 3858,
+          "sha256": "a78c76a1ade7a8aed70b9f525ea762503ca8a053f2f12b0d0be00e8a3c303c46"
+        },
+        {
+          "path": "assets/bailu.webp",
+          "size": 43530,
+          "sha256": "947a85170fb82d6b929f9a6f1862b7698911e2c0bab6dd8f2ef5778bb12ade6b"
+        },
+        {
+          "path": "assets/chunfen.webp",
+          "size": 36596,
+          "sha256": "c5649d13a0fbbb83efc66e7d8cc6349167cc339d1c64ec063d49b7cb81f40534"
+        },
+        {
+          "path": "assets/chushu.webp",
+          "size": 36124,
+          "sha256": "cdfbef05cc3978e0870ebdd330356c9b5b180e7a01c4578771316f5f8860752d"
+        },
+        {
+          "path": "assets/dahan.webp",
+          "size": 42674,
+          "sha256": "e6b01e44705baa4cbc404776d489edd1e7898a0cf02261c94d1c175892ef72f3"
+        },
+        {
+          "path": "assets/dashu.webp",
+          "size": 36136,
+          "sha256": "521df3ffb220c1876634bcd491511c24846fee28a3527c1adb4758aa0a97d04d"
+        },
+        {
+          "path": "assets/daxue.webp",
+          "size": 44310,
+          "sha256": "8253f690e2495caf1f06ede8419cdba67333903599efe01d9a692e403b9acb29"
+        },
+        {
+          "path": "assets/dongzhi.webp",
+          "size": 50728,
+          "sha256": "0e0a2f070be849f008214455d06441b91cf812270e19996683da343d6230876b"
+        },
+        {
+          "path": "assets/guyu.webp",
+          "size": 40090,
+          "sha256": "f83c85b6952f0469620279e85da69acab130cc3f64d77711b5524a3e0ccdbe05"
+        },
+        {
+          "path": "assets/hanlu.webp",
+          "size": 34328,
+          "sha256": "3bcc07f9725d0a568285b4912fad30c97abf20102090a189845bfb72475cdbf6"
+        },
+        {
+          "path": "assets/jingzhe.webp",
+          "size": 49152,
+          "sha256": "09ea76150105a9b2eaf208d4ef9abd2cdef761df43d4e65376c061d1112ffdf6"
+        },
+        {
+          "path": "assets/lichun.webp",
+          "size": 35258,
+          "sha256": "f483e2ed0d6a68a8158f57643fad569759a876550586acb826a019a7f4a1e386"
+        },
+        {
+          "path": "assets/lidong.webp",
+          "size": 52008,
+          "sha256": "fc867075b572c885d0c3f76ce79b4f9635fcebfe972e09ae67cdb9dbdcd6456b"
+        },
+        {
+          "path": "assets/liqiu.webp",
+          "size": 52632,
+          "sha256": "1b46f574c6013db39093a5771f5ba1a9eac532ea60c735f09e5095145146c880"
+        },
+        {
+          "path": "assets/lixia.webp",
+          "size": 44582,
+          "sha256": "061789c985933c30c1ba3be3f151e6d572f8baee6c1162db44ace89ff55389a2"
+        },
+        {
+          "path": "assets/mangzhong.webp",
+          "size": 49258,
+          "sha256": "752b6056477e90b582d495fa67ad51c40a77dafe238f469f327dbafdad9c04e8"
+        },
+        {
+          "path": "assets/qingming.webp",
+          "size": 44604,
+          "sha256": "95ac281279af7dda1604e57a2f534b43f2be8d57824e76227ab31b5557697d90"
+        },
+        {
+          "path": "assets/qiufen.webp",
+          "size": 54476,
+          "sha256": "27a54ad8a82fbad542d2dc2700d005d3d9124a9cec3ea592fb91b04cfbcef973"
+        },
+        {
+          "path": "assets/screenshot-back.png",
+          "size": 86766,
+          "sha256": "9f0c5491b52c56cf2feeb39def88fdd686939addd8f5a49750cbbb15c031d40d"
+        },
+        {
+          "path": "assets/screenshot.png",
+          "size": 101081,
+          "sha256": "160ab0344022def1021e5ebd302f875803decc589c5dd163d2cfaf316210066e"
+        },
+        {
+          "path": "assets/shuangjiang.webp",
+          "size": 42236,
+          "sha256": "9c22c89ffa0f7af9bdfe3bd6a88deec6d5d0195cd6c0527a980da69bd6eea9dd"
+        },
+        {
+          "path": "assets/xiaohan.webp",
+          "size": 36824,
+          "sha256": "a0017c78d16084c1e43f11b51384d096aef9fbffb4500a9e2716fe5a7fd6d6b3"
+        },
+        {
+          "path": "assets/xiaoman.webp",
+          "size": 49242,
+          "sha256": "b201650784d52e37c066065fd7dacf6435f3d45d4448c5e2982e4713b6705094"
+        },
+        {
+          "path": "assets/xiaoshu.webp",
+          "size": 45540,
+          "sha256": "5cd1ffeb05c0328f662ad3a7c30af774c196f83661aaac481806b566976885f6"
+        },
+        {
+          "path": "assets/xiaoxue.webp",
+          "size": 36170,
+          "sha256": "bb8517d10dd7a5859e82634e0d6093c7e656f1a23ec6b63e79c14ac29daf8925"
+        },
+        {
+          "path": "assets/xiazhi.webp",
+          "size": 31886,
+          "sha256": "851af6e7922ab7ee1ca4c2ff9072ac5b80d7de9d72ef7abf2c55249766eeec30"
+        },
+        {
+          "path": "assets/yushui.webp",
+          "size": 38090,
+          "sha256": "edbfc166d35384a4bc38bd93fef4d09284dd9a22253e848f78d5e390fd2bbb27"
+        },
+        {
+          "path": "config.json",
+          "size": 294,
+          "sha256": "711b2acd06f7b44819430de1ab014b94cc662bdcbe30916390ae3d416b7917f5"
+        },
+        {
+          "path": "index.html",
+          "size": 1214,
+          "sha256": "28a983f783d1f55d41ee23c0a5dd2531c1d6bab5c17af72d5f25bc729ed98bc8"
+        },
+        {
+          "path": "package.json",
+          "size": 499,
+          "sha256": "0c84a65659a97fd758104a6ac94f0e07d68c82cb44c545eaf91322d56c06da8b"
+        },
+        {
+          "path": "style.css",
+          "size": 3478,
+          "sha256": "6eab8083c57938cbf01177f09b992e842c564195e9ce25463649d5f8fbd5c29f"
+        }
+      ],
+      "publishedAt": "2026-11-05T03:19:31Z"
+    },
+    {
+      "package": {
         "name": "@aidget-community/sticky-todos",
         "version": "0.1.0",
         "description": "水彩纸张风格的桌面待办便签，勾选状态自动保存。",

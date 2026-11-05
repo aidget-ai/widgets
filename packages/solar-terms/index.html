@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="aidget-surface" content="none" />
+    <link rel="stylesheet" href="./style.css" />
+    <title>二十四节气</title>
+  </head>
+  <body>
+    <input
+      class="flip-toggle"
+      id="flip"
+      type="checkbox"
+      aria-label="翻转节气卡片，查看或收起介绍"
+    />
+    <main class="card">
+      <div class="turner">
+        <div class="face front">
+          <span class="art" data-aidget-region="art"
+            ><img src="./assets/lidong.webp" alt=""
+          /></span>
+          <span class="series">二十四节气</span>
+          <span class="term" data-aidget-region="term">立冬</span>
+        </div>
+        <div class="face back">
+          <span class="description" data-aidget-region="description"
+            >立冬，冬季的第一个节气。草木渐休，万物收藏，天地进入养精蓄锐的时节。</span
+          >
+        </div>
+      </div>
+      <label class="flip-hit" for="flip" aria-hidden="true"></label>
+      <div class="drag-handle" aria-hidden="true"></div>
+    </main>
+  </body>
+</html>
