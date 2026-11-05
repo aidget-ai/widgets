@@ -7,7 +7,7 @@ import { join } from 'node:path';
 import { beforeEach, test, vi, type TestContext } from 'vite-plus/test';
 
 import { integrity, shasum } from '../../scripts/package.mjs';
-import { publish, registryVersion } from '../../scripts/publish.mjs';
+import { publish, registryVersion, stagedVersions } from '../../scripts/publish.mjs';
 vi.mock('node:child_process', () => ({ execFileSync: vi.fn() }));
 beforeEach(() => vi.mocked(execFileSync).mockReset());
 
@@ -95,6 +95,17 @@ test('a conflicting staged version is an error', async (t) => {
     }),
     /staged npm version differs/,
   );
+});
+test('staged lookup receives the stage token', () => {
+  vi.mocked(execFileSync).mockReturnValue('[]');
+  stagedVersions(execFileSync, { NPM_TOKEN: 'stage-only-token' });
+  const calls = vi.mocked(execFileSync).mock.calls as unknown as [
+    string,
+    string[],
+    { env: { NODE_AUTH_TOKEN?: string } },
+  ][];
+  assert.equal(calls.length, 1);
+  assert.equal(calls[0][2].env.NODE_AUTH_TOKEN, 'stage-only-token');
 });
 test('an identical npm version is skipped', async (t) => {
   const { root, sri } = fixture(t);

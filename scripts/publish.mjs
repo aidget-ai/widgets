@@ -16,11 +16,15 @@ export async function registryVersion(name, version, request = fetch) {
   }
   return response.json();
 }
-export function stagedVersions(run = execFileSync) {
+export function stagedVersions(run = execFileSync, env = process.env) {
   return JSON.parse(
     run('npm', ['stage', 'list', '--json', '--registry', 'https://registry.npmjs.org'], {
       encoding: 'utf8',
       stdio: ['ignore', 'pipe', 'pipe'],
+      env: {
+        ...env,
+        ...(env.NPM_TOKEN ? { NODE_AUTH_TOKEN: env.NPM_TOKEN } : {}),
+      },
     }),
   );
 }
@@ -30,7 +34,7 @@ export async function publish(
 ) {
   const summary = [];
   let stagedQueue;
-  const loadStaged = async () => (stagedQueue ??= await staged(run));
+  const loadStaged = async () => (stagedQueue ??= await staged(run, env));
   for (const [name, pkg] of Object.entries(json(join(packed, 'index.json')).packages)) {
     const version = pkg.latest,
       entry = pkg.versions[version],
