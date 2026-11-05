@@ -6,7 +6,7 @@ import { join } from 'node:path';
 
 import { beforeEach, test, vi, type TestContext } from 'vite-plus/test';
 
-import { integrity } from '../../scripts/package.mjs';
+import { integrity, shasum } from '../../scripts/package.mjs';
 import { publish, registryVersion } from '../../scripts/publish.mjs';
 vi.mock('node:child_process', () => ({ execFileSync: vi.fn() }));
 beforeEach(() => vi.mocked(execFileSync).mockReset());
@@ -29,7 +29,7 @@ function fixture(t: TestContext) {
       },
     }),
   );
-  return { root, sri };
+  return { root, sri, shasum: shasum(bytes) };
 }
 test('first publication without credentials remains available from the reviewed Git commit', async (t) => {
   const { root } = fixture(t);
@@ -47,6 +47,7 @@ test('a bootstrap token stages a new package without bypassing approval', async 
   const run = execFileSync;
   const summary = await publish(root, {
     lookup: async () => null,
+    staged: async () => [],
     run,
     env: { NPM_TOKEN: 'stage-only-token' },
   });
@@ -63,6 +64,37 @@ test('a bootstrap token stages a new package without bypassing approval', async 
   ]);
   assert.equal(vi.mocked(run).mock.calls[0][2]?.env?.NODE_AUTH_TOKEN, 'stage-only-token');
   assert.match(summary[0], /staged for first-release approval/);
+});
+test('an identical staged version is skipped', async (t) => {
+  const { root, shasum: digest } = fixture(t);
+  const run = execFileSync;
+  const summary = await publish(root, {
+    lookup: async () => null,
+    staged: async () => [
+      { packageName: '@aidget-community/widget', version: '1.0.0', shasum: digest },
+    ],
+    run,
+    env: { NPM_TOKEN: 'stage-only-token' },
+  });
+  assert.equal(vi.mocked(run).mock.calls.length, 0);
+  assert.match(summary[0], /already staged for first-release approval/);
+});
+test('a conflicting staged version is an error', async (t) => {
+  const { root } = fixture(t);
+  await assert.rejects(
+    publish(root, {
+      lookup: async () => null,
+      staged: async () => [
+        {
+          packageName: '@aidget-community/widget',
+          version: '1.0.0',
+          shasum: 'different',
+        },
+      ],
+      env: { NPM_TOKEN: 'stage-only-token' },
+    }),
+    /staged npm version differs/,
+  );
 });
 test('an identical npm version is skipped', async (t) => {
   const { root, sri } = fixture(t);

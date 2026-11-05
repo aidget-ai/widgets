@@ -9,6 +9,7 @@ import { validateResources } from './resources.mjs';
 
 export const root = resolve(import.meta.dirname, '..');
 export const sha256 = (bytes) => createHash('sha256').update(bytes).digest('hex');
+export const shasum = (bytes) => createHash('sha1').update(bytes).digest('hex');
 export const integrity = (bytes) => `sha512-${createHash('sha512').update(bytes).digest('base64')}`;
 export function json(path) {
   return JSON.parse(readFileSync(path, 'utf8'));
