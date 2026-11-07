@@ -64,11 +64,11 @@
           }
         }
 
-        function follow(event) {
+        function follow(x, y) {
           const rect = stage.getBoundingClientRect();
           if (!rect.width || !rect.height) return;
-          target.x = clamp((event.clientX - rect.left) / rect.width, -0.2, 1.2);
-          target.y = clamp((event.clientY - rect.top) / rect.height, -0.2, 1.2);
+          target.x = clamp((x - rect.left) / rect.width, 0, 1);
+          target.y = clamp((y - rect.top) / rect.height, 0, 1);
           glow.target = 1;
           wake();
         }
@@ -79,10 +79,13 @@
           wake();
         }
 
-        window.addEventListener('pointermove', follow);
-        window.addEventListener('pointerdown', follow);
-        document.addEventListener('pointerleave', rest);
-        window.addEventListener('blur', rest);
+        window.aidget.onPointer((event) => {
+          if (event.type === 'leave') {
+            rest();
+            return;
+          }
+          follow(event.x, event.y);
+        });
         document.addEventListener('visibilitychange', () => {
           if (document.hidden) rest();
         });

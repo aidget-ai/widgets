@@ -46,8 +46,10 @@
 - `.pendant-shine` 内含 `.shine-spot`（径向柔光）与 `.shine-streak`（斜向高光带），位置由
   `--mx` / `--my` 决定，整层被 `--sil` 遮罩限制在轮廓内，用 `mix-blend-mode: screen` 提亮，
   `isolation: isolate` 防止溢出到透明区。
-- `index.html` 末尾的内联脚本监听 `pointermove` / `pointerdown`，把光标位置写入 `--mx` /
-  `--my` 并升到全亮；指针离开或窗口失焦时回到静止位 `(30%, 20%)`、亮度 `0.42`。
+- `index.html` 末尾的内联脚本通过 `window.aidget.onPointer` 接收宿主 hover 事件；
+  `enter` / `move` 把 viewport 局部坐标写入 `--mx` / `--my` 并升到全亮，`leave` 回到
+  静止位 `(30%, 20%)`、亮度 `0.42`。不要改回 DOM `pointermove`，也不要在窗口 `blur`
+  时收掉高光，否则非活动窗口会失去跟随效果。
 - `--shine` 初值必须保持 `0`：脚本未执行时挂件呈无高光降级态，截图里能否看到柔光也用来
   判断脚本是否运行。
 - 缓动只在未收敛时占用 `requestAnimationFrame`，收敛后自动停下，不要改成常驻循环。

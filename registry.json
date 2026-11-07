@@ -86,7 +86,7 @@
     {
       "package": {
         "name": "@aidget-community/claude-acrylic",
-        "version": "0.1.0",
+        "version": "0.2.0",
         "description": "Claude 橙发读书女孩主题的透明亚克力挂件桌面卡片，带鼠标跟随扫光。",
         "author": {
           "name": "micooz",
@@ -132,8 +132,8 @@
       "files": [
         {
           "path": "agents.md",
-          "size": 1798,
-          "sha256": "2f8903061b9efe73243a58d1aa219af7526ba1c9a5d4375f29ae6e2e8790cfe1"
+          "size": 2041,
+          "sha256": "4eba8e10bc6a404b296bd08073284be60024d7733edee649b6d64dbc43eff40b"
         },
         {
           "path": "assets/pendant.png",
@@ -152,13 +152,13 @@
         },
         {
           "path": "index.html",
-          "size": 3307,
-          "sha256": "5a3a141a7bda507f7c14bc7b91ccb0b074f6ab19a2c3cd42b51f58359ae18fb5"
+          "size": 3240,
+          "sha256": "5de92109ff5630462efb27003b8904cad88cfd039095f649df1961c89cbfef3d"
         },
         {
           "path": "package.json",
           "size": 581,
-          "sha256": "d8a4a06eb665a3ef3de60ecfb2917d66565543481e2b93be396b9e2c15950732"
+          "sha256": "ff9241bc8d21933a6da2cbf44a42a95f4e48f5dbe6731bcbea6c689ebf8b5c20"
         },
         {
           "path": "style.css",
@@ -490,7 +490,7 @@
     {
       "package": {
         "name": "@aidget-community/deepseek-whale-pendant",
-        "version": "0.1.0",
+        "version": "0.2.0",
         "description": "透明桌面上的 DeepSeek 鲸鱼娘亚克力挂件，半透明玻璃刀模与跟随鼠标的扫光。",
         "author": {
           "name": "micooz",
@@ -536,8 +536,8 @@
       "files": [
         {
           "path": "agents.md",
-          "size": 5388,
-          "sha256": "8858514ed34d907733404394536a7786054fd76d639da88040eafdc240b24e70"
+          "size": 5543,
+          "sha256": "1f0ccdaea0123afcf3412ffd6b9fe762e69e97f0f8eb445306e3e6c305a81517"
         },
         {
           "path": "assets/pendant.png",
@@ -556,13 +556,13 @@
         },
         {
           "path": "index.html",
-          "size": 3317,
-          "sha256": "c11a2da28af027da1939912e7d88684f11dd464f1ccda077741c015d0a55ee21"
+          "size": 3251,
+          "sha256": "c5c313c22893ab3f144f70297b9d6abe0942542eb2550bd6fee6603ef1f5ab76"
         },
         {
           "path": "package.json",
           "size": 606,
-          "sha256": "20e352cc0aca4f797c6e2031b696624cba4b3885e8e18496d8185052e6eb965b"
+          "sha256": "d06f648dc4c16bfd3c8d6a603b9e87bddfd6f7a3d8c33aa06a45ccfddbcec502"
         },
         {
           "path": "style.css",
@@ -575,7 +575,7 @@
     {
       "package": {
         "name": "@aidget-community/glm-acrylic",
-        "version": "0.1.0",
+        "version": "0.2.0",
         "description": "GLM 黑紫睡衣猫娘主题的透明亚克力挂件桌面卡片，带鼠标跟随扫光。",
         "author": {
           "name": "micooz",
@@ -621,8 +621,8 @@
       "files": [
         {
           "path": "agents.md",
-          "size": 1779,
-          "sha256": "89b290ffddcde1b273f87701c3af74018cac718260bf4b49c903498038717406"
+          "size": 2022,
+          "sha256": "b59217b7b57a8ffcf81b92803c2a4225f9fe5fa79c9033ace26d90f1494ac5e4"
         },
         {
           "path": "assets/pendant.png",
@@ -641,13 +641,13 @@
         },
         {
           "path": "index.html",
-          "size": 3295,
-          "sha256": "adf610b7322d76d3a2e5d18962206609dcadf99b1f78a8f324b90a6e950b9902"
+          "size": 3228,
+          "sha256": "8ad555150b850c8e16a4ff5448833aee406ca7cac91570d054641c4b14f591af"
         },
         {
           "path": "package.json",
           "size": 572,
-          "sha256": "1c48bf1fb4245153721ee780866e02c4b18f8de7ddb84ddb812d43d94f031305"
+          "sha256": "ad98ff368ebf697284d3a1ee17b7885f5c9a6aca8de0c1e7a54161c98fd6878e"
         },
         {
           "path": "style.css",
@@ -742,7 +742,7 @@
     {
       "package": {
         "name": "@aidget-community/grok-acrylic",
-        "version": "0.1.0",
+        "version": "0.2.0",
         "description": "Grok 猫娘主题的透明亚克力挂件桌面卡片，带鼠标跟随扫光。",
         "author": {
           "name": "micooz",
@@ -788,8 +788,8 @@
       "files": [
         {
           "path": "agents.md",
-          "size": 1772,
-          "sha256": "f86da36a10296f8669b0383e6842e324466caae86945eced25be5b7ee61470d3"
+          "size": 2015,
+          "sha256": "05eca049b32029e50a23c17ae82db13b91df09abeb2f6ce5744c109c0e4e482f"
         },
         {
           "path": "assets/pendant.png",
@@ -808,13 +808,13 @@
         },
         {
           "path": "index.html",
-          "size": 3291,
-          "sha256": "062c6a1977b10d7ec5d9f8643c60b422c51e5e93229d4ef2d4e3bb03c92f894c"
+          "size": 3224,
+          "sha256": "8a629b5812912c0cc318bd27bcae1fd9a6d239cb20ab8c7f4edb32965972c554"
         },
         {
           "path": "package.json",
           "size": 563,
-          "sha256": "2adb518aa754450ec8f428d6770e31d1014d8dc54d9e8d921d4a3c6e9200856d"
+          "sha256": "0ea43e53aa8052215a7c9dc6decb992d5f45bc968a300eac5255d14e32c5bbca"
         },
         {
           "path": "style.css",
