@@ -3,7 +3,7 @@
     {
       "package": {
         "name": "@aidget-community/bilibili-hot",
-        "version": "0.1.0",
+        "version": "0.1.1",
         "description": "Bilibili 热搜前十，每 20 分钟刷新，可点击打开搜索结果。",
         "author": {
           "name": "micooz",
@@ -27,6 +27,7 @@
       "config": {
         "id": "bilibili-hot",
         "title": "Bilibili 热搜",
+        "minHostVersion": "0.1.1",
         "logo": null,
         "screenshots": [
           "assets/screenshot.png"
@@ -62,8 +63,8 @@
         },
         {
           "path": "config.json",
-          "size": 335,
-          "sha256": "c4de8196aae39fdf89ef0642d568b875e29bef1850b188d709e74e596b5fc76e"
+          "size": 364,
+          "sha256": "ca71f4daa03fb9af1871cab9366fa0461d5314e93cbe4dc54a7f50a84e09dbc4"
         },
         {
           "path": "index.html",
@@ -73,7 +74,7 @@
         {
           "path": "package.json",
           "size": 559,
-          "sha256": "eb81876886ca27dff9530f74bef500e94c7b476e75cfe71b01a082adee0c2ea4"
+          "sha256": "b67bf44e3286f85817dc5d9bb7aaf7ecf0becd1a6be56c093d1b4f03cb56d24b"
         },
         {
           "path": "style.css",
@@ -86,7 +87,7 @@
     {
       "package": {
         "name": "@aidget-community/claude-acrylic",
-        "version": "0.2.0",
+        "version": "0.2.1",
         "description": "Claude 橙发读书女孩主题的透明亚克力挂件桌面卡片，带鼠标跟随扫光。",
         "author": {
           "name": "micooz",
@@ -110,6 +111,7 @@
       "config": {
         "id": "claude-acrylic",
         "title": "Claude · 亚克力挂件",
+        "minHostVersion": "0.1.13",
         "logo": null,
         "screenshots": [
           "assets/screenshot.png"
@@ -132,8 +134,8 @@
       "files": [
         {
           "path": "agents.md",
-          "size": 2041,
-          "sha256": "4eba8e10bc6a404b296bd08073284be60024d7733edee649b6d64dbc43eff40b"
+          "size": 2151,
+          "sha256": "7ea8124ddd4e03bb50d904948514c0f27393894b4e81ccfb132651f7e0eee560"
         },
         {
           "path": "assets/pendant.png",
@@ -147,18 +149,18 @@
         },
         {
           "path": "config.json",
-          "size": 285,
-          "sha256": "4e0593cac89676589a2ebd1e622154c84b2b5f8f19e8a259b42c00961f14d740"
+          "size": 315,
+          "sha256": "9029da381f618a20dc7b4d6a35749c03d5e052ac1efa5fe53f8f0fd3e8e3024a"
         },
         {
           "path": "index.html",
-          "size": 3240,
-          "sha256": "5de92109ff5630462efb27003b8904cad88cfd039095f649df1961c89cbfef3d"
+          "size": 3633,
+          "sha256": "be112de4e01dd01c2ed467cf002233155f84a9391db80418cc71d6f0c1dd332d"
         },
         {
           "path": "package.json",
           "size": 581,
-          "sha256": "ff9241bc8d21933a6da2cbf44a42a95f4e48f5dbe6731bcbea6c689ebf8b5c20"
+          "sha256": "62cddadb64df5dfc2e5a463d581c1cc9b90d2c2e1e9a4fdbeb985ce4a31ccc2a"
         },
         {
           "path": "style.css",
@@ -171,7 +173,7 @@
     {
       "package": {
         "name": "@aidget-community/claude-ultrathink",
-        "version": "0.1.0",
+        "version": "0.1.1",
         "description": "Claude Ultra Think 透明像素动画",
         "author": {
           "name": "micooz",
@@ -195,6 +197,7 @@
       "config": {
         "id": "claude-ultrathink",
         "title": "Claude Ultra Think",
+        "minHostVersion": "0.1.1",
         "logo": null,
         "screenshots": [
           "assets/screenshot.png"
@@ -230,8 +233,8 @@
         },
         {
           "path": "config.json",
-          "size": 273,
-          "sha256": "6810fcb12b7e91dd33a9b1d76b04c5cdc354e2b7d9adbb39fc71d558d1bc2bbb"
+          "size": 302,
+          "sha256": "c512069e6c6064566438f86bf11447a2f16aae128879b50c4dddeef4e2a596ae"
         },
         {
           "path": "index.html",
@@ -241,7 +244,7 @@
         {
           "path": "package.json",
           "size": 530,
-          "sha256": "af2128d6d30d2bb2d1575021dc1b91c9fa0fb221cf15f93a46a41fe8539296d1"
+          "sha256": "784b2b29d9dfab6081ea645f0afe4096c8eb654112faade9f5608fce308618ec"
         },
         {
           "path": "style.css",
@@ -254,7 +257,7 @@
     {
       "package": {
         "name": "@aidget-community/countdown",
-        "version": "0.1.0",
+        "version": "0.1.1",
         "description": "倒数日卡片，支持多个日子切换。",
         "author": {
           "name": "aidget community",
@@ -278,6 +281,7 @@
       "config": {
         "id": "countdown",
         "title": "倒数日",
+        "minHostVersion": "0.1.1",
         "logo": null,
         "screenshots": [
           "assets/screenshot.png"
@@ -310,8 +314,8 @@
         },
         {
           "path": "config.json",
-          "size": 264,
-          "sha256": "3160f11889b5ef80e807a2a575afb6c560794f236baa312d5b5fc1ca1a0828e8"
+          "size": 293,
+          "sha256": "c3c54bf3d9c0da83124c0711dda261eb41f6bc71629a3c90cee25d563e768985"
         },
         {
           "path": "index.html",
@@ -321,7 +325,7 @@
         {
           "path": "package.json",
           "size": 492,
-          "sha256": "784ed97e04dd97f870bc26c697765f70f3f171b4c16b38c564d812867d92995a"
+          "sha256": "5c260214e0db38be3fc43c3888c87f2689b637334154b06ddafe72e4ceddead9"
         },
         {
           "path": "style.css",
@@ -334,7 +338,7 @@
     {
       "package": {
         "name": "@aidget-community/cyberpunk-2077",
-        "version": "0.1.0",
+        "version": "0.1.1",
         "description": "透明桌面上的赛博朋克 2077 霓虹标识，带 CSS 故障与扫描动效。",
         "author": {
           "name": "micooz",
@@ -358,6 +362,7 @@
       "config": {
         "id": "cyberpunk-2077",
         "title": "赛博朋克 2077",
+        "minHostVersion": "0.1.1",
         "logo": null,
         "screenshots": [
           "assets/screenshot.png"
@@ -386,8 +391,8 @@
         },
         {
           "path": "config.json",
-          "size": 249,
-          "sha256": "aeafe3f00c3e3b1455e6704f744261151b69e660b1bf35094e6df25934146b8a"
+          "size": 278,
+          "sha256": "03012abca5ebd736db50df87e952ef0a0bebe1ad023fec5f576e3048541b820f"
         },
         {
           "path": "index.html",
@@ -397,7 +402,7 @@
         {
           "path": "package.json",
           "size": 570,
-          "sha256": "950daa8d30b00e4f92a342db97e09ff5a6ca6bb88fbffee4d07b8c85fa5a828c"
+          "sha256": "93b39e629d938e16efa8e3426e8c4344840739342b8d8396565c563ee4b59818"
         },
         {
           "path": "style.css",
@@ -410,7 +415,7 @@
     {
       "package": {
         "name": "@aidget-community/daily-quote",
-        "version": "0.1.1",
+        "version": "0.1.2",
         "description": "今日金句卡片",
         "author": {
           "name": "micooz",
@@ -434,6 +439,7 @@
       "config": {
         "id": "daily-quote",
         "title": "今日金句",
+        "minHostVersion": "0.1.1",
         "logo": null,
         "screenshots": [
           "assets/screenshot.png"
@@ -466,8 +472,8 @@
         },
         {
           "path": "config.json",
-          "size": 279,
-          "sha256": "21bfd60933f25f2026e8e1e02ef9c3244d3e628e1c383f2e0897b6a4cc6cbd0b"
+          "size": 308,
+          "sha256": "e7c98cf602cb574d2f077f8ddb8e7551d6778f4706e41ca24046ded5e59c191b"
         },
         {
           "path": "index.html",
@@ -477,7 +483,7 @@
         {
           "path": "package.json",
           "size": 499,
-          "sha256": "646ffb927d26b39ef6f4902ddd2dcf43d1ce56a3e1984e9d6bdba4a6ddc6d184"
+          "sha256": "f29635b8778f0f0da9208bbbe7d07e628c2ea4346075297eb6a7be2f8e604470"
         },
         {
           "path": "style.css",
@@ -490,7 +496,7 @@
     {
       "package": {
         "name": "@aidget-community/deepseek-whale-pendant",
-        "version": "0.2.0",
+        "version": "0.2.1",
         "description": "透明桌面上的 DeepSeek 鲸鱼娘亚克力挂件，半透明玻璃刀模与跟随鼠标的扫光。",
         "author": {
           "name": "micooz",
@@ -514,6 +520,7 @@
       "config": {
         "id": "deepseek-whale-pendant",
         "title": "DeepSeek 鲸鱼娘 · 亚克力挂件",
+        "minHostVersion": "0.1.13",
         "logo": null,
         "screenshots": [
           "assets/screenshot.png"
@@ -536,8 +543,8 @@
       "files": [
         {
           "path": "agents.md",
-          "size": 5543,
-          "sha256": "1f0ccdaea0123afcf3412ffd6b9fe762e69e97f0f8eb445306e3e6c305a81517"
+          "size": 5644,
+          "sha256": "9e1ce5776e56e0a1c7b945736be9cd2d4b63bd0ad5023ca9e1a9fa165b99b3ff"
         },
         {
           "path": "assets/pendant.png",
@@ -551,18 +558,18 @@
         },
         {
           "path": "config.json",
-          "size": 305,
-          "sha256": "618601e1af6f80a09e4eee1743c5949f6b07139bc6dc9f382c88743bec9a4862"
+          "size": 335,
+          "sha256": "c5bc1b04b8879213a4c5a1aea909fc3b7508a7fe0a8fbc8eaecff824c0233fc1"
         },
         {
           "path": "index.html",
-          "size": 3251,
-          "sha256": "c5c313c22893ab3f144f70297b9d6abe0942542eb2550bd6fee6603ef1f5ab76"
+          "size": 3644,
+          "sha256": "e7c170754fa5487088ff0614ac504d8ccdac48d2e0abd636d68f1f6baae0c153"
         },
         {
           "path": "package.json",
           "size": 606,
-          "sha256": "d06f648dc4c16bfd3c8d6a603b9e87bddfd6f7a3d8c33aa06a45ccfddbcec502"
+          "sha256": "a71985a82af7e5875080ef64e1a3d73df5bb10de4ccde1f572909e26497c5057"
         },
         {
           "path": "style.css",
@@ -575,7 +582,7 @@
     {
       "package": {
         "name": "@aidget-community/glm-acrylic",
-        "version": "0.2.0",
+        "version": "0.2.1",
         "description": "GLM 黑紫睡衣猫娘主题的透明亚克力挂件桌面卡片，带鼠标跟随扫光。",
         "author": {
           "name": "micooz",
@@ -599,6 +606,7 @@
       "config": {
         "id": "glm-acrylic",
         "title": "GLM · 亚克力挂件",
+        "minHostVersion": "0.1.13",
         "logo": null,
         "screenshots": [
           "assets/screenshot.png"
@@ -621,8 +629,8 @@
       "files": [
         {
           "path": "agents.md",
-          "size": 2022,
-          "sha256": "b59217b7b57a8ffcf81b92803c2a4225f9fe5fa79c9033ace26d90f1494ac5e4"
+          "size": 2132,
+          "sha256": "b5116968756cf3e88e2a018272dd16b9568564b6f9ec462ed34212639823fddd"
         },
         {
           "path": "assets/pendant.png",
@@ -636,18 +644,18 @@
         },
         {
           "path": "config.json",
-          "size": 279,
-          "sha256": "7c4989e703ae354fc8e2d21436bdbbcfb159fef3436742524a7544e8e568bcee"
+          "size": 309,
+          "sha256": "beb0b9ed9f10c89fce5774d13a88ef8463597bbf4901150732c2f3dd6c787e33"
         },
         {
           "path": "index.html",
-          "size": 3228,
-          "sha256": "8ad555150b850c8e16a4ff5448833aee406ca7cac91570d054641c4b14f591af"
+          "size": 3621,
+          "sha256": "26104af553469995b7236f1ce543bdf8544dbb1ecda02a5f0aa9b8a6ec7af0a2"
         },
         {
           "path": "package.json",
           "size": 572,
-          "sha256": "ad98ff368ebf697284d3a1ee17b7885f5c9a6aca8de0c1e7a54161c98fd6878e"
+          "sha256": "4defec114524ce562fe7831ed9c06372b7fb95043b8507a8a663245bbc76d4be"
         },
         {
           "path": "style.css",
@@ -660,7 +668,7 @@
     {
       "package": {
         "name": "@aidget-community/gold-price",
-        "version": "0.1.1",
+        "version": "0.1.2",
         "description": "AU99.99 黄金实时价格、涨跌幅与日内走势卡片。",
         "author": {
           "name": "micooz",
@@ -684,6 +692,7 @@
       "config": {
         "id": "gold-price",
         "title": "黄金价格",
+        "minHostVersion": "0.1.1",
         "logo": null,
         "screenshots": [
           "assets/screenshot.png"
@@ -718,8 +727,8 @@
         },
         {
           "path": "config.json",
-          "size": 297,
-          "sha256": "b662f205b71d3c1f6d34648a33be3126c45b9f60beb3346156ef7a87bb73cd72"
+          "size": 326,
+          "sha256": "88036fbc62ad56bb2e7518596bd12a9df354eb8371029f746d4ec13eccecbd37"
         },
         {
           "path": "index.html",
@@ -729,7 +738,7 @@
         {
           "path": "package.json",
           "size": 541,
-          "sha256": "758cccf1f2fe818d4b96a12c66007b3a8f080d3e030c7bcef88488d2c60839fd"
+          "sha256": "f7c566ab2f072b9e8f5e4ffc8943697630d880e62499829980385edc23fd9b1a"
         },
         {
           "path": "style.css",
@@ -742,7 +751,7 @@
     {
       "package": {
         "name": "@aidget-community/grok-acrylic",
-        "version": "0.2.0",
+        "version": "0.2.1",
         "description": "Grok 猫娘主题的透明亚克力挂件桌面卡片，带鼠标跟随扫光。",
         "author": {
           "name": "micooz",
@@ -766,6 +775,7 @@
       "config": {
         "id": "grok-acrylic",
         "title": "Grok · 亚克力挂件",
+        "minHostVersion": "0.1.13",
         "logo": null,
         "screenshots": [
           "assets/screenshot.png"
@@ -788,8 +798,8 @@
       "files": [
         {
           "path": "agents.md",
-          "size": 2015,
-          "sha256": "05eca049b32029e50a23c17ae82db13b91df09abeb2f6ce5744c109c0e4e482f"
+          "size": 2125,
+          "sha256": "7f45f6fc90b14688bd74b85f43b5ccafdad68e3788f96b3e1c13011072b0e4d4"
         },
         {
           "path": "assets/pendant.png",
@@ -803,18 +813,18 @@
         },
         {
           "path": "config.json",
-          "size": 281,
-          "sha256": "95e892b6942f8f8a071038b4e4839654360629ee46543af69fa9ed8d6ce83c02"
+          "size": 311,
+          "sha256": "02d4ac158e1d8100ac81c1d9e848c6f6e26c067b1674b133bf8bd09cd28ee8a3"
         },
         {
           "path": "index.html",
-          "size": 3224,
-          "sha256": "8a629b5812912c0cc318bd27bcae1fd9a6d239cb20ab8c7f4edb32965972c554"
+          "size": 3617,
+          "sha256": "1a0fe7080783cfcbcbb5a2985cf4e8c12a57ca911a9a8c185975925b7ddb43d4"
         },
         {
           "path": "package.json",
           "size": 563,
-          "sha256": "0ea43e53aa8052215a7c9dc6decb992d5f45bc968a300eac5255d14e32c5bbca"
+          "sha256": "9ef04b99b297691baf599a486af180b202ed6ae3440e4aff6c8fc14aeab83b29"
         },
         {
           "path": "style.css",
@@ -827,7 +837,7 @@
     {
       "package": {
         "name": "@aidget-community/last-year-today",
-        "version": "0.1.0",
+        "version": "0.1.1",
         "description": "去年今日：从记忆里翻出一张带日期与格言的桌面卡片。",
         "author": {
           "name": "micooz",
@@ -851,6 +861,7 @@
       "config": {
         "id": "last-year-today",
         "title": "去年今日",
+        "minHostVersion": "0.1.1",
         "logo": null,
         "screenshots": [
           "assets/screenshot.png"
@@ -881,8 +892,8 @@
         },
         {
           "path": "config.json",
-          "size": 275,
-          "sha256": "25f329d5136e423ad32842ec3d01ed3fdc060a7c079b7dc644cd7f3dd901b239"
+          "size": 304,
+          "sha256": "4f57735c56e9e46e624210d0d11bf7740c66041841b07a1399d30082c7a10cac"
         },
         {
           "path": "index.html",
@@ -892,7 +903,7 @@
         {
           "path": "package.json",
           "size": 564,
-          "sha256": "22eaf565a629e8a5decd213f36753cb08b79fad5e2b1d773c53cd0ca8517e7bf"
+          "sha256": "cb1edd11406d5920e20d4f5880dd297bc638f6587ba272bbbc78eed1135461e6"
         },
         {
           "path": "style.css",
@@ -905,7 +916,7 @@
     {
       "package": {
         "name": "@aidget-community/solar-terms",
-        "version": "0.1.1",
+        "version": "0.1.2",
         "description": "以国画呈现二十四节气的翻面卡片。",
         "author": {
           "name": "aidget community",
@@ -929,6 +940,7 @@
       "config": {
         "id": "solar-terms",
         "title": "二十四节气",
+        "minHostVersion": "0.1.1",
         "logo": null,
         "screenshots": [
           "assets/screenshot.png"
@@ -1079,8 +1091,8 @@
         },
         {
           "path": "config.json",
-          "size": 264,
-          "sha256": "905a4be00ccb5a40255d48b3705d3bde2afc3977cde8b0bdca08da04c4492133"
+          "size": 293,
+          "sha256": "f7500681ef9423abf1893f2f0a932bef187813df35d1757d57717c240312ba40"
         },
         {
           "path": "index.html",
@@ -1090,7 +1102,7 @@
         {
           "path": "package.json",
           "size": 499,
-          "sha256": "bb0aef5a3276dba8b931abbb421fea66dd7c65ed112291ee0d6cdfc588a586b9"
+          "sha256": "6cbfb7292a7f81ae158df19be578519776bb44e498015cba007cbc9476593d51"
         },
         {
           "path": "style.css",
@@ -1103,7 +1115,7 @@
     {
       "package": {
         "name": "@aidget-community/sticky-todos",
-        "version": "0.1.0",
+        "version": "0.1.1",
         "description": "水彩纸张风格的桌面待办便签，勾选状态自动保存。",
         "author": {
           "name": "micooz",
@@ -1127,6 +1139,7 @@
       "config": {
         "id": "sticky-todos",
         "title": "待办事项",
+        "minHostVersion": "0.1.1",
         "logo": null,
         "screenshots": [
           "assets/screenshot.png"
@@ -1165,8 +1178,8 @@
         },
         {
           "path": "config.json",
-          "size": 281,
-          "sha256": "6681a22a2d6a7200f357e0e441aa94bc28778a8b29c5e4026729a0983dc25fab"
+          "size": 310,
+          "sha256": "5b8a292c29afbf1895fb8857d1541162a1a735dc1400d3c5c4ee2489f21e2e07"
         },
         {
           "path": "index.html",
@@ -1176,7 +1189,7 @@
         {
           "path": "package.json",
           "size": 587,
-          "sha256": "87a04eb3edae7616607fdf0255fd91a0ea9ffc2e3578a67ce6f6f85f18981288"
+          "sha256": "219a2f0a97c78f5e6ccf2832accea6ff5fdfd9d0d5c62cc09c1ab2d13fb67097"
         },
         {
           "path": "style.css",
@@ -1189,7 +1202,7 @@
     {
       "package": {
         "name": "@aidget-community/us-stock-watch",
-        "version": "0.1.0",
+        "version": "0.1.1",
         "description": "美股五大科技股日内行情、价格与涨跌幅卡片。",
         "author": {
           "name": "micooz",
@@ -1213,6 +1226,7 @@
       "config": {
         "id": "us-stock-watch",
         "title": "美股 · 五大科技股",
+        "minHostVersion": "0.1.1",
         "logo": null,
         "screenshots": [
           "assets/screenshot.png"
@@ -1247,8 +1261,8 @@
         },
         {
           "path": "config.json",
-          "size": 314,
-          "sha256": "64f1a25a31920f9d684f8ba0881d9111dbd355f8664b4b66d80e978aa5b3a2cf"
+          "size": 343,
+          "sha256": "2c05c3352abdb2ea66ef238eb41867e00644732c5c6beac0e0d8684acfd93c48"
         },
         {
           "path": "index.html",
@@ -1258,7 +1272,7 @@
         {
           "path": "package.json",
           "size": 550,
-          "sha256": "4fa46b81e76c95164ddd078849c3324da3d9f56460d588b9789f41f71c1269ec"
+          "sha256": "22a955775f92003e65280fa62523450a3e16b1224e97b5a67b72ead90f3ae0f8"
         },
         {
           "path": "style.css",
@@ -1271,7 +1285,7 @@
     {
       "package": {
         "name": "@aidget-community/weibo-hot",
-        "version": "0.1.0",
+        "version": "0.1.1",
         "description": "微博实时热搜前十，过滤广告，每 20 分钟刷新。",
         "author": {
           "name": "micooz",
@@ -1295,6 +1309,7 @@
       "config": {
         "id": "weibo-hot",
         "title": "微博热搜",
+        "minHostVersion": "0.1.1",
         "logo": null,
         "screenshots": [
           "assets/screenshot.png"
@@ -1330,8 +1345,8 @@
         },
         {
           "path": "config.json",
-          "size": 309,
-          "sha256": "36e40d99696c6eb15243524b3b96d332618c728c0cf470a7a0fb46d189621c59"
+          "size": 338,
+          "sha256": "ab2d621450c1d6545884d0c86145ded232d38d5dae863c5875cd07c69af2ef39"
         },
         {
           "path": "index.html",
@@ -1341,7 +1356,7 @@
         {
           "path": "package.json",
           "size": 541,
-          "sha256": "e857192ded17d250ad7ee0dd723eead251247da90818931b92239643666cffe2"
+          "sha256": "94b1e5bbc84e10214cec7a594673fbb24e8384c925d538d34678f4784d58f5e1"
         },
         {
           "path": "style.css",
@@ -1354,7 +1369,7 @@
     {
       "package": {
         "name": "@aidget-community/welcome",
-        "version": "0.1.1",
+        "version": "0.1.2",
         "description": "AIDGET 欢迎卡片：将桌面交给 Agent。",
         "author": {
           "name": "aidget community",
@@ -1378,6 +1393,7 @@
       "config": {
         "id": "welcome",
         "title": "欢迎使用 AIDGET",
+        "minHostVersion": "0.1.1",
         "logo": null,
         "screenshots": [
           "assets/screenshot.png"
@@ -1408,8 +1424,8 @@
         },
         {
           "path": "config.json",
-          "size": 264,
-          "sha256": "5c2de928a6c7f7a277fad6191df72d6d8ee92b422216641cb5c4951639e29785"
+          "size": 293,
+          "sha256": "4333296966463a52cbb3f51c93b36f14d85b61651042e84993c9389980982c65"
         },
         {
           "path": "index.html",
@@ -1419,7 +1435,7 @@
         {
           "path": "package.json",
           "size": 489,
-          "sha256": "e74d02ed9f05ea938c6f6fa899fc545337161832f403b379079dde37756fd4a5"
+          "sha256": "4eaa26210bc169b62b0f8a2d5803b32567d1f4b645bacc9f19676b60df31b97e"
         },
         {
           "path": "style.css",
@@ -1432,7 +1448,7 @@
     {
       "package": {
         "name": "@aidget-community/whalechan-acrylic",
-        "version": "0.1.0",
+        "version": "0.1.1",
         "description": "透明桌面上的鲸鱼娘亚克力钥匙扣，带细金属挂链与完整刀模留白。",
         "author": {
           "name": "micooz",
@@ -1456,6 +1472,7 @@
       "config": {
         "id": "whalechan-acrylic",
         "title": "鲸鱼娘 · 亚克力钥匙扣",
+        "minHostVersion": "0.1.1",
         "logo": null,
         "screenshots": [
           "assets/screenshot.png"
@@ -1486,8 +1503,8 @@
         },
         {
           "path": "config.json",
-          "size": 286,
-          "sha256": "9ae0ba27d29d8ea9376260c350f6dd517124007c90fa160472c9a73c15251664"
+          "size": 315,
+          "sha256": "e0de7c16abdd8388891583637ade89470905219935fc4b5a4e7d6269211b401e"
         },
         {
           "path": "index.html",
@@ -1497,7 +1514,7 @@
         {
           "path": "package.json",
           "size": 583,
-          "sha256": "1866c378555e90d26b3192920371719b472b246d9a5a701301307da5c1fc3e9c"
+          "sha256": "871f5c7693298d5879bcc5669f0d3f9826c4e595a4cb6e74bec4ac2dc758f847"
         },
         {
           "path": "style.css",
@@ -1510,7 +1527,7 @@
     {
       "package": {
         "name": "@aidget-community/zhihu-hot",
-        "version": "0.1.0",
+        "version": "0.1.1",
         "description": "知乎热榜前十，每 20 分钟刷新，可点击打开问题。",
         "author": {
           "name": "micooz",
@@ -1534,6 +1551,7 @@
       "config": {
         "id": "zhihu-hot",
         "title": "知乎热榜",
+        "minHostVersion": "0.1.1",
         "logo": null,
         "screenshots": [
           "assets/screenshot.png"
@@ -1569,8 +1587,8 @@
         },
         {
           "path": "config.json",
-          "size": 315,
-          "sha256": "bf488de750259bc147534c2a553b5fd52cdc2dcd20278f7a1943d0e5d35ad80a"
+          "size": 344,
+          "sha256": "1466454035558fb942c169275b5443b54afff34e0d725e768811a98e43b74440"
         },
         {
           "path": "index.html",
@@ -1580,7 +1598,7 @@
         {
           "path": "package.json",
           "size": 544,
-          "sha256": "449eb4322ab4f71cdec8bb4bf3d9a212bcbf130825766169a5b4f82ee8d7798b"
+          "sha256": "5a976c1f0116ae62ed543b4fe4f57e4ef1f422b58d283d8af2c21c83d69040e2"
         },
         {
           "path": "style.css",

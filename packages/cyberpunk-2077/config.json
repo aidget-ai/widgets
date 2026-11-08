@@ -1,6 +1,7 @@
 {
   "id": "cyberpunk-2077",
   "title": "赛博朋克 2077",
+  "minHostVersion": "0.1.1",
   "logo": null,
   "screenshots": ["assets/screenshot.png"],
   "platforms": ["macos"],

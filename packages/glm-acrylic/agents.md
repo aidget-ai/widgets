@@ -22,7 +22,8 @@ PNG；原照片中的布面、显示器和支架不属于挂件。
 - 内联脚本通过 `window.aidget.onPointer` 接收宿主 hover 事件；`enter` / `move` 更新
   光位并升到全亮，`leave` 回到静止光位。不要改回 DOM `pointermove`，也不要在窗口
   `blur` 时收掉高光，否则非活动窗口会失去跟随效果。
-- 扫光动画只在未收敛时申请帧，闲置时回到静止光位，收敛后停止申请帧。
+- 扫光动画使用 `window.aidget.requestAnimationFrame`，按经过时间插值；收敛后停止申请帧。
+  需要宿主提供该动画 API，不要改用 iframe 的原生帧时钟或增加常驻循环。
 - `prefers-reduced-motion` 下直接到达目标。不要增加常驻循环、远程资源或数据请求。
 - `permissions` 仅保留 `script`，`network` 保持空数组；没有定时刷新。
 - 页面使用 `aidget-surface="none"`，不要添加窗口材质或 `backdrop-filter`。

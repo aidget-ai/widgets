@@ -1,6 +1,6 @@
 {
   "name": "@aidget-community/zhihu-hot",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "知乎热榜前十，每 20 分钟刷新，可点击打开问题。",
   "license": "MIT",
   "author": {

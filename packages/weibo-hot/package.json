@@ -1,6 +1,6 @@
 {
   "name": "@aidget-community/weibo-hot",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "微博实时热搜前十，过滤广告，每 20 分钟刷新。",
   "license": "MIT",
   "author": {

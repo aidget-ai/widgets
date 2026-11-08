@@ -1,6 +1,7 @@
 {
   "id": "gold-price",
   "title": "黄金价格",
+  "minHostVersion": "0.1.1",
   "logo": null,
   "screenshots": ["assets/screenshot.png"],
   "platforms": ["macos", "windows", "linux"],

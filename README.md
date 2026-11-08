@@ -47,7 +47,7 @@ cp -R packages/welcome packages/<id>
 Then complete the following:
 
 1. Use `@aidget-community/<id>` as the npm package name and an exact semver version.
-2. Set a unique widget ID, title, supported platforms, initial size, and required capabilities in `config.json`.
+2. Set a unique widget ID, title, supported platforms, initial size, minimum Aidget version and required capabilities in `config.json`.
 3. Write static HTML/CSS, and place runtime resources such as scripts, images, and fonts in `assets/`.
 4. Document the purpose, update constraints, refresh behavior, and appearance notes in `agents.md`; this file ships to agents with the widget.
 5. Render the widget in Aidget, capture a PNG, JPEG, or WebP screenshot, and list only the platforms you actually verified.
@@ -105,6 +105,7 @@ The following configuration requests no script, location, storage, or network ca
 {
   "id": "note",
   "title": "Note",
+  "minHostVersion": "0.1.1",
   "logo": null,
   "screenshots": ["assets/screenshot.png"],
   "platforms": ["macos", "windows", "linux"],
@@ -116,6 +117,7 @@ The following configuration requests no script, location, storage, or network ca
 ```
 
 - `screenshots` must contain at least one image showing the widget rendered in Aidget; `logo` is optional. Images must be PNG, JPEG, or WebP, and each file must be no larger than 5 MiB.
+- `minHostVersion` is required and must be an exact SemVer version. Declare the minimum host version that provides every API the widget uses.
 - `platforms` must list only operating systems that were actually verified. The initial size must be at least `160 × 120`.
 - `dragMode` supports two values:
   - `all`: regular widget content is draggable, and the host excludes interactive regions.

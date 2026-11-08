@@ -1,6 +1,7 @@
 {
   "id": "grok-acrylic",
   "title": "Grok · 亚克力挂件",
+  "minHostVersion": "0.1.13",
   "logo": null,
   "screenshots": ["assets/screenshot.png"],
   "platforms": ["macos", "windows", "linux"],

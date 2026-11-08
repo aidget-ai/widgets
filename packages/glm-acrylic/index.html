@@ -29,6 +29,7 @@
         let pos = { ...REST };
         let glow = { value: 0, target: IDLE_GLOW };
         let running = false;
+        let previousTime = null;
 
         function paint() {
           root.style.setProperty('--mx', `${(pos.x * 100).toFixed(2)}%`);
@@ -36,11 +37,18 @@
           root.style.setProperty('--shine', glow.value.toFixed(3));
         }
 
-        function tick() {
-          const ease = reduceMotion.matches ? 1 : 0.18;
+        function tick(timestamp) {
+          const elapsed =
+            previousTime === null
+              ? 1000 / 60
+              : Math.min(100, Math.max(0, timestamp - previousTime));
+          previousTime = timestamp;
+          const ease = reduceMotion.matches ? 1 : 1 - Math.pow(0.82, elapsed / (1000 / 60));
           pos.x += (target.x - pos.x) * ease;
           pos.y += (target.y - pos.y) * ease;
-          glow.value += (glow.target - glow.value) * (reduceMotion.matches ? 1 : 0.12);
+          glow.value +=
+            (glow.target - glow.value) *
+            (reduceMotion.matches ? 1 : 1 - Math.pow(0.88, elapsed / (1000 / 60)));
           paint();
           const settled =
             Math.abs(target.x - pos.x) < 0.002 &&
@@ -51,15 +59,16 @@
             glow.value = glow.target;
             paint();
             running = false;
+            previousTime = null;
             return;
           }
-          requestAnimationFrame(tick);
+          window.aidget.requestAnimationFrame(tick);
         }
 
         function wake() {
           if (!running) {
             running = true;
-            requestAnimationFrame(tick);
+            window.aidget.requestAnimationFrame(tick);
           }
         }
 

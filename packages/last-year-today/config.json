@@ -1,6 +1,7 @@
 {
   "id": "last-year-today",
   "title": "去年今日",
+  "minHostVersion": "0.1.1",
   "logo": null,
   "screenshots": ["assets/screenshot.png"],
   "platforms": ["macos", "windows", "linux"],

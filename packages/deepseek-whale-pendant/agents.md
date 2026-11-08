@@ -52,7 +52,8 @@
   时收掉高光，否则非活动窗口会失去跟随效果。
 - `--shine` 初值必须保持 `0`：脚本未执行时挂件呈无高光降级态，截图里能否看到柔光也用来
   判断脚本是否运行。
-- 缓动只在未收敛时占用 `requestAnimationFrame`，收敛后自动停下，不要改成常驻循环。
+- 扫光动画使用 `window.aidget.requestAnimationFrame`，按经过时间插值；收敛后停止申请帧。
+  需要宿主提供该动画 API，不要改用 iframe 的原生帧时钟或增加常驻循环。
 - `prefers-reduced-motion: reduce` 时脚本直接跳到目标值，不做插值跟随。
 
 ## 权限与外观

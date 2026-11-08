@@ -1,6 +1,6 @@
 {
   "name": "@aidget-community/us-stock-watch",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "美股五大科技股日内行情、价格与涨跌幅卡片。",
   "license": "MIT",
   "author": {

@@ -72,6 +72,14 @@ export function inspect(directory) {
     throw new Error('package requires an exact semver version');
   }
   if (
+    typeof config.minHostVersion !== 'string' ||
+    !/^\d+\.\d+\.\d+(?:-[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*)?(?:\+[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*)?$/.test(
+      config.minHostVersion,
+    )
+  ) {
+    throw new Error('community package requires an exact SemVer minHostVersion');
+  }
+  if (
     !config.title.trim() ||
     !pkg.description.trim() ||
     !pkg.author ||

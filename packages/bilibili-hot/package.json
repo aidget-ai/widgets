@@ -1,6 +1,6 @@
 {
   "name": "@aidget-community/bilibili-hot",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Bilibili 热搜前十，每 20 分钟刷新，可点击打开搜索结果。",
   "license": "MIT",
   "author": {

@@ -47,7 +47,7 @@ cp -R packages/welcome packages/<id>
 然后完成以下内容：
 
 1. 将 npm 包命名为 `@aidget-community/<id>`，版本使用精确 semver。
-2. 在 `config.json` 中设置唯一的组件 ID、标题、支持平台、初始尺寸和所需能力。
+2. 在 `config.json` 中设置唯一的组件 ID、标题、支持平台、初始尺寸、最低 Aidget 版本和所需能力。
 3. 编写静态 HTML/CSS，把脚本、图片、字体等运行时资源放进 `assets/`。
 4. 在 `agents.md` 中写明用途、更新约束、刷新方式和外观注意事项；这份文件会随组件分发给 Agent。
 5. 在 Aidget 中实际渲染，截取 PNG、JPEG 或 WebP 截图，并只记录验证过的平台。
@@ -105,6 +105,7 @@ packages/<id>/
 {
   "id": "note",
   "title": "便签",
+  "minHostVersion": "0.1.1",
   "logo": null,
   "screenshots": ["assets/screenshot.png"],
   "platforms": ["macos", "windows", "linux"],
@@ -116,6 +117,7 @@ packages/<id>/
 ```
 
 - `screenshots` 至少包含一张图片，展示 Aidget 中的实际渲染结果；`logo` 可选。图片必须是 PNG、JPEG 或 WebP，单文件不超过 5 MiB。
+- 必须在 `minHostVersion` 中声明精确的最低 Aidget SemVer，其值应是提供组件所用全部 API 的最早宿主版本。
 - `platforms` 只应列出已经实际验证过的操作系统。初始尺寸不得小于 `160 × 120`。
 - `dragMode` 支持两种值：
   - `all`：可拖动普通组件内容，由宿主排除交互区域。

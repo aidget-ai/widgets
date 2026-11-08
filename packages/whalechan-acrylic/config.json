@@ -1,6 +1,7 @@
 {
   "id": "whalechan-acrylic",
   "title": "鲸鱼娘 · 亚克力钥匙扣",
+  "minHostVersion": "0.1.1",
   "logo": null,
   "screenshots": ["assets/screenshot.png"],
   "platforms": ["macos", "windows", "linux"],

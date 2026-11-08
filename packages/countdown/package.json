@@ -1,6 +1,6 @@
 {
   "name": "@aidget-community/countdown",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "倒数日卡片，支持多个日子切换。",
   "license": "MIT",
   "author": {

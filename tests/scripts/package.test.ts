@@ -57,6 +57,30 @@ test('undeclared wildcard origins and script fields are rejected', (t) => {
   writeFileSync(path, JSON.stringify(config));
   assert.throws(() => inspect(dir), /additional properties/);
 });
+test('community packages require an exact minimum host SemVer', (t) => {
+  const dir = fixture(t);
+  const path = join(dir, 'config.json');
+  const config = JSON.parse(readFileSync(path, 'utf8'));
+  for (const value of [undefined, '', 'latest', 'v0.1.12', '^0.1.12']) {
+    if (value === undefined) {
+      delete config.minHostVersion;
+    } else {
+      config.minHostVersion = value;
+    }
+    writeFileSync(path, JSON.stringify(config));
+    assert.throws(() => inspect(dir), /minHostVersion/);
+  }
+  config.minHostVersion = '0.2.0-beta.1+build.5';
+  writeFileSync(path, JSON.stringify(config));
+  expect(() => inspect(dir)).not.toThrow();
+});
+
+test('the shared config schema remains readable without minHostVersion', () => {
+  const config = JSON.parse(readFileSync(join(root, 'packages/welcome/config.json'), 'utf8'));
+  delete config.minHostVersion;
+  expect(() => validateSchema('widget-config', config)).not.toThrow();
+});
+
 test('npm prepare scripts never execute during manifest inspection', (t) => {
   const dir = fixture(t);
   const path = join(dir, 'package.json'),

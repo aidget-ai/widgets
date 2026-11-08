@@ -1,6 +1,7 @@
 {
   "id": "weibo-hot",
   "title": "微博热搜",
+  "minHostVersion": "0.1.1",
   "logo": null,
   "screenshots": ["assets/screenshot.png"],
   "platforms": ["macos", "windows", "linux"],

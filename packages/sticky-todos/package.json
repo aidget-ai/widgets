@@ -1,6 +1,6 @@
 {
   "name": "@aidget-community/sticky-todos",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "水彩纸张风格的桌面待办便签，勾选状态自动保存。",
   "license": "MIT",
   "author": {

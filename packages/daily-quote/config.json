@@ -1,6 +1,7 @@
 {
   "id": "daily-quote",
   "title": "今日金句",
+  "minHostVersion": "0.1.1",
   "logo": null,
   "screenshots": ["assets/screenshot.png"],
   "platforms": ["macos", "windows", "linux"],
