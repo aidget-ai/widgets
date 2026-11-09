@@ -276,6 +276,7 @@ test('builds sorted bilingual pages with validated local media and release links
     'https://www.googletagmanager.com/gtag/js?id=G-ESN9P4TK2X',
   );
   assert.match(textContent(scripts[1]), /download_click/);
+  assert.match(textContent(scripts[1]), /transport_type: 'beacon'/);
   assert.equal(attribute(scripts[2], 'src'), 'assets/site/carousel.js');
   assert.equal(attribute(scripts[2], 'defer'), '');
   const englishScripts = descendants(english, (element) => element.tagName === 'script');

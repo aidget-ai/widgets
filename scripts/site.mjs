@@ -174,6 +174,7 @@ function renderPage(locale, widgets) {
         link_url: link.href,
         link_text: link.textContent.trim(),
         page_language: document.documentElement.lang,
+        transport_type: 'beacon',
       });
     });
   </script>
