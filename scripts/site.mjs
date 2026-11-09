@@ -8,6 +8,7 @@ const MAIN_REPOSITORY = 'https://github.com/aidget-ai/aidget';
 const RELEASES = `${MAIN_REPOSITORY}/releases`;
 const PUBLIC_SITE = 'https://aidget-ai.github.io/widgets/';
 const SITE_NAME = 'Aidget - AI Widget';
+const GA_MEASUREMENT_ID = 'G-ESN9P4TK2X';
 
 const copy = {
   zh: {
@@ -160,6 +161,22 @@ function renderPage(locale, widgets) {
   <link rel="alternate" hreflang="${locale === 'en' ? 'zh-CN' : 'en'}" href="${locale === 'en' ? '../' : 'en/'}">
   <link rel="icon" href="${brandIcon}" type="image/png">
   <link rel="stylesheet" href="${prefix}styles.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', '${GA_MEASUREMENT_ID}');
+    document.addEventListener('click', (event) => {
+      const link = event.target.closest('.primary-action, .install-link');
+      if (!link) return;
+      gtag('event', 'download_click', {
+        link_url: link.href,
+        link_text: link.textContent.trim(),
+        page_language: document.documentElement.lang,
+      });
+    });
+  </script>
   <script src="${prefix}assets/site/carousel.js" defer></script>
 </head>
 <body class="${pageClass}">

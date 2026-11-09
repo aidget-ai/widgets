@@ -270,12 +270,17 @@ test('builds sorted bilingual pages with validated local media and release links
   );
   assert.ok(links.some((link) => attribute(link, 'aria-label') === '打开 Aidget 主仓库'));
   const scripts = descendants(chinese, (element) => element.tagName === 'script');
-  assert.equal(scripts.length, 1);
-  assert.equal(attribute(scripts[0], 'src'), 'assets/site/carousel.js');
-  assert.equal(attribute(scripts[0], 'defer'), '');
+  assert.equal(scripts.length, 3);
+  assert.equal(
+    attribute(scripts[0], 'src'),
+    'https://www.googletagmanager.com/gtag/js?id=G-ESN9P4TK2X',
+  );
+  assert.match(textContent(scripts[1]), /download_click/);
+  assert.equal(attribute(scripts[2], 'src'), 'assets/site/carousel.js');
+  assert.equal(attribute(scripts[2], 'defer'), '');
   const englishScripts = descendants(english, (element) => element.tagName === 'script');
-  assert.equal(englishScripts.length, 1);
-  assert.equal(attribute(englishScripts[0], 'src'), '../assets/site/carousel.js');
+  assert.equal(englishScripts.length, 3);
+  assert.equal(attribute(englishScripts[2], 'src'), '../assets/site/carousel.js');
   assert.equal(
     descendants(chinese, (element) => attribute(element, 'class') === 'browse-nav').length,
     0,
